@@ -1,0 +1,44 @@
+﻿@model sweetnes18.Areas.administrator.Models.ProductBrand
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProductBrand</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BrandName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrandName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Brandslug)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Brandslug)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BrandImage)
+        </dt>
+
+        <dd>
+            <img width="100" class="img-responsive img-thumbnail" src="/@Html.DisplayFor(model => model.BrandImage)" />
+        </dd>
+
+        
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

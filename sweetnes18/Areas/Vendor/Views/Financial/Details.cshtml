@@ -1,0 +1,74 @@
+﻿@model sweetnes18.Areas.Vendor.Models.Order
+
+@{
+    /**/
+
+    ViewBag.Title = "Edit";
+
+    Layout = "~/Areas/Vendor/Views/Shared/_Layout.cshtml";
+}
+
+<div class="form-horizontal form_order_edit" ng-controller="Financial" ng-init="showtransactionDetails('@ViewData["ID"]')">
+    <div class="container delivered_contant">
+        
+
+        <div class="row btns_row order-edit-title">
+            <div class="col-md-5">
+
+            </div>
+
+            <div class="col-md-7 text-right m-order-n">
+                <div class="form_box">
+                    <a href="/vendor/Financial" class="form_box-back m-back-b">
+                        Back to Financial <img src="/img/back_icn.png">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row wholepayment-listing-details">
+
+            <div class="col-md-12 col-xs-12">
+                <div class="wholepayment-destp-box margin-f-des">
+                    <h3>Description</h3>
+                    <p>{{showtransactionData.Decription}}</p>
+                </div>
+
+                <div class="wholepayment-destp-box">
+                    <h3>Status</h3>
+                    <p>{{showtransactionData.Status}}</p>
+                </div>
+
+                <div class="wholepayment-destp-box">
+                    <h3>Transaction Detail</h3>
+                    <div class="transaction-listing">
+                        <ul>
+                            <li><span>Order Date</span> <span class="text-right">{{showtransactionData.dates}}</span></li>
+                            <li><span>Order Id#</span> <span class="text-right">{{showtransactionData.OrderId}}</span></li>
+                            <li><span>Total Amount</span> <span class="text-right">{{showtransactionData.TotalAmount}} aed</span></li>
+                            <li><span>Admin Amount(8%)</span> <span class="text-right"><b>-</b> {{showtransactionData.AdminAmount}} aed</span></li>
+                            <li><span>Shipping</span> <span class="text-right"><b>-</b> {{showtransactionData.Shipping}} aed</span></li>
+                            <li style="font-weight:bolder;border-top: 2px solid #000;padding-top: 8px;"><span>Payable Amount</span> <span class="text-right">{{showtransactionData.PayableAmount}} aed</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- delivered_list -->
+
+
+    </div>
+
+
+
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

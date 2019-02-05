@@ -1,0 +1,256 @@
+﻿@model sweetnes18.Areas.Vendor.Models.Products
+@using sweetnes18.Areas.Vendor.Models
+
+@using System.Data.Entity;
+@{
+    /**/
+
+    ViewBag.Title = "Add New Products";
+    Layout = "~/Areas/Vendor/Views/Shared/_Layout.cshtml";
+}
+<script src="/js/custom.js"></script>
+
+<div class="row userid" data-userid="@ViewData["userid"]">
+    <!-- <div class="col-md-6 donly">
+         <h5> Add New Products</h5>
+     </div>-->
+
+</div>
+
+<div class="create-product-vender vendoreditproject" ng-controller="ProductEdit" ng-init="BrandCatupdate()">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        @Html.AntiForgeryToken()
+        <h2 class="col-md-6-donly">Create Products</h2>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col-md-4">
+                <div class="whole_left">
+                    <label>Upload Cover image</label>
+                    <label class="browse_input input_box" >
+                        <div class="upload_box">
+                            <img src="/img/upload_ic_box.png">
+                            <h6>Upload </h6>
+                            <h6> Product Image</h6>
+                        </div>
+
+                        <input required type="file" class="form-control-file exampleInputFile1" name="photo" aria-describedby="fileHelp">
+                        <span class="browse_btn">Browse</span>
+                    </label>
+
+                    <label>Upload other images of the product</label>
+                    <div>
+                        @for (var i = 1; i <= 4; i++)
+                        {
+                        <div style="float:left;" class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                            <label class="plus imagesshow_@i" style="background: url('/img/Product/imgs.jpg')">
+                                <div class="input_box">
+                                    <img src="/img/plus.png">
+                                    <input type="file" name="photos[]" class="form-control-file images_@i" aria-describedby="fileHelp">
+                                </div>
+
+                            </label>
+                            <div onclick="deleteproductimg(@i)" style="width:100%; padding:0px;" class="btn-xs btn btn-info"><i class="fa fa-trash"></i></div>
+                        </div>
+                        }
+                    </div>
+
+
+
+
+
+
+
+                        </div>
+
+            </div>
+            <div class="col-md-8 names_of_product">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                        <input type="text" required class="form-control" placeholder="Product Title*" name="ProductTitle" />
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                        <input type="text" class="form-control" placeholder="Product Title Arabic*" name="ProductTitleArabic" />
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                        <select required class="form-control" id="BrandID" name="BrandID">
+                            <option value="">Select Product Brand *</option>
+                        </select><span class="plus-btn-add-cat"><i onclick="addnewcatbrand('b')" class="fa fa-plus"> Add Brand</i></span>
+                    </div>
+
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                        <input type="text" readonly class="form-control" placeholder="Product SKU*" name="SKU" />
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                        <select required class="form-control" id="CatID" name="CatID">
+                            <option value="">Product Category *</option>
+                        </select>
+                        <span class="plus-btn-add-cat"><i class="fa fa-plus" onclick="addnewcatbrand('c')"> Add Category</i></span>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                        <input type="text" required class="form-control" data-parsley-type="digits" data-parsley-type="number" name="ProductRegulerPrice" data-parsley-range="[0, 250000000000]" placeholder="Product Price*" />
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                        <input type="text" class="form-control" id="usr" data-parsley-type="number" placeholder="Product Quantity *" data-parsley-range="[0, 50000000]" required name="ProductQun">
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12 new-input-cre">
+                        <input type="text" required class="form-control" data-parsley-type="digits" data-parsley-type="number" data-parsley-range="[0, 100]" name="vendoroffer" placeholder="Offer in Percentage (%)" />
+                    </div>
+
+
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12 new-input-cre new-input-creds">
+<div class="customization-tr">Is Customization:<sup style="display: block; margin-top: 12px;">(Please select if its applicable for customisation)</sup></div>
+                        <div class="customization-radio">
+                            <label>
+                                <input type="checkbox" class="form-control" value="1" name="IsCustomized" /> Yes
+                            </label>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12 new-input-cre">
+                        <input type="text" style="display:none" class="form-control customizationdays" data-parsley-type="digits" data-parsley-range="[0, 10]" data-parsley-type="number" name="PreperationTime" placeholder="Customization Days" />
+                    </div>
+
+                </div>
+                <!--                Hidden Value              -->
+                <input type="hidden" value="1" name="productStatus" />
+                <input type="hidden" name="ProductSalePrice" value="0" class="form-control" />
+                <input type="hidden" required name="productimg" value="0" class="hide form-control" />
+                <input type="hidden" required name="productimage" value="0" class="hide form-control" />
+                <!--                Hidden Value              -->
+
+
+
+                <textarea class="form-control" rows="6" id="comment" name="ProductDec" placeholder="Product Description"></textarea>
+                <textarea class="form-control is-customization-edit" rows="6" id="comment" name="ProductDecArabic" placeholder="Product Description Arabic"></textarea>
+                <hr />
+                <div style="display:block; clear:both;">
+                    <h2>Specifications</h2>
+                    <div class="row specifirows">
+                        <div class="container productspecborder">
+                            <div class="boxspec"><b>Specifications(English)</b><div class="boxes col-lg-6 col-sm-6 col-md-6 col-xs-6"><input type="text" class="form-control" placeholder="Key" name="Specificationskey[]"></div><div class="boxes col-lg-6 col-sm-6 col-md-6 col-xs-6"><input type="text" class="form-control" placeholder="Value" name="Specificationsvalue[]"></div><div style="clear:both"></div></div>
+                            <div class="boxspecAr"><b>Specifications(Arabic)</b><div class="boxes col-lg-6 col-sm-6 col-md-6 col-xs-6"><input type="text" class="form-control" placeholder="Key Arabic" name="SpecificationskeyArabic[]"></div><div class="boxes col-lg-6 col-sm-6 col-md-6 col-xs-6"><input type="text" class="form-control" placeholder="Value Arabic" name="SpecificationsvalueArabic[]"></div><div style="clear:both"></div></div>
+                            <div class="boxes specibtn btns col-lg-12 col-sm-12 col-md-12 col-xs-12"><a style="width:100%;" class="btn btn-danger">+</a></div>
+                        </div>
+                    </div>
+                    <div class="spec"></div>
+                </div>
+                <hr />
+                <div style="display:block; clear:both;">
+                    <h2>Additional Information</h2>
+                    <div class="row additirows">
+                        <div class="container productspecborder">
+                            <div class="boxspec"><b>Additional Information(English)</b><div class="boxes col-lg-6 col-sm-6 col-md-6 col-xs-6"><input type="text" class="form-control" placeholder="Key" name="AdditionalInformationkey[]"></div><div class="boxes col-lg-6 col-sm-6 col-md-6 col-xs-6"><input type="text" class="form-control" placeholder="Value" name="AdditionalInformationvalue[]"></div><div style="clear:both"></div></div>
+                            <div class="boxspecAr"><b>Additional Information(Arabic)</b><div class="boxes col-lg-6 col-sm-6 col-md-6 col-xs-6"><input type="text" class="form-control" placeholder="Key Arabic" name="AdditionalInformationkeyAr[]"></div><div class="boxes col-lg-6 col-sm-6 col-md-6 col-xs-6"><input type="text" class="form-control" placeholder="Value Arabic" name="AdditionalInformationvalueAr[]"></div><div style="clear:both"></div></div>
+                            <div class="boxes Additbtn btns col-lg-12 col-sm-12 col-md-12 col-xs-12"><a style="width:100%;" class="btn btn-danger">+</a></div>
+                        </div>
+                    </div>
+                    <div class="addition"></div>
+                </div>
+                <input type="submit" value="Create" class="browse_btn buttonsd" />
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+    }
+</div>
+<style>
+    .form-horizontal label {
+        width: 100% !important;
+    }
+</style>
+<script>
+    function addnewcatbrand(i) {
+        uID = $('.userid').attr('data-userid');
+        html = "";
+        type = "";
+        if (i == 'b') {
+            html = "Enter New Brand";
+            type = "Brand";
+        }
+        if (i == 'c') {
+            type = "Category";
+            html = "Enter New Category";
+        }
+        var NameCreate = prompt(html + " : ", "");
+
+        url = "/Vendor/vendorapi/AddBrandAndCat?user=" + uID + "&type=" + type + "&name=" + NameCreate;
+        $.ajax({
+            url: url,
+            success: function (result) {
+                $('#BrandID,#CatID').attr('readonly', 'true');
+                updatecatandbrand();
+            }
+        });
+    }
+
+    $(document).on('click', '.customization-radio input', function () {
+
+        $('.customizationdays').hide();
+        $('.customizationdays').val(0);
+        if ($(this).prop("checked")) {
+            $('.customizationdays').fadeIn(500);
+            $('.customizationdays').val("");
+
+        }
+
+    })
+
+    $(document).ready(function () {
+        updatecatandbrand();
+    })
+    function deleteproductimg(i) {
+
+        var noimg = "background: url('/img/Product/imgs.jpg')";
+        $(".imagesshow_" + i).attr('style', noimg);
+        $(".imagesshow_" + i).find('img').show();
+        $(".images_" + i).val("");
+    }
+    function updatecatandbrand() {
+
+        html1 = "";
+        url = "/administrator/AdminAjax/GetAllBrand";
+        $.ajax({
+            url: url,
+            success: function (result) {
+                res = $.parseJSON(result);
+                for (i = 0; i < res.length; i++) {
+
+                    html1 += "<option value='" + res[i].ID + "'>" + res[i].BrandName + "</option>";
+
+                }
+                $('#BrandID,#CatID').removeAttr('readonly');
+                $("#BrandID").html(html1);
+            }
+        });
+        html = "";
+        url = "/administrator/AdminAjax/GetAllCategory";
+        $.ajax({
+            url: url,
+            success: function (result) {
+                res = $.parseJSON(result);
+                for (i = 0; i < res.length; i++) {
+
+                    html += "<option value='" + res[i].ID + "'>" + res[i].CategoryName + "</option>";
+
+                }
+                $('#BrandID,#CatID').removeAttr('readonly');
+                $("#CatID").html(html);
+            }
+        });
+    }
+
+
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

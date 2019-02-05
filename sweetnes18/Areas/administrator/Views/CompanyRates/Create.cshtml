@@ -1,0 +1,107 @@
+﻿@model sweetnes18.Areas.administrator.Models.CompanyRate
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/administrator/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    
+    
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div style="display:none;" class="form-group">
+        @Html.LabelFor(model => model.CID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" data-val="true" data-val-number="The field CID must be a number." id="CID" name="CID" type="number" value="@ViewData["ID"]">
+            <input class="source" data-val="true" data-val-number="The field CID must be a number." id="source" name="source" type="hidden" value="">
+            <input class="destini" data-val="true" data-val-number="The field CID must be a number." id="destination" name="destination" type="hidden" value="">
+        </div>
+    </div>
+
+    <div class="form-group">
+        Source City
+        <div class="col-md-10">
+            <select required class="form-control sourcecode" name="sourcecode"></select>
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        Destination City
+        <div class="col-md-10">
+            <select required class="form-control destinationcode" name="destinationcode"></select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        Shipping Price
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        Extra Quantity Price
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ExtraQuntityprice, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ExtraQuntityprice, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group" style="display:none;">
+        @Html.LabelFor(model => model.SameVendorProductprice, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SameVendorProductprice, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SameVendorProductprice, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: "/ajaxapi/ShipingCityList",
+            success: function (result) {
+                html = '';
+                res = result.result;
+                html += '<option  value="">select</option>';
+                for (i = 0; i < res.length; i++) {
+                    html += '<option value="' + res[i].id+'">' + res[i].name+'</option>';
+                }
+
+
+                $('.sourcecode,.destinationcode').html(html);
+            }
+        });
+        $(document).on('change', '.sourcecode', function () {
+            $('.source').val($(this + " option: selected").text());
+        })
+        $(document).on('change', '.destinationcode', function () {
+            $('.destini').val($(this + " option: selected").text());
+        })
+        
+        
+    })
+
+</script>

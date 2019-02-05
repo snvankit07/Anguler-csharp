@@ -1,0 +1,180 @@
+﻿@{
+    ViewData["Title"] = "Filter";
+}
+            <section class="choclate-brand" ng-app="product" ng-controller="pdisplay">
+                <div class="container">
+                    <div class="row">
+                        <div ng-show="(option!='brand') || someSelected(category_selected) || brand_selected!=0 || countx!=0" class="container onlymobileshow showinmobilemenuss">
+                            <div class="showinmobilemenus col-xs-12">
+                                <div class="col-xs-6 ">
+                                    <div class="mobile_category1">{{"Category" | translate }}</div>
+                                    <div class="category_drop1">
+                                        <span ng-include="'categoryTree'" ng-init="parentcat=j.ID"></span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="mobile_category2">{{"Shop by brands" | translate }}</div>
+                                    <div class="category_drop2">
+                                        <div ng-repeat="i in [brandjson]">
+                                            <div class="backgroundbox" ng-repeat="j in i">
+                                                <label class="cloth-box" style="background:url('{{j.BrandImage}}')">
+                                                    <a ng-click="filterbybrand( $event , j.ID)">
+                                                        <span class="cloth-img">
+                                                            <img src="https://www.ait-themes.club/wp-content/themes/aitthemesclub/design/img/empty.png">
+                                                        </span>
+                                                    </a>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="onlydesktopshow col-md-3 left-side-bar" ng-show="(option!='brand') || someSelected(category_selected) || brand_selected!=0 || countx!=0">
+                            <div class="side-div">
+                                <h4 class="dropbtn">{{"Category" | translate }}<i class="fa fa-angle-down pull-right" aria-hidden="true"></i></h4>
+                                <script type="text/ng-template" id="categoryTree">
+                                    <ul class="category-list dropdown-content" ng-repeat="i in [categoriesjson]">
+                                        <li ng-repeat="j in i">
+                                            <span ng-if="j.ParentCategoryID==parentcat">
+                                                <label class="check-square">
+                                                    <input type="checkbox" name="categories[]" value="{{j.ID}}" ng-model="category_selected[j.ID]" ng-click="filterbycategories($event)">
+                                                    <span class="box-check"><i class="fa fa-check" aria-hidden="true"></i></span>{{j.CategoryName|translate}}<span class="pull-right"></span>
+                                                </label>
+                                                <span ng-include="'categoryTree'" ng-init="parentcat=j.ID"></span>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </script>
+                                <div ng-include="'categoryTree'" ng-init="parentcat=0"></div>
+                            </div>
+                            <hr>
+                            <div class="side-div">
+                                @*<h4 class="dropbtn">Price<i class="fa fa-angle-down pull-right" aria-hidden="true"></i></h4>
+                                    <div class="dropdown-content">
+                                        <span>AED <strong>{{lower_price_bound}}</strong></span>
+                                        <span class="pull-right"><strong>{{upper_price_bound}}</strong> AED</span>
+
+                                        <slider floor="0" ceiling="50000" ng-model-low="lower_price_bound" ng-model-high="upper_price_bound"></slider>
+
+                                    </div>*@
+                                <rzslider rz-slider-model="rangeSlider.minValue" rz-slider-high="rangeSlider.maxValue" rz-slider-options="rangeSlider.options"></rzslider>
+
+                            </div>
+                            <hr>
+                            <div class="side-div">
+                                <h4 class="dropbtn">{{"Shop by brands"| translate}}<i class="fa fa-angle-down pull-right" aria-hidden="true"></i></h4>
+                                <div class="cloth-list mCustomScrollbar brand-dtl dropdown-content ">
+                                    <div ng-repeat="i in [brandjson]">
+                                        <div class="backgroundbox" ng-repeat="j in i">
+                                            <label class="cloth-box" style="background:url('{{j.BrandImage}}')">
+                                                <a ng-click="filterbybrand( $event , j.ID)">
+                                                    <span class="cloth-img">
+                                                        <img onerror="imgError(this);" src="https://www.ait-themes.club/wp-content/themes/aitthemesclub/design/img/empty.png">
+                                                    </span>
+                                                </a>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="col-md-{{ (option=='brand' && !someSelected(category_selected) && brand_selected==0 && countx==0)?12:9; }} brand-right">
+                            @*<h1>{{productjson}}</h1>*@
+                            <h3 ng-show="(option=='brand')">
+                                {{"Shop by brands" | translate }}</h3>
+                                <h3 ng-show="(option!='brand')">{{PageName | translate }} <span ng-show="(option!='brand') || someSelected(category_selected) || brand_selected!=0 || countx!=0">( {{ productjson.length }} {{ "Products" | translate }})</span></h3>
+                                <div class="row">
+
+                                    <div ng-show="option=='brand' && !someSelected(category_selected) && brand_selected==0 && countx==0">
+
+                                        <div class="col-md-12 brand-choco">
+                                            <div ng-repeat="i in [brandjson]">
+                                                <div class=" col-md-6 backgroundbox" ng-repeat="j in i">
+                                                    <label class="boxborder" style="background:url({{j.BrandBgImage}});  margin-top: 24px; border: 3px solid transparent;   width: 100%;    background-size: cover;    display: block;">
+                                                        <a ng-click="filterbybrand( $event , j.ID)">
+                                                            <span class="">
+                                                                <img src="https://www.ait-themes.club/wp-content/themes/aitthemesclub/design/img/empty.png" class="img-responsive">
+                                                            </span>
+                                                        </a>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div ng-show="(option!='brand') || someSelected(category_selected) || brand_selected!=0 || countx!=0">
+                                        <div class="sampleproduct" ng-repeat="i in [productjson]">
+                                            <div class="sampleproduct col-md-3 col-xs-6 detail-div-filter animated fadeIn" ng-repeat="j in i">
+                                                <div class="productsmallbox">
+                                                    <a href="/ProductDetail/product/{{j.ProductID}}">
+                                                        <div class="img-div">
+                                                            <img  src="{{j.productimage}}">
+                                                        </div>
+                                                        <h5>{{ j.ProductTitle | limitTo: 18 | translate }}{{j.ProductTitle.length > 18 ? '...' : ''}}</h5>
+
+                                                        <b>
+                                                            <span class="layout-price">
+                                                                <del ng-if="j.ProductSalePrice>0">
+                                                                    {{j.ProductSalePrice}} AED
+                                                                </del></span><br />
+                                                                {{j.ProductRegulerPrice}} AED
+</b>
+                                                    </a>
+                                                    <div data-wishlist="{{j.ProductID}}" class="productlistbox col-xs-12">
+                                                        <div class="col-xs-4"><i class="fa fa-heart-o heart_box" aria-hidden="true"></i></div>
+                                                        <div class="location col-xs-4"><img style=" width: 8px; " src="/img/Icon/icoinfo.png" /></div>
+                                                        <div ng-click="addtocart(j.ProductID,this)" class="col-xs-4 productshow{{j.ProductID}}"><i data-proid="{{j.ProductID}}"></i><img style=" width: 19px; margin-top: -5px;" src="/img/Icon/1.png" /></div>
+                                                    </div>
+                                                </div>
+                                                @*<div data-wishlist="{{j.ProductID}}" class="heart_box">
+                            <span><i class="fa fa-heart-o" aria-hidden="true"></i></span>
+                        </div>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+</div>
+                    </div>
+                </div>
+
+                <div>
+
+            </section>
+
+
+            <style>
+                .brand-right .sampleproduct h5 {
+                    color: #000;
+                    margin: 6px 0px;
+                    padding: 0px;
+                    line-height: 0px 0px;
+                    min-height: 0px;
+                    text-transform: capitalize;
+                }
+                .backgroundbox {
+                    display: inline;
+                }
+
+                .highlight label.cloth-box.active {
+                    border: 2px solid #000 !important;
+                }
+
+                .backgroundbox .cloth-box {
+                    width: 75px !important;
+                    height: 60px !important;
+                    background-repeat: no-repeat !important;
+                    background-size: contain !important;
+                }
+
+                .boxborder {
+                    border: 3px solid #fff !important;
+                }
+
+                    .boxborder:hover {
+                        border: 3px solid #000 !important;
+                    }
+            </style>

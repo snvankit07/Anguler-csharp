@@ -1,0 +1,97 @@
+﻿@model IEnumerable<sweetnes18.Areas.Vendor.Models.ProductOffer>
+
+@{
+    /**/
+
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Vendor/Views/Shared/_Layout.cshtml";
+}
+
+<section ng-app="vendor">
+    <div class="row btns_row">
+        <div class="col-md-4">
+
+            <h5>Offers</h5>
+
+        </div>
+
+        <div class="col-md-8 text-right">
+            <p>
+                <a class="browse_btn" href="/Vendor/Productoffers/create">Create New Offer</a>
+            </p>
+            <div style="clear:both;"></div>
+            <div class="cal_right">
+
+
+                <a href="#" class="copy_btn offer_csv"> <i class="fa fa-file-archive-o" aria-hidden="true"></i> CSV</a>
+
+                <label for="usr" class="from">from</label>
+                <input type="text" class="form-control from_calender" id="usr">
+
+                <label for="usr" class="to">to</label>
+                <input type="text" class="form-control to_calender" id="usr">
+                <a href="#" class="search_ic"> <i class="fa fa-search" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </div>
+    <div ng-controller="Offerdisplay">
+        <table class="table product_table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OfferCode)
+                    </th>
+                    <th>
+                        Offer Amount
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OfferTitle)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OfferStartDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OfferEndDate)
+                    </th>
+                   <th>
+                        @Html.DisplayNameFor(model => model.OfferStatus)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="i in [vendorofferjson]">
+       
+            <tr ng-repeat="j in i" >
+                <td>
+                    {{j.OfferCode}}
+                </td>
+                <td>
+                    {{j.OfferAmount}}{{j.OfferType==1?'%':'AED'}}
+
+                </td>
+                <td>
+                    {{j.OfferTitle}}
+
+                </td>
+                <td>
+                    {{j.OfferStartDate}}
+                   
+                </td>
+                <td>
+                    {{j.OfferEndDate}}
+
+                </td>
+                <td>
+                    {{j.OfferStatus == 1 ? "Publish" : "Un-publish"}}
+                    
+
+                </td>
+                <td>
+                <a ><i class="btn btn-info fa fa-trash"></i></a>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</section>

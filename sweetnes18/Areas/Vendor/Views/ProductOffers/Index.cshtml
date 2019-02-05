@@ -1,0 +1,149 @@
+﻿@model IEnumerable<sweetnes18.Areas.Vendor.Models.ProductOffer>
+
+@{
+    /**/
+
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Vendor/Views/Shared/_Layout.cshtml";
+}
+<span ng-controller="ShowOfferData" ng-init="getOfferdata('@ViewData["ID"]')">
+    
+    <section class="monly">
+        <div class=" Offers_box">
+            <div class="row">
+
+                <div class="col-xs-12 delivered_title">
+                    
+                    <h3 class="ng-binding">Offers</h3>
+                </div>
+                <div class="col-xs-12 form_box">
+                    <input type="text" placeholder="FROM" class="form-control from_calender">
+                    <input type="text" placeholder="TO" class="form-control from_calender">
+                    <a href="#" class="search_ic"> <i class="fa fa-search" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="row offers-list">
+                
+                <ul>
+                    <li class="waves-effect" ng-repeat="i in MobileshowOffer">
+                        <div class="col-xs-12 orders_name">
+                            <h5>{{i.OfferTitle}}</h5>
+                        </div>
+
+                        <div class="col-xs-12 order_id">
+                            <h5><b>Code:</b>{{i.OfferCode}}</h5>
+                        </div>
+                        <div class="col-xs-6 Deliver_date">
+                            <p>Start on {{i.OfferStartDate | date : 'EEE MMM d'}}</p>
+                        </div>
+                        <div class="col-xs-6 text-right Order_date">
+                            <p>Expire on {{i.OfferEndDate | date : 'EEE MMM d'}}</p>
+                        </div>
+                    </li>
+
+
+
+                </ul>
+
+            </div><!-- delivered_list -->
+
+            <div class="buttonFixed row Botm_btns offer_bottm_btnss">
+                <a href="/Vendor/Productoffers/create">+ ADD NEW</a>
+                <a href="#"> <img src="img/doc.png"> Copy</a>
+                <a href="#"> <img src="img/csv.png"> CSV</a>
+
+            </div>
+        </div>
+
+    </section>
+
+
+    <section class="donly">
+        <div class="row btns_row">
+            <div class="col-md-4">
+
+                <h5>Offers</h5>
+
+            </div>
+
+            <div class="col-md-8 text-right">
+                <p>
+                    <a class="browse_btn" href="/Vendor/Productoffers/create">Create New Offer</a>
+                </p>
+                <div style="clear:both;"></div>
+                <div class="cal_right">
+
+
+                    <a href="#" class="copy_btn offer_csv"> <i class="fa fa-file-archive-o" aria-hidden="true"></i> CSV</a>
+
+                    <label for="usr" class="from">from</label>
+                    <input type="text" class="form-control from_calender" id="usr">
+
+                    <label for="usr" class="to">to</label>
+                    <input type="text" class="form-control to_calender" id="usr">
+                    <a href="#" class="search_ic"> <i class="fa fa-search" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+        <div>
+            <table class="table product_table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OfferCode)
+                        </th>
+                        <th>
+                            Offer Amount
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OfferTitle)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OfferStartDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OfferEndDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OfferStatus)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="i in [DesktopshowOffer]">
+
+                    <tr ng-repeat="j in i">
+                        <td>
+                            {{j.OfferCode}}
+                        </td>
+                        <td>
+                            {{j.OfferAmount}}{{j.OfferType==1?'%':'AED'}}
+
+                        </td>
+                        <td>
+                            {{j.OfferTitle}}
+
+                        </td>
+                        <td>
+                            {{j.OfferStartDate}}
+
+                        </td>
+                        <td>
+                            {{j.OfferEndDate}}
+
+                        </td>
+                        <td>
+                            {{j.OfferStatus == 1 ? "Publish" : "Un-publish"}}
+
+
+                        </td>
+                        <td>
+                            <a><i class="btn btn-info fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </section>
+</span>

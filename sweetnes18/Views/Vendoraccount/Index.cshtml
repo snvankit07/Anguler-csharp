@@ -1,0 +1,121 @@
+﻿@{
+    ViewData["Title"] = "Create Vendor Account";
+    Layout = "~/Areas/Vendor/Views/Shared/_LayoutLogin.cshtml";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+<script src="~/js/Frontend/Angulercustom.js?v=@DateTime.Now.Millisecond"></script>
+<section ng-app="rootApp" ng-controller="CreateVendor" class="create-account">
+    <form action="~/vendoraccount" enctype="application/x-www-form-urlencoded" method="post">
+        <!--        {{msg}}  -->
+        <div class="container">
+            <div class="row mob-vent">
+                <div class="card card-login col-lg-6 col-sm-6 col-md-6 col-xs-12 mx-auto mt-5">
+                    <div class="card-header">
+                        <center> <img src="/img/logo1.png" alt="logo" class="logo-img"></center><hr>
+                        <h4>Create Vendor Account</h4>
+                    </div>
+                    <div class="error">@ViewData["Error"]</div>
+                    <div class="error">@ViewData["Error1"]</div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-md-6 col-xs-6" style="width:50%; padding-right:8px;">
+                                <input class="form-control" required type="text" placeholder="First Name*" name="fname">
+                            </div>
+                            <div class="col-md-6 col-xs-6" style="width:50%; padding-left:8px;">
+                                <input class="form-control" type="text" placeholder="Last Name" name="lname">
+                            </div>
+                        </div>
+                        <input type="text" hidden="hidden" name="UType">
+
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <select class="citydropdown form-control" required class="citydropdown" name="city"></select>
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <input class="form-control" type="text" data-parsley-type="number" required placeholder="Mobile Number*" name="mobileno">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <input class="form-control" type="email" required placeholder="Email*" name="username">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <input class="form-control" type="password" minlength="6" required placeholder="Password*" name="password">
+                                <!-- <span>Minimum 6 Characters</span>-->
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <input class="form-control" type="text" minlength="2" required placeholder="Enter VAT Number" name="VatNumber">
+                                <!-- <span>Minimum 6 Characters</span>-->
+                            </div>
+                        </div>
+
+
+                        <input type="submit" class="btn btn-primary btn-block" value="Sign Up" />
+                        <br />Already have an account? <a href="/vendor/login">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+<style>
+    .error {
+        color: red;
+        font-weight: bold;
+        text-align: center;
+        font-size: 10px;
+        margin-top: 4px;
+    }
+
+    .parsley-error {
+        border: 1px solid red;
+    }
+
+    .parsley-errors-list {
+        padding: 0px;
+        margin: 0px;
+    }
+
+        .parsley-errors-list li {
+            font-size: 12px;
+            list-style: none;
+        }
+</style>
+<script>
+    $(document).ready(function () {
+        html = ""
+$.ajax({
+        url: "/ajaxapi/ShipingCityList",
+success: function (result) {
+
+        res = result.result;
+    html += "<option value=''>Select City</option>";
+for(i=0 ; i< res.length; i++)
+{
+        html += "<option value='" + res[i].id + "'>" + res[i].name + "</option>";
+    }
+
+ $('.citydropdown').html(html);
+}
+});
+
+
+
+
+
+})
+</script>
+<script src="/Scripts/parsley.min.js"></script>
+<script>
+    $('form').parsley();
+</script>
+

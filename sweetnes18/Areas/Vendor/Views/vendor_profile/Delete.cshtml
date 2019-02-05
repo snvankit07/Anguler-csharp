@@ -1,0 +1,131 @@
+﻿@model sweetnes18.Areas.Vendor.Models.vendor_profile
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Vendor/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>vendor_profile</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.vendor_REG_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vendor_REG_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VendorCustomerNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VendorCustomerNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PHNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PHNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pincode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pincode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.toSentMail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.toSentMail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BusinessName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BusinessName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AboutCompany)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AboutCompany)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ComapnyDec)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComapnyDec)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryIDs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryIDs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CoverImages)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CoverImages)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

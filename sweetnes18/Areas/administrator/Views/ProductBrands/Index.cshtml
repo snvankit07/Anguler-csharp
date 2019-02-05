@@ -1,0 +1,56 @@
+﻿@model IEnumerable<sweetnes18.Areas.administrator.Models.ProductBrand>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p class="cre-product-on">
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div class="container new-table-style" ng-controller="Standard" ng-init="init('ProductBrand');">
+
+    <div class="col-md-6">
+        <div class="dataTables_length">
+
+        </div>
+    </div>
+    <div ng-include="'Search'"></div>
+
+    <!-- pagination end -->
+    <table class="table table-striped">
+        @*// table-responsive*@
+        <thead>
+            <tr>
+                <th>Brand Name</th>
+                <th>Brand Slug</th>
+                <th>Brand Image</th>
+                <th>Brand Banner Image</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="i in StandardJson">
+                <td>{{i.BrandName}}</td>
+                <td>{{i.Brandslug}}</td>
+                <td><img class="img-responsive img-thumbnail imagesbox" src="{{i.BrandImage}}" /></td>
+                <td><img class="img-responsive img-thumbnail imagesbox" src="{{i.BrandBgImage}}" /></td>
+                <td>
+                    <a href="/administrator/ProductBrands/Edit/{{i.ID}}"><i class='fa fa-pencil' aria-hidden='true'></i></a> |
+                    <a target="_new" href="/administrator/ProductBrands/Details/{{i.ID}}"><i class='fa fa-eye' aria-hidden='true'></i></a> |
+                    <a href="/administrator/ProductBrands/Delete/{{i.ID}}"><i class='fa fa-trash-o' aria-hidden='true'></i></a> |
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div ng-include="'Pagination'"></div>
+
+</div>
+<style>
+    .table td img {
+        width: 50px !important;
+    }
+</style>

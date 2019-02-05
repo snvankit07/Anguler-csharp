@@ -1,0 +1,19 @@
+﻿@{
+    Layout = null;
+}
+<div ng-app="app" ng-controller="reviewcode" ng-model="{{aa}}" >
+    Rating stars here {{$scope.aa}}
+</div>
+
+<script>
+    var Home = angular.module('app', []);
+
+    Home.controller('reviewcode', function ($scope, $http) { 
+        $scope.aa = "123"; 
+        $http.get("/Review/click")
+            .then(function (response) {
+                
+                //$scope.click = JSON.parse(response.data);
+            });
+    });
+</script>

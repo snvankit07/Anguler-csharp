@@ -1,0 +1,126 @@
+﻿@model sweetnes18.Areas.administrator.Models.ProductBrand
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Uprede Product Brand</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.ID)
+    <div style="display:none;">
+        <label>
+            @Html.EditorFor(model => model.BrandImage, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.BrandBgImage, new { htmlAttributes = new { @class = "form-control" } })
+        </label>
+    </div>
+
+    <div class="form-group">
+        <div class="pull-left col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <label>
+                Brand Name
+                @Html.EditorFor(model => model.BrandName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BrandName, "", new { @class = "text-danger" })
+            </label>
+        </div>
+
+
+        <div class="pull-left col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <label>
+                Brand Slug
+                @Html.EditorFor(model => model.Brandslug, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Brandslug, "", new { @class = "text-danger" })
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group">
+
+        <div class="pull-left col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <label>
+                Brand Image <br /><img width="100" class="img-responsive img-thumbnail" src="@Html.DisplayFor(model => model.BrandImage)" />
+                <input type="file" name="BrandImages" />
+            </label>
+
+        </div>
+
+
+        <div class="pull-left col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <label>
+                Brand Background Image<br />
+                <img width="100" class="img-responsive img-thumbnail" src="@Html.DisplayFor(model => model.BrandBgImage)" />
+                <input type="file" name="BrandBgImages" />
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+
+        <div class="col-md-10" style="clear:both;">
+            Brand Status
+            
+            <select class="form-control" name="BrandStatus">
+
+                @if( Model.BrandStatus == 1)
+                {
+                    <option value="1" selected>Publish</option>
+                    <option value="0">Un-Publish</option>
+                }
+                else
+                {
+
+                    <option value="1" >Publish</option>
+                    <option value="0" selected>Un-Publish</option>
+
+                }
+
+
+            </select>
+        </div>
+    </div>
+
+    @*<input type="hidden" name="BrandStatus" value="1" />*@
+
+
+    <div style="clear:both;" class="form-group col-xs-12">
+
+        <input type="submit" value="Save" class="btn btn-default" />
+
+    </div>
+</div>
+}
+<script>
+function readURL(input) {
+   if (input.files && input.files[0]) {
+     var reader = new FileReader();
+     reader.onload = function(e) {
+       // do stuff when `.readAsDataURL()` completes
+       var image = document.getElementById("image");
+       image.src = e.target.result;
+       console.log(image, e.target.result, reader.DONE);
+     };
+     reader.readAsDataURL(input.files[0]);
+   }
+ }
+</script>
+<div class="hidden">
+    <img id="image" src="#" />
+    <input type="file" accept="image/gif, image/jpeg, image/png" onchange="readURL(this);">
+</div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<style>
+    label {
+        width: 100%;
+    }
+</style>
+

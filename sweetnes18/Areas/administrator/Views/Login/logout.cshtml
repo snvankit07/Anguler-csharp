@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "index";
+    Layout = "~/Areas/administrator/Views/Shared/_LayoutLogin.cshtml";
+}
+<div class="container">
+    <div class="card card-login mx-auto mt-5">
+        <div class="card-header">Login</div>
+        <div class="card-body">
+            <form action="~/administrator/login" enctype="application/x-www-form-urlencoded" method="post">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input class="form-control" name="username" id="exampleInputEmail1" type="text" aria-describedby="emailHelp" placeholder="Email or mobile phone number">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input class="form-control" id="exampleInputPassword1" name="password" type="password" placeholder="Password">
+                </div>
+                <input type="submit" class="btn btn-primary btn-block" value="Login" />
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+

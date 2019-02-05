@@ -1,0 +1,179 @@
+﻿@using sweetnes18.Models;
+
+@{
+
+    ViewData["Title"] = "My Order";
+
+}
+<style>
+    .errorinvalid {
+        width: 100%;
+        display: inline-block;
+        color: red;
+        font-size:16px;
+        padding-left: 0px;
+        margin-bottom: 16px;
+    }
+    .img-card {
+        margin-bottom: 5px;
+        width: 100%;
+    }
+</style>
+
+<span ng-app="getshoppingcart">
+    <section class="checkout-page">
+        <div class="container">
+            <div><h3><center>{{"We are Communicating with the payment provider"| translate }}...<br />{{"Please do not refresh this page"| translate }}</center></h3></div>
+            <script id="mastercard-js" src="https://eu-gateway.mastercard.com/checkout/version/49/checkout.js"
+                    data-error="errorCallback" data-cancel="cancelCallback"  data-complete="completeCallback">
+            </script> 
+            <script>
+                $(document).ready(function () {
+                    Checkout.showLightbox();
+                });
+            </script>
+
+            <script type="text/javascript">
+                function completeCallback(resultIndicator, sessionVersion) {
+                    $.ajax({
+                        url: "/ajaxapi/ChkSessionPayment?ResultIndicator=" + resultIndicator,
+                        success: function (result) {
+                            var obj = (result)
+                            if (obj.flag) {
+                                
+                            } else {
+                                notifyMe("Payment Status", obj.message, "/shoppingcart", '/img/Icon/1.png');
+                            }
+                            
+                            window.location.href = obj.result; 
+                        }
+                    })
+                }
+                function errorCallback() {
+                    //window.location.href = "/myorder/CancelOrder";
+                }
+                function cancelCallback() {
+                    window.location.href = "/myorder/CancelOrder";
+                }
+                Checkout.configure({
+                    merchant: 'TEST4003464',
+                    session: {
+                        id: '@ViewData["PaySession"]'
+                    },
+                    order: {
+                       description: 'Ordered goods',
+                    },
+                    interaction: {
+                        merchant: {
+                            name: 'Sweetness',
+                            address: {
+                                line1: '200 Sample St',
+                                line2: '1234 Example Town'
+                            }
+                        },
+                        displayControl: {
+                            billingAddress: "HIDE",
+                            shipping: "HIDE"
+                        }
+                    }
+                });
+            </script>
+            <script id="page-js" type="text/javascript">
+
+            </script>
+
+
+        </div>
+    </section>
+</span>
+
+<script>
+    $(document).ready(function () {
+        $('.showhide').toggle();
+            })
+    $("#cod").on("click", function (e) {
+        $('.showhide').toggle();
+            });
+</script>
+
+
+
+@*<script src="https://eu-gateway.mastercard.com/checkout/version/49/checkout.js" data-error="errorCallback" data-cancel="cancelCallback" data-afterRedirect="restorePageState" data-beforeRedirect="restorePageStatenew">
+    </script>
+
+    <script type="text/javascript">
+        function comp(res,ass) {
+            console.log('-----------after-------------');
+            alert(JSON.stringify(res, ass));
+            console.log('------------after------------');
+        }
+        function restorePageState(res) {
+            console.log('-----------after-------------');
+            console.log(JSON.stringify(res));
+            console.log('------------after------------');
+        }
+        function restorePageStatenew(res) {
+            console.log('-----------before-------------');
+            console.log(JSON.stringify(res));
+            console.log('------------before------------');
+        }
+        function errorCallback(error) {
+            console.log(JSON.stringify(error));
+            document.getElementById("error").innerHTML = JSON.stringify(error);
+           // alert(JSON.stringify(error));
+        }
+        function cancelCallback() {
+            console.log('Payment cancelled');
+            //alert("cancel");
+        }
+
+        Checkout.configure({
+
+            merchant: 'TEST4003464',
+            order: {
+                amount: function () {
+
+                    return showprice();
+                },
+                currency: 'AED',
+                description: 'Sweetness Product Purchase',
+                id: function () {
+                    //Dynamic order id for testing
+                    return new Date().valueOf();
+                }
+            },
+
+            billing: {
+                address: {
+                    street: '123 Customer Street',
+                    city: 'Dubai',
+                    postcodeZip: '99999',
+                    stateProvince: 'XX',
+                    country: 'ARE',
+
+                }
+            },
+            customer: {
+                email: 'abc@yahoo.com',
+                phone: '+971501234567'
+
+            },
+
+            interaction: {
+                merchant: {
+                    name: 'Sweetness ',
+                    address: {
+                        line1: 'Post Box 122727',
+                        line2: 'Dubai'
+                    }
+                }
+
+            },
+
+
+
+        });
+
+    </script>*@
+
+

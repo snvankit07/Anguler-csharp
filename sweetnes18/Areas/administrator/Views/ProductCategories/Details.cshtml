@@ -1,0 +1,50 @@
+﻿@model sweetnes18.Areas.administrator.Models.ProductCategory
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProductCategory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CategorySlug)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategorySlug)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ParentCategoryID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ParentCategoryID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryStatus)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

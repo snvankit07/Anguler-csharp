@@ -1,0 +1,42 @@
+﻿@model sweetnes18.Areas.administrator.Models.EmailTemplates
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EmailTemplates</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TemplateName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TemplateName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TemplateData)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TemplateData)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NotificationType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NotificationType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TemplateId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

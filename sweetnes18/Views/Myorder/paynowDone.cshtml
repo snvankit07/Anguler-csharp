@@ -1,0 +1,120 @@
+﻿@using sweetnes18.Models;
+@{
+    ViewData["Title"] = "Pay now Done";
+}
+<form>
+    <section class="checkout-page">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="~/">{{"Home"| translate }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{"Payment Done"| translate }}</li>
+            </ol>
+            <div class="row">
+                <div class="col-md-12 checkout-left">
+                    <ul class="nav nav-tabs checkout-tab">
+                        <li ><a href="#"><span>2</span>{{"Payment"| translate }}</a></li>
+                        <li class="active"><a href="#"><span>3</span>{{"Done"| translate }}</a></li>
+                    </ul>
+                    <div class="loadershow" >
+                        <div style="color: #48271f" class="la-ball-scale-ripple-multiple la-2x">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="tab-content checkout-tab-cont" style="display:none;">
+                        <div id="shipping" class="tab-pane fade">
+
+                        </div>
+                        <div id="payment" class="tab-pane fade ">
+                        </div>
+
+                        <div id="done" class="tab-pane fade done in active">
+                            <h4>{{"Thank for your Purchase !"| translate }}</h4>
+                            <p>{{"We sent your order confirmation to your Email Address."| translate }}<br>{{"We will email you again and send a notification as soon as it ships."| translate }}<br><br>{{"Your Order ID : "| translate }}<span class="trackorder"></span></p>
+                            <a style="display:none;" class="orange_btn customization" href="/Myorder/CustomizedProduct" style="float: left; margin-top: 140px;" class="orange_btn">{{"Customize your product"| translate }}</a>
+                            <a href="/" style="float: right; margin-top: 140px;" class="orange_btn">{{"Continue Shopping"| translate }}</a>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </section>
+</form>
+<script>``
+    $(document).ready(function () {
+        $('.loadershow').show();
+       
+        var product;
+        var shipping;
+        $.ajax({
+            url: "/cart/getC",
+            success: function (product) {
+                $.ajax({
+                    url: "/Shoppingcart/GetShippingAddress",
+                    success: function (shipping) {
+                        $.ajax({
+                            url: "/ajax/CheckLogin",
+                            success: function (User) {
+                                var user = 0;
+                                if (User.Status) {
+                                    user = User.result.id
+                                }
+                                $.ajax({
+                                    url: "/ajaxapi/FinishPayment?cartproduct=" + product + "&addressid=" + shipping[0].AddID + "&shippingcompanyid=" + shipping[0].SIDS + "&user=" + user+"&paytype=Card",
+                                    success: function (track) {
+                                         $.ajax({
+                                            url: "/cart/Empty",
+                                            success: function (t) {
+                                                $('.loadershow').hide();
+                                                $('.tab-content.checkout-tab-cont').show();
+                                                $('.trackorder').html(track.result);
+
+                                                tid = track.result;
+                                                $.ajax({
+                                                    url: "https://sweetness.ae/ajaxapi/OrdersShow?order=" + tid,
+                                                    success: function (rest) {
+                                                        j = 0
+                                                        for (i = 0; i < rest.result.length; i++) {
+                                                            if (rest.result[i].Product.IsCustomized == 1) {
+                                                                j++;
+                                                            }
+                                                        }
+                                                        if (j > 0) {                                                        
+                                                            $('.customization').show();
+                                                            $('.customization').attr('href', '/Myorder/CustomizedProduct?id=' + track.result);
+                                                        }
+                                                    }
+                                                })
+                                                $('.cardcount').hide();
+                                                $('.dropdown-menu.dropdown-cart').hide();
+                                                $('.dropdown-menu.dropdown-cart').html('');
+                                                $('.loadershow').hide();
+                                                notifyMe("Successfully Placed Order", "Your Tracking Id is " + track.result, "/Myaccount", '/img/Icon/icoinfo.png');
+                                            }
+                                        })
+                                    },
+                                    error: function (error) {
+                                        document.location = "/home";
+                                        notifyMe("Your Cart Already Empty Please Check", "Your Cart is Empty", "/home", '/img/Icon/icoinfo.png');
+                                    }
+                                })
+                                loaderhide(true);
+                            }
+                        })
+                        
+                    }
+                })
+            }
+        })
+       /* $.ajax({
+            url: "/cart/Empty",
+            success: function (result) {
+
+            }
+        }) */
+
+    })
+</script>
+

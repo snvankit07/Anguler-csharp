@@ -1,0 +1,224 @@
+﻿@{
+    ViewData["Title"] = "Favourites";
+}
+
+
+<section ng-app="Homex" ng-controller="HomeC" data-userID="@ViewData["userdata"]" class="userdetails customer-support">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">{{"Home"|translate}}</a></li>
+            <li class="breadcrumb-item"><a href="#">{{"My Account"|translate}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{"All Orders"|translate}}</li>
+        </ol>
+        <div class="row support-cont">
+            <div class="col-md-3 account-left">
+                <h4>{{"My Account"|translate}}</h4>
+
+                <ul class="nav nav-tabs side-tabs myaccountlisting listingdatabox">
+                    <li ><a class="ordertab-click"  href="/Myaccount"><img class="iconorder" src="/img/impicon/all_order.png" />{{"Orders"| translate }}</a></li>
+                    <li class="active" ><a data-toggle="tab" data-value="favourite" href="#favourite"><img src="/img/impicon/favourite.png"> {{"My Favourites"| translate }}</a></li>
+                    <li class="tabshowbox-hide" ><a  href="/Myaccount/Setting"><img src="/img/impicon/setting.png"> {{"Settings"| translate }}</a></li>
+                    <li class="hidden tabshowbox-hide"><a data-toggle="tab" href="#setting"><img src="/img/impicon/setting.png">{{"Settings"| translate }}</a></li>
+                    <li class="hidden"><a href="/createaccount/logout">{{"Logout"| translate }}</a></li>
+                </ul>
+
+            </div>
+            <div class="col-md-9 account-right">
+                <div class="tab-content right-tab-cont">
+                    <div id="orders" class="tab-pane fade">
+                        <div class="border-bottom"></div>
+                        <div class="tab-content tab-cont-div">
+                            <div id="all-order" class="tab-pane fade in active" ng-controller="HomeC">
+                                <center><img width="100" src="/images/loader.gif" /></center>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div id="favourite" class="tab-pane fade in active">
+                        <div class="row head-row">
+                            <div class="col-md-12">
+                                <h3>{{"My Favorites"| translate }}</h3>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="border-bottom"></div>
+                            </div>
+                        </div>
+                        <div class="row newwishlist">
+                        </div>
+
+                    </div>
+                    <div ng-app="updateprofile" id="account_setting" class="tab-pane fade">
+                        <div class="sep-div">
+                            <div class="row head-row">
+                                <div class="col-md-12">
+                                    <h3>{{"Settings"| translate }}</h3>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="border-bottom"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8  my_account_box">
+                                    <div class="row form-group">
+                                        <div class="col-md-6 col-xs-6 account_fld_left">
+                                            <input type="text" id="fname" placeholder="{{'First Name'|translate}}">
+                                        </div>
+
+                                        <div class="col-md-6  col-xs-6 account_fld_right">
+                                            <input type="text" id="lname" placeholder="{{'Last Name'|translate}}">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row form-group ">
+                                        <div class="col-md-12 col-xs-12">
+                                            <input type="text" id="email" readonly="readonly" placeholder="{{'Email Address'|translate}}">
+                                        </div>
+                                    </div>
+                                    
+                                    <br>
+                                    <input type="button" class="SaveProfile orange_btn  col-xs-12" value="{{'Submit'| translate }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sep-div  reset_pass_box">
+                            <div class="row head-row">
+                                <div class="col-md-12">
+                                    <h3>{{"Reset Password"| translate }}</h3>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="border-bottom"></div>
+                                </div>
+                            </div>
+                            <div ng-controller="Passwordchange">
+                                <div class="{{class}}">{{msg}}</div>
+                                <form ng-submit="passwordupdate()">
+
+                                    <div class="row form-group">
+                                        <div class="col-md-4">
+                                            <input type="text" ng-model="oldpass" placeholder="{{'Enter your current password'| translate }}">
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-md-4">
+                                            <input type="text" ng-model="reoldpass" placeholder="{{'Enter new password'| translate }}">
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-md-4">
+                                            <input type="text" ng-model="newpass" placeholder="{{'Re-enter your new password'| translate }}">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <input type="submit" class="orange_btn" value="{{'Submit'|translate}}" />
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id="setting" class="tab-pane fade setting_box">
+                        <div class="row head-row">
+                            <div class="col-md-12">
+                                <h3>{{"Settings"| translate }}</h3>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="border-bottom"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="row form-group">
+                                    <div class="col-md-4">
+                                        <label>{{"Select your language"| translate }}</label>
+                                    </div>
+                                    <div class="col-md-8 hidden">
+                                        <select>
+                                            <option>English (UK)</option>
+                                            <option>English (UK)</option>
+                                            <option>English (UK)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-md-4">
+                                        <label>{{"Notifications"| translate }}</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <label class="on-off-toggle">
+                                            <input type="radio" name="r1" checked="">
+                                            <span class="off-btn">{{"OFF"| translate }}</span>
+                                        </label>
+                                        <label class="on-off-toggle">
+                                            <input type="radio" name="r1">
+                                            <span class="on-btn">{{"ON"| translate }}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="logout" class="tab-pane fade">
+                        <h3>{{"Logout"| translate }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="popupbg">
+        <div class="bg-white">
+            <div class="calcelbtnpopup top-headerpop">
+                <a class="btn btn-danger btn-xs pull-right"><i class=" fa fa-close"></i></a>
+            </div>
+            <div class="popupbody">
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<script src="~/js/Frontend/OrderPage.js?v=@DateTime.Now.Millisecond"></script>
+<script>
+    $(document).ready(function () {
+        $('.loaders').hide();
+        id = $('.userdetails').attr('data-userid');
+        $.ajax({
+            url: "/ajax/featchwishlist?uid=" + id,
+            success: function (result) {
+                res = JSON.parse(result);
+               
+                html = '';
+                
+                if (res.length > 0) {
+                    for (i = 0; i < res.length; i++) {
+
+                        html += '<div class="col-md-3  ng-scope" >';
+                        html += '<div class="productsmallbox">';
+                        html += '<a href="/ProductDetail/product/' + res[i].productdetail.ProductID + '">';
+                        html += '<div class="img-div">';
+                        html += '<img onerror="imgError(this);" src="' + res[i].productdetail.productimg + '">';
+                        html += '</div>';
+                        html += '<h5 class="ng-binding">' + res[i].productdetail.ProductTitle + '...</h5>';
+                        html += '<span class="ng-binding">' + res[i].productdetail.ProductRegulerPrice + ' AED</span>';
+                        html += '</a>';
+                        html += '</div>';
+                        html += '</div>';
+                        html += '</div>';
+                        $('.newwishlist').html(html);
+                        $('.loaders').hide(true);
+                    }
+                } else {
+                    html = "<h2><center>{{'No Product Found'| translate }}</center></h2>";
+                    $('.newwishlist').html(html);
+                    $('.loaders').hide(true);
+                }
+
+                var $div = $('.newwishlist');
+                angular.element(document).injector().invoke(function ($compile) {
+                    var scope = angular.element($div).scope();
+                    $compile($div)(scope);
+                });
+                
+            }
+        });
+    })
+</script>

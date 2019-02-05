@@ -1,0 +1,50 @@
+﻿@model sweetnes18.Areas.administrator.Models.CustomerProfile
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CustomerProfile</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerBillingAdd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerBillingAdd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerShippingAdd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerShippingAdd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerEmailID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerEmailID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerMobileNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerMobileNumber)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CustomerID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

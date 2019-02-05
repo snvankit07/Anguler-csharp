@@ -1,0 +1,27 @@
+﻿
+@{
+    /**/
+
+    ViewData["Title"] = "Support";
+}
+
+
+<section class="about-page">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">{{"Home"|translate}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{"Support"|translate}}</li>
+        </ol>
+        <div class="support-box-form">
+            <form action="/support" method="post">
+                {{'Write us a Message'|translate}}
+                <div class="support-box-heading">@ViewData["msg"]</div>
+                <input class="form-control" required type="text" name="fname" placeholder="{{'Name'|translate}}" />
+                <input class="form-control" required  type="email" name="Email" placeholder="{{'Email'|translate}}" />
+                <input class="form-control" type="text" name="Subject" placeholder="{{'Your Subject'|translate}}" />
+                <textarea  class="form-control1" name="Message" placeholder="{{'Your Message'|translate}}" /></textarea>
+                <input type="submit" name="Submit" value="{{'Submit'|translate}}" />
+            </form>
+        </div>
+    </div>
+</section>

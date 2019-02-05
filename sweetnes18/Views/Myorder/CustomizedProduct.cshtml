@@ -1,0 +1,112 @@
+﻿@using sweetnes18.Models;
+@{
+
+    ViewData["Title"] = "Customization Product";
+
+}
+
+
+<section ng-app="getcustomization" data-OrderID="@ViewData["OrderID"]" class="checkoutCustomized-page">
+    <div class="container">
+
+        <div class="col-md-6 col-sm-12 col-xs-12 col col-md-offset-3 customization_box">
+
+            <h3>{{"Customize your Product" | translate }}</h3>
+
+            <form enctype="multipart/form-data" class="form-inline" method="post" action="">
+                @{
+
+                    foreach (var std in ViewData["OrderData"] as IList<ProductBundle>)
+                    {
+                        <div class="customizationboxdatabox">
+                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                <div class="selectdiv">
+                                    <input readonly name="orderid[]" value="@std.ProductOrderID" class="form-control"/>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                        <div class="new_offr_browse">
+                                            <label class="browse_input input_box">
+                                                <div class="upload_box">
+                                                    <img class="bgimages blah @std.ProductOrderID" src="/img/upload_ic_box.png">
+
+                                                    <h6>{{"Upload image here" | translate }} </h6>
+                                                </div>
+
+                                                <input name="orderimage[]" onchange="readURLData(this,'@std.ProductOrderID');" required="" type="file" class="imgupload form-control-file" id="exampleInputFile1" name="photo" aria-describedby="fileHelp">
+                                                <span class="browse_btn">{{"Browse" | translate }}</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                        <textarea name="ordercomment[]" class="form-control" rows="5" placeholder="{{'Add your custom note here' | translate }}..."></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div style="clear:both;"></div>
+                        </div>
+                    }
+                }
+                <div class="customization_btn_box">
+                    <!--<button type="Customization" class="btn btn-default customization_btn">Add Customization to Another product</button>-->
+                    <input type="submit" class="btn btn-default submit_btn" value="{{'Submit' | translate }}" name="savedata">
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<script>
+
+    function readURLData(input, d) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+
+                $('.' + d).attr('src', e.target.result);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+
+<style>
+    .bgimages {
+        width: 50px;
+    }
+
+    .customizationboxdatabox {
+        border-bottom: 2px solid;
+        margin-bottom: 19px;
+    }
+
+    footer {
+        display: none;
+    }
+
+    .trackordercontainer {
+        width: 30%;
+        margin: 0 auto;
+    }
+
+    .bordertopboxtoal {
+        padding-top: 10px;
+        clear: both;
+        border-top: 1px solid #000;
+    }
+
+    .invoice {
+        margin: 12px 0;
+        border: 3px solid #ececec;
+        box-shadow: 0 0 5px 1px #b6a7a7;
+        padding: 0 12px;
+    }
+</style>
+
+

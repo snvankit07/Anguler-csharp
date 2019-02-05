@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Create Vendor Account";
+    Layout = "~/Areas/Vendor/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<section class="create-account">
+   
+    <form action="~/assets_admin/vendoraccount/login" enctype="application/x-www-form-urlencoded" method="post">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <h3>Vendor Account Login</h3>
+                    
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <input type="text" placeholder="Email or mobile phone number" name="username">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <input type="password" placeholder="Password" name="password">
+                            <!-- <span>Minimum 6 Characters</span>-->
+                        </div>
+                    </div>
+
+                   
+                    <input type="submit" class="orange_btn" value="Login" />
+                </div>
+            </div>
+        </div>
+    </form>
+</section>

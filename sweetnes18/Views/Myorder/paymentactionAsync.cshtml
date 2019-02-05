@@ -1,0 +1,202 @@
+﻿@using sweetnes18.Models;
+
+@{
+
+    ViewData["Title"] = "My Order";
+
+}
+
+<span ng-app="getshoppingcart">
+    <section class="checkout-page">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="~/">{{"Home"| translate }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{"About Us"| translate }}</li>
+            </ol>
+            <div class="row">
+                <div class="col-md-8 checkout-left">
+                    <ul class="nav nav-tabs checkout-tab">
+                        <li class="active">
+                            <a data-toggle="tab" href="/checkout">
+                                <span>1</span>{{"Payment"| translate }}
+                            </a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="/Myorder">
+                                <span>2</span>{{"Done"| translate }}
+                            </a>
+                        </li>
+
+                    </ul>
+
+                    <div class="tab-content checkout-tab-cont">
+                        <div id="payment" class="tab-pane fade in active">
+                            <img src="https://bloinkdental.com/wp-content/uploads/2015/08/credit-card-icons-bloink.png" width="150" /><br />
+                            <a class="orange_btn ng-binding" onclick="Checkout.showLightbox();" />Continue to Pay</a>
+                            <br />
+                            <hr />
+                            <label class="check-box">
+                                <input type="checkbox" checked id="cod" name="cod" class="cod">
+                                <span><i class="fa fa-check" aria-hidden="true"></i></span>
+                                {{"Cash on delivery "| translate }}
+                            </label>
+                            <div class="row form-group showhide">
+                                <div class="col-md-12">
+                                    <label>{{"Enter Your Payment Details"| translate }}</label>
+                                </div>
+                                <div class="col-md-12">
+                                    <input type="text" name="cardNo" placeholder="Enter Your Card Number">
+                                </div><br /><br />
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <form method="post">
+                                            <div class="col-md-4 moye">
+                                                <input type="text" name="month" placeholder="Month">
+                                            </div>
+                                            <div class="col-md-4 moye">
+                                                <input type="text" name="year" placeholder="Year">
+                                            </div>
+                                            <div class="col-md-4 seco">
+                                                <input type="text" name="cvv" placeholder="Security Code">
+                                            </div>
+                                            <input type="submit" name="PayNow" />
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            
+
+                            <div class="address-confirm">
+                                <label class="check-box">
+                                    <input type="checkbox">
+                                    <span><i class="fa fa-check" aria-hidden="true"></i></span>
+                                    {{"My billing address is the same as my shipping address:"| translate }}
+                                </label>
+                                <b>{{"First Last Name,"| translate }}</b><br>
+                                <span>00 Street Name, Near by,<br> City Name - Pin Code,<br> State, Country</span>
+                            </div>
+                            <a href="/Myorder/paynowDone" class="orange_btn">{{"Continue to Pay"| translate }}</a>
+                        </div>
+
+                        <div id="done" class="tab-pane fade done">
+                        </div>
+                    </div>
+                </div>
+                <div style="min-height: 350px;" ng-controller="getAllCartdata" class="col-md-4 order-overview">
+                    <h4>{{'Order Overview' | translate }}</h4>
+                    <br>
+                    <table style="width:100%">
+                        <tr>
+                            <td class="fontsshowheading">{{"Product Subtotal"| translate }}:</td>
+                            <td class="fontsshow "><span class="subtotals">{{ProductTotal| number:2}}</span> AED</td>
+                        </tr>
+                        <tr>
+                            <td class="fontsshowheading">{{"Offer Discount"| translate }}:</td>
+                            <td class="fontsshow">- <span class="offer">{{OfferAmount| number:2}}</span> AED</td>
+                        </tr>
+                        <tr>
+                            <td class="fontsshowheading">{{"Shipping"| translate }}:</td>
+                            <td class="fontsshow">+ <span class="shipments">{{Shipping| number:2}}</span> AED</td>
+                        </tr>
+                        <tr class="totalcalculation">
+                            <td class="fontsshowheading">{{"Total"| translate }}(<span class="quntt">{{Quantity}}</span>){{"items"| translate }}(s):</td>
+                            <td class="fontsshow"><span class="totalprice">{{TotalPrice| number:2}}</span> AED</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</span>
+
+<script>
+    $(document).ready(function () {
+        $('.showhide').toggle();
+    })
+    $("#cod").on("click", function (e) {
+        $('.showhide').toggle();
+    });
+</script>
+
+
+
+<script src="https://eu-gateway.mastercard.com/checkout/version/49/checkout.js" data-error="errorCallback" data-cancel="cancelCallback" data-afterRedirect="restorePageState" data-beforeRedirect="restorePageStatenew" data-complete="comp">
+</script>
+
+<script type="text/javascript">
+    function comp(res,ass) {
+        console.log('-----------after-------------');
+        alert(JSON.stringify(res, ass));
+        console.log('------------after------------');
+    }
+    function restorePageState(res) {
+        console.log('-----------after-------------');
+        console.log(JSON.stringify(res));
+        console.log('------------after------------');
+    }
+    function restorePageStatenew(res) {
+        console.log('-----------before-------------');
+        console.log(JSON.stringify(res));
+        console.log('------------before------------');
+    }
+    function errorCallback(error) {
+        console.log(JSON.stringify(error));
+        document.getElementById("error").innerHTML = JSON.stringify(error);
+       // alert(JSON.stringify(error));
+    }
+    function cancelCallback() {
+        console.log('Payment cancelled');
+        //alert("cancel");
+    }
+
+    Checkout.configure({
+
+        merchant: 'TEST4003464',
+        session: { "id":"SESSION0002823736448L8809623I65"},
+        order: {
+            amount: function () {
+                               
+                return showprice();
+            },
+            currency: 'AED',
+            description: 'Sweetness Product Purchase',
+            id: function () {
+                //Dynamic order id for testing
+                return new Date().valueOf();
+            }
+        },
+
+        billing: {
+            address: {
+                street: '123 Customer Street',
+                city: 'Dubai',
+                postcodeZip: '99999',
+                stateProvince: 'XX',
+                country: 'ARE',
+
+            }
+        },
+        customer: {
+            email: 'abc@yahoo.com',
+            phone: '+971501234567'
+
+        },
+
+        interaction: {
+            merchant: {
+                name: 'Sweetness ',
+                address: {
+                    line1: 'Post Box 122727',
+                    line2: 'Dubai'
+                }
+            }
+
+        },
+
+
+
+    });
+    
+</script>
+                           
+

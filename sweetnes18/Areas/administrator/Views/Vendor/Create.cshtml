@@ -1,0 +1,188 @@
+﻿@model sweetnes18.Areas.administrator.Models.Products
+@using sweetnes18.Areas.administrator.Models
+
+@using System.Data.Entity;
+@{
+    /**/
+
+    ViewBag.Title = "Add New Products";
+    Layout = "~/Areas/administrator/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-6">
+        <h5> Add New Products</h5>
+    </div>
+    <div class="col-md-6 text-right">
+        <div class="cal_right">
+            <div class="upload_file_btn text-right">
+                <label>
+                    <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+                    <span class="prev_next_btn"><i class="fa fa-file-text-o" aria-hidden="true"></i> + Upload CSV File</span>
+                </label>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    @Html.AntiForgeryToken()
+    <h2>Create Products</h2>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row">
+        <div class="col-md-4">
+            <div class="whole_left">
+                <label>Upload Cover image</label>
+                <label class="browse_input input_box">
+                    <div class="upload_box">
+                        <img src="/img/upload_ic_box.png">
+                        <h6>Upload </h6>
+                        <h6> Product Image</h6>
+                    </div>
+
+                    <input required type="file" class="form-control-file exampleInputFile1"  name="photo" aria-describedby="fileHelp">
+                    <span class="browse_btn">Browse</span>
+                </label>
+
+                <label>Upload other images of the product</label>
+                <div>
+                    @for (var i = 1; i <= 12; i++)
+                    {
+                        <label class="plus imagesshow_@i">
+                            <div class="input_box">
+                                <img src="/img/plus.png">
+                                <input type="file" name="photos[]" class="form-control-file images_@i"  aria-describedby="fileHelp">
+                            </div>
+
+                        </label>
+                    }
+                </div>
+
+
+                
+
+                
+
+
+            </div>
+        </div>
+        <div class="col-md-8 names_of_product">
+            <div class="row">
+                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                    <input type="text" required class="form-control" placeholder="Product Title*" name="ProductTitle" />
+                </div>
+                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                    <select required class="form-control" name="BrandID">
+                        <option value="">Select Product Brand *</option>
+                        @{
+                    foreach (var std in ViewData["Brand"] as IList<ProductBrand>)
+                    {
+                        <option value="@std.ID">@std.BrandName</option>
+            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                    <input type="text" readonly class="form-control" placeholder="Product SKU*" name="SKU" />
+                </div>
+                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                    <select required class="form-control" name="CatID">
+                        <option value="">Product Category *</option>
+                        @{
+                    foreach (var std in ViewData["Category"] as IList<ProductCategory>)
+                    {
+                        <option value="@std.ID">@std.CategoryName</option>
+            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <!--                Hidden Value              -->
+            <input type="hidden" value="1" name="productStatus" />
+            <input type="hidden" name="ProductSalePrice" value="0" class="form-control" />
+            <input type="hidden" required name="productimg" value="0" class="hide form-control" />
+            <input type="hidden" required name="productimage" value="0" class="hide form-control" />
+            <!--                Hidden Value              -->
+            <div class="row">
+                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                    <input type="text" data-parsley-type="number" data-parsley-type="digits" required class="form-control" name="ProductRegulerPrice" placeholder="Product Price*" />
+                </div>
+                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+
+                    <select required class="form-control" name="userID">
+                        <option value="">Select Product Vendor *</option>
+                        @{
+                            foreach (var std in ViewData["Vendor"] as IList<user>)
+                            {
+                                <option value="@std.id">@std.fname @std.lname</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <input type="text" class="form-control" id="usr" data-parsley-type="number" placeholder="Product Quantity *" required name="ProductQun">
+
+            <textarea class="form-control" rows="6" id="comment" name="ProductDec" placeholder="Product Description"></textarea>
+            <hr />
+            <div style="display:block; clear:both;">
+                <h2>Specifications</h2>
+                <div class="row specifirows">
+                    <div class="container">
+                        <div class="boxes col-lg-5 col-sm-5 col-md-5 col-xs-12">
+                            <input type="text" required  class="form-control" placeholder="Specifications Key" name="Specificationskey[]" />
+                        </div>
+                        <div class="boxes col-lg-5 col-sm-5 col-md-5 col-xs-12">
+                            <input type="text" required  class="form-control" placeholder="Specifications Value" name="Specificationsvalue[]" />
+                        </div>
+                        <div class="boxes specibtn btns col-lg-1 col-sm-1 col-md-1 col-xs-12"><a class="btn btn-danger">+</a></div>
+                        </div>
+                    </div>
+                <div class="spec"></div>
+            </div>
+            <hr />
+            <div style="display:block; clear:both;">
+                <h2>Additional Information</h2>
+                <div class="row additirows">
+                    <div class="container">
+                        <div class="boxes col-lg-5 col-sm-5 col-md-5 col-xs-12">
+                            <input type="text" required  class="form-control" placeholder="Additional Information Key" name="AdditionalInformationkey[]" />
+                        </div>
+                        <div class="boxes col-lg-5 col-sm-5 col-md-5 col-xs-12">
+                            <input type="text" required class="form-control" placeholder="Additional Information Value" name="AdditionalInformationvalue[]" />
+                        </div>
+                        <div class="boxes Additbtn btns col-lg-1 col-sm-1 col-md-1 col-xs-12"><a class="btn btn-danger">+</a></div>
+                    </div>
+                </div>
+                <div class="addition"></div>
+            </div>
+            <input type="submit" value="Create" class="browse_btn buttonsd" />
+
+
+
+        </div>
+        </div>
+    
+    
+
+   
+    
+
+
+}
+
+<style>    .form-horizontal label {
+        width:100% !important;
+    }
+</style>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

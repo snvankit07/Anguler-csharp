@@ -1,0 +1,110 @@
+﻿@model sweetnes18.Areas.administrator.Models.user
+@{
+    ViewBag.Title = "Edit User";
+    Layout = "~/Areas/administrator/Views/Shared/_Layout.cshtml";
+}
+
+
+<div ng-controller="updateuserprofile">
+    <pre>{{showform|json}}</pre>
+    <div ng-init="userid('@ViewData["userid"]')"></div>
+    <form  ng-submit="formupdateprofile(this,'@ViewData["userid"]')">
+        
+        <div  class="form-horizontal">
+            
+
+            <div class="form-group">
+
+                <div class="pull-left col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                    <label>
+                        First Name
+                        <input class="form-control text-box single-line" required ng-model="fname" />
+                    </label>
+                </div>
+                <div class="pull-left col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                    <label>
+                        Last Name
+                        <input class="form-control text-box single-line" ng-model="lname" />
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+
+                <div class="pull-left col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                    <label>
+                        Mobile Number
+                        <input required class="form-control text-box single-line" ng-model="mobile" />
+                    </label>
+                </div>
+                <div class="pull-left col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                    <label>
+                        User Status
+                        <select class="form-control" ng-model="userstatus" name="status">
+                            <option value="1">Publish</option>
+                            <option value="0">Unpublish</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <div class="pull-left col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                    <label>
+                        User Type
+                        <select ng-model="usertypes" class="form-control" name="usertype">
+                            <option value="0">Admin</option>
+                            <option value="2">Vendor</option>
+                            <option value="1">Customer</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="pull-left col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                    <label>
+                        User Name(Email Address)
+                        <input required class="form-control text-box single-line" type="email" ng-model="email" />
+                    </label>
+                </div>
+            </div>
+            <div class="passwordwin">
+
+                <div>{{error}}</div>
+                <div class="pull-left col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                    <label>
+                        Password
+                        <input class="form-control text-box single-line" type="password" ng-model="password" />
+                    </label>
+                </div>
+
+
+                <div class="pull-left col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                    <label>
+                        Confirm Password 
+                        <input class="form-control text-box single-line" type="password" ng-model="cpassword" />
+                        <input style="display:none;" type="text" ng-model="hiddenpassword" />
+                    </label>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<style>
+
+
+    .passwordwin {
+        clear: both;
+        padding: 13px;
+        border: 3px solid rgb(243, 243, 243);
+        margin: 31px 1.5%;
+        box-shadow: inset 1px 1px 20px 0px rgb(236, 236, 236);
+    }
+    label {
+        width: 100%;
+    }
+</style>

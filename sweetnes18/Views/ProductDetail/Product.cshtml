@@ -1,0 +1,382 @@
+﻿@model sweetnes18.Models.Products
+@using sweetnes18.Models
+@{
+    ViewData["Title"] = "Products Details";
+    ViewData["footercss"] = "ProductDetailsFooter";
+}
+
+
+<section ng-app="getshoppingcart" ng-init="productID='@ViewData["IDS"]'" class="product-dtl-page">
+    <div class="container" ng-controller="ProductDetails">
+         
+        <input type="hidden" ng-model="productID" value="@ViewData["IDS"]" />
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">{{"Home"| translate }}</a></li>
+            <li class="breadcrumb-item">{{datashow.category.CategoryName| translate }}</li>
+            <li class="breadcrumb-item active" aria-current="page">{{datashow.Productdetails.ProductTitle| translate }}</li>
+        </ol>
+        <div class="row">
+            <div class="col-md-9 product-left">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div id="gallery">
+                            <div id="panel" style="background:url({{datashow.Productdetails.productimage}})">
+                                <img onerror="imgError(this);" id="largeImage" src="~/img/bgtr.png" />
+                            </div>
+                            <div id="thumbs">
+                                <img onerror="imgError(this);" ng-repeat="i in datashow.Extradata" src="{{i.ProductValue}}" ng-if="i.ProductKey=='gallery' && i.ProductValue &&  i.ProductValue!='/img/Product/imgs.jpg'" >
+                            </div>
+                        </div>
+                        <style>
+                            #panel {
+                                background-size: cover !important;
+                            }
+                            #largeImage {
+                                opacity: 0;
+                            }
+                        </style>
+                        <script>
+                            $(document).on('click', '#thumbs img', function () {
+                                $('#thumbs img').removeClass("active");
+                                $(this).addClass("active");
+                                //$("#largeImage").attr('src', $(this).attr('src'));
+                                $("#panel").attr('style', 'background:url(' + $(this).attr('src')+')');
+                            });
+                        </script>
+
+                    </div>
+                    <div class="col-md-6 product-describe">
+                        <h3>{{datashow.Productdetails.ProductTitle| translate }}</h3>
+                        <p class="hidden">{{"Pack of 5 Chocolates"| translate }}</p>
+
+                        <div data-wishlist="{{datashow.Productdetails.ProductID}}" class="newhart productlistbox">
+                            <span><i class="fa fa-heart-o heart_box" aria-hidden="true"></i></span>
+                        </div>
+
+                        <span ng-if="datashow.Productdetails.ProductQun>0" class="green-text">{{"In Stock"| translate }}</span>
+                        <span ng-if="datashow.Productdetails.ProductQun<=0" class="red">{{"Out Stock"| translate }}</span>
+                        <div class="ratingsdata">
+                            <span class="stars alignright" style="" >
+                                <span style="width:{{20*datashow.Rating}}% !important" ></span>
+                            </span><span class="ratingvalue"></span>
+                            <span class="ratingvalueuser">{{datashow.ReviewCount}} {{ "Reviews" | translate }}</span>
+                        </div>
+
+
+                        <hr class="borders">
+                        <form>
+                            <ul class="add-cart">
+                                <li>
+                                    <h2 class="price-text"><b>{{datashow.Productdetails.ProductRegulerPrice}} AED</b> </h2>
+                                    <h2 ng-if="datashow.Productdetails.ProductSalePrice>0" class="price-text"><del>{{datashow.Productdetails.ProductSalePrice}} AED</del> </h2>
+                                    <span ng-if="datashow.Productdetails.ProductSalePrice>0">{{datashow.Productdetails.adminoffer+datashow.Productdetails.vendoroffer}}% {{"off"| translate }}</span>
+
+                                    <!--<p class="small-line">{{"Inclusive of VAT"| translate }}</p>-->
+                                </li>
+                                <li>
+                                    <div class="col-sm-5 col-md-5 col-sm-12 counter_number">
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
+                                                    <span class="glyphicon glyphicon-minus"></span>
+                                                </button>
+                                            </span>
+                                            <input readonly type="text" value="1" name="quant[1]" class="form-control input-number" value="0" min="0" max="{{datashow.Productdetails.ProductQun}}">
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-7 col-md-7 col-sm-12">
+                                        <a href="javascript:void(0);" data-proid="{{datashow.Productdetails.ProductID}}" class="orange_btn add-to-cart">{{"Add to Cart"|translate}}</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </form>
+                        <form>
+                            <ul class="add-cart newaddtocart">
+                                <li>
+                                    <h2 class="price-text">{{datashow.Productdetails.ProductRegulerPrice}} <b>AED</b> </h2>
+                                    <p class="small-line">{{"Inclusive of VAT"| translate }}</p>
+                                </li>
+                                <li>
+                                    
+                                    <div class="counter_number new-number-mobile">
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
+                                                    <span class="glyphicon glyphicon-minus"></span>
+                                                </button>
+                                            </span>
+                                            <input readonly type="text" value="1" name="quant[1]" class="form-control product-quantity input-number" data-parsley-min="1" data-parsley-max="{{datashow.Productdetails.ProductQun}}" data-parsley-type="integer" min="0" max="{{datashow.Productdetails.ProductQun}}" /> 
+
+                                            <!--<input type="text" value="1" name="quant[1]" class="form-control input-number" value="0" min="0" max="100">-->
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!--<input value="1" type="number" class="product-quantity" data-parsley-min="1" data-parsley-max="{{datashow.Productdetails.ProductQun}}" data-parsley-type="integer" />-->
+
+                                </li>
+                                <li>
+
+                                    <a href="javascript:void(0);" data-proid="{{datashow.Productdetails.ProductID}}" class="orange_btn add-to-cart">{{"Add to Cart"| translate }}</a>
+
+                                </li>
+
+                            </ul>
+                        </form>
+
+                        <hr>
+
+                        <div ng-if="datashow.Productdetails.IsCustomized==1"><i class="cusomization fa fa-4x fa-check-circle"></i> {{"This product is customizable"| translate }} <hr></div>
+                        <div class="row small-dtl-table brand-highlights">
+                            <div class="col-md-3">
+                                <p>{{"Highlights"| translate }}</p>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        {{"Brand"| translate }}
+                                    </div>
+                                    <div class="col-xs-8">
+                                        {{datashow.Brand.BrandName| translate }}
+                                    </div>
+                                    <div class="col-xs-4">
+                                        {{"Category"| translate }}
+                                    </div>
+                                    <div class="col-xs-8">
+                                        {{datashow.category.CategoryName| translate }}
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 delivery-sec">
+                <h5>{{"Delivery"| translate }}</h5>
+                <p>
+                    {{"Usually delivered in same day" | translate}}  
+                <ul class="delivery-option">
+                    <li><a href="#"><span><img src="/img/truck.png"></span><span class="shipment">{{"Fast Shipping"| translate }}</span></a></li>
+                    <li><a href="#"><span><img src="/img/batch.png"></span><span class="shipment">{{"Always Authentic"| translate }}</span></a></li>
+                    <li><a href="#"><span><img src="/img/secure.png"></span><span class="shipment">{{"Secure Shopping"| translate }}</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row spec-addi-info">
+            <div class="col-md-6 spacification">
+                <h5>{{"Specifications"| translate }}</h5>
+                @{
+                    foreach (var pro1 in ViewData["Speinfo"] as IList<ProductMeta>)
+                    {
+
+                        <div class="row spacificationdata">
+                            <div class="col-md-5 " style="min-height:25px;">
+                                &nbsp;{{"@pro1.ProductKey"| translate}}
+                            </div>
+                            <div class="col-md-7">
+                                &nbsp; {{"@pro1.ProductValue"| translate}}
+                            </div>
+                        </div>
+                        <hr>
+                    }
+                }
+            </div>
+            <div class="col-md-6 extrashow">
+                <h5>{{"Additional Information"| translate }}</h5>
+                @{
+                    foreach (var pro1 in ViewData["Addinfo"] as IList<ProductMeta>)
+                    {
+
+                        <div class="row extrashowdata" style="min-height:25px;">
+                            <div class="col-md-5">
+                                &nbsp; {{"@pro1.ProductKey"| translate}}
+                            </div>
+                            <div class="col-md-7">
+                                &nbsp; {{"@pro1.ProductValue"| translate}}
+                            </div>
+                        </div>
+                        <hr>
+                    }
+                }
+
+            </div>
+        </div>
+        <div class="spec-addi-info prodec" ng-if="datashow.Productdetails.ProductDec">
+            <h5>{{"Important information"| translate }}</h5>
+            <p>{{datashow.Productdetails.ProductDec| translate }}</p>
+        </div>
+        <div id="reviewsdata" ">
+            <div class="row head-row">
+                <h3>{{"Reviews"| translate }}</h3>
+                <div class="border-bottom"></div>
+            </div>
+
+            <div class="Reviewdatausershow" data-value="0">
+                <div ng-repeat="i in datashow.Review">
+                    <div class="ratingstar">
+                        {{"By:"| translate }} <b style="font-size: 12px; font-weight: 400;">{{i.Token}}</b> |
+                        <span class="stars alignright">
+                            <span data-value="{{i.StarRating}}" style="width:{{20*i.StarRating}}%" ng-style="{ 'width': getStars(i.StarRating) }"></span>
+                        </span>
+                    </div>
+                    <div class="ratingmsg"><p>{{i.Reviewmsg}}</p></div>
+                    <hr />
+                </div>
+            </div>
+            <div ng-if="datashow.Review.length >= 4" onclick="toggleclass()" class="reviewshowmore"><a class="btn btn-info col-xs-12">{{"More"| translate }} <i class="fa fa-angle-down"></i></a></div>
+        </div>
+        <div class="you-may-like">
+            <div class="row head-row">
+                <div class="col-md-8">
+                    <h3>{{"You May Also Like"| translate }}</h3>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="border-bottom"></div>
+                </div>
+            </div>
+            <div class="row" ng-controller="HomeC">
+                <div ng-include="'productdisplay'" ng-repeat="i in [TrandingSweetjson.result]"></div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<style>
+    .Reviewdatausershow .ng-scope:nth-child(1), .Reviewdatausershow .ng-scope:nth-child(4), .Reviewdatausershow .ng-scope:nth-child(2), .Reviewdatausershow .ng-scope:nth-child(3) {
+        display: block !important;
+    }
+        .Reviewdatausershow.Showall .ng-scope {
+        display:block !important;
+    }
+    .cusomization {
+        font-size: 34px !important;
+        color: #f7a300 !important;
+    }
+
+    span.stars, span.stars span {
+        display: block;
+        background: url('/img/stars.png?v=1') 0 -16px repeat-x;
+        width: 80px;
+        height: 16px;
+    }
+
+        span.stars span {
+            background-position: 0 0;
+        }
+
+    .alignright {
+        float: left;
+        margin-right: 6px;
+    }
+
+    .ratingsdata {
+        float: right;
+        border-left: 1px solid #d6caca;
+        padding-left: 10px;
+    }
+
+    .ratingvalue {
+        float: right;
+        font-weight: bolder;
+    }
+
+    .ratingvalueuser {
+        display: block;
+        text-align: center;
+        border-top: 1px solid #e1d9d9;
+        padding-top: 3px;
+        font-weight: bolder;
+        clear: both;
+    }
+
+    .ratingstar {
+        float: left;
+    }
+
+        .ratingstar .stars.alignright {
+            float: right;
+        }
+
+    .ratingmsg {
+        clear: both;
+        margin-top: 47px;
+        padding-top: 7px;
+    }
+
+    .borders {
+        margin-top: 27px;
+        clear: both !important;
+    }
+</style>
+<script>
+    function toggleclass() {
+        if ($('.Reviewdatausershow').attr('data-value') == 0) {
+            $('.Reviewdatausershow').attr('data-value', 1);
+            $('.Reviewdatausershow').addClass('Showall');
+            $('.reviewshowmore a').html('Less <i class="fa fa-angle-up"></i>');
+
+        } else {
+            $('.Reviewdatausershow').attr('data-value', 0);
+            $('.Reviewdatausershow').removeClass('Showall');
+            $('.reviewshowmore a').html('More <i class="fa fa-angle-down"></i>');
+        }
+
+
+    }
+
+    $(document).ready(function () {
+
+        if (!$('.extrashow').find('div').hasClass('extrashowdata')) {
+            $('.extrashow').hide();
+        }
+        if (!$('.spacification').find('div').hasClass('spacificationdata')) {
+            $('.spacification').hide();
+        }
+
+
+        $('#thumbs img').click(function () {
+            $('#thumbs img').removeClass('active');
+            $(this).addClass('active');
+        });
+
+        $('.add-to-cart').on('click', function () {
+
+            loaderhide();
+            PID = $(this).attr('data-proid');
+            QUN = $('.product-quantity').val();
+           
+            //product - quantity
+            $.ajax({
+                method: "POST",
+                url: "/cart/AddC/",
+                data: { productid: PID, Quantity: QUN }
+            })
+                .done(function (msg) {
+                    cartpageupdate();
+                    notifyMe("Add one-more product", "One More Product Add In Cart", "/shoppingcart", '/img/Icon/1.png');
+                    $('.viewdetails').remove();
+                    $('.add-to-cart').after('<div class="viewdetails" style="float:right;"><a href="/shoppingcart" class="btn btn-danger"><i class="fa fa-eye"></i></a></div>');
+                    loaderhide(true);
+                });
+
+
+        });
+    });
+    $(document).ready(function () {
+        $('.reviewshowmore').click(function () {
+            $(".Reviewdatausershow .ng-scope").show(500);
+            $(".reviewshowmore").hide(500);
+        });
+    });
+</script>

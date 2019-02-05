@@ -1,0 +1,49 @@
+﻿@model IEnumerable<sweetnes18.Areas.administrator.Models.user>
+@{
+    ViewBag.Title = "Promotion";
+    Layout = "~/Areas/administrator/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Bulk-Message Service</h2>
+
+<div class="bulkmessagedata-admin">
+    <textarea class="form-control bulkmessagedata"></textarea>
+    <a style="color:#fff;" class="btn btn-success messagebutton">Send message</a> <span class="msgcount"></span>
+    <div class="resultd"></div>
+</div>
+
+<script>
+    $(document).on('click', '.messagebutton', function () {
+        msgdata = $('.bulkmessagedata').val();
+        $.ajax({
+            url: "/ajaxapi/MobileListdata",
+            success: function (result) {
+                res = result.result;
+                $('.msgcount').html("(" + res.length + ")");
+                html = '';
+                for (i = 0; i < res.length; i++) {
+
+                    $.ajax({
+                        url: "/ajaxapi/MessageSent?mobile=" + res[i].MobileNumber + "&message=" + msgdata,
+                        success: function (resultm) {
+
+                            html += '<div style="float:left;" class=" col-lg-4 col-sm-4 col-md-4 col-xs-12"><div class="alert alert-success">';
+                            html += '<b>Name: </b>' + res[i].Name;
+                            html += '<br>';
+                            html += '<b>Mobile: </b>' + res[i].MobileNumber;
+                            html += '</div> </div > ';
+                            $('.msgcount').html("(" + (res.length - (i + 1)) + ")");
+                            $('.resultd').append(html);
+                        }
+                    });
+                }
+            }
+        });
+
+
+        //alert($('.bulkmessagedata').val());
+
+    })
+
+
+</script>

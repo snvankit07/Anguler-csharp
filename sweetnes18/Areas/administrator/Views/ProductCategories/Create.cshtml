@@ -1,0 +1,65 @@
+﻿@model sweetnes18.Areas.administrator.Models.ProductCategory
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>ProductCategory</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.CategoryName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CategoryName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CategorySlug, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CategorySlug, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CategorySlug, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="col-md-10">
+        <label class="control-label col-md-2" for="CategorySlug">Parent Category</label>
+        <select class="form-control" name="ParentCategoryID">
+            <option value="0">No Category</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            Category Status
+            <select class="form-control" name="CategoryStatus">
+                <option value="1">Publish</option>
+                <option value="0">Un Publish</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

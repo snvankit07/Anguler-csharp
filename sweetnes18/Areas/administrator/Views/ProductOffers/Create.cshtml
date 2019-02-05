@@ -1,0 +1,140 @@
+﻿@model sweetnes18.Areas.Vendor.Models.ProductOffer
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Vendor/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="form-group">
+    @Html.LabelFor(model => model.OfferTitle, htmlAttributes: new { @class = "control-label col-md-12" })
+    <div class="col-md-12">
+        <input type="text" autocomplete="off" required = "required" id="OfferTitle" name="OfferTitle"  class = "form-control"/>
+    </div>
+</div>
+<div class="form-horizontal create_new_offer">
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.OfferAmount, htmlAttributes: new { @class = "control-label col-md-12" })
+        <div class="col-md-12">
+            <input type="text" autocomplete="off" required="required" id="OfferAmount" name="OfferAmount" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.OfferType, htmlAttributes: new { @class = "control-label col-md-12" })
+        <div class="col-md-12">
+            <select required="required" id="OfferType" name="OfferType" class="form-control">
+                <option value="">Select Offer Type</option>
+                <option value="1">percentage (%)</option>
+                <option value="2">Fixed Cost (AED)</option>
+            </select>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.OfferStartDate, htmlAttributes: new { @class = "control-label col-md-12" })
+        <div class="col-md-12">
+            <input type="text" autocomplete="off" required="required" id="OfferStartDate" name="OfferStartDate" class="form-control" />
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.OfferEndDate, htmlAttributes: new { @class = "control-label col-md-12" })
+        <div class="col-md-12">
+            <input type="text" autocomplete="off" required="required" id="OfferEndDate" name="OfferEndDate" class="form-control" />
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.OfferCode, htmlAttributes: new { @class = "control-label col-md-12" })
+        <div class="col-md-12">
+            <input type="text" autocomplete="off" required="required"  name="OfferCode" class="OfferCode form-control" />
+        </div>
+    </div>
+
+
+
+    <div class="form-group OfferAddUserID">
+        @Html.LabelFor(model => model.OfferAddUserID, htmlAttributes: new { @class = "control-label col-md-12" })
+        <div class="col-md-12">
+            <input type="text" autocomplete="off" value="@ViewData["ID"]" required="required" id="OfferAddUserID" name="OfferAddUserID" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.numberofuse, htmlAttributes: new { @class = "control-label col-md-12" })
+        <div class="col-md-12">
+            <input type="text" autocomplete="off" required="required" id="numberofuse" name="numberofuse" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.OfferUseType, htmlAttributes: new { @class = "control-label col-md-12" })
+        <div class="col-md-12">
+            <select required="required" id="OfferUseType" name="OfferUseType" class="form-control">
+                <option value="">Select Offer Use type</option>
+                <option value="1">Whole Cart</option>
+                <option selected="selected" value="2">Perticuler Product</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group OfferproductID">
+        <label class="control-label col-md-12" for="OfferUseType">Offer Product</label>
+        <div class="col-md-12 offer">
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.OfferStatus, htmlAttributes: new { @class = "control-label col-md-12" })
+        <div class="col-md-12">
+            <label><input type="radio" required="required" name="OfferStatus" value="0" />Unpublish</label>
+            <label><input type="radio" required="required" name="OfferStatus" value="1" checked="checked" />Publish</label>
+        </div>
+    </div>
+
+
+</div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.OfferDescription, htmlAttributes: new { @class = "control-label col-md-12" })
+        <div class="col-md-12">
+            <textarea name="OfferDescription" id="OfferDescription"  class="form-control"></textarea>
+            @Html.ValidationMessageFor(model => model.OfferDescription, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+}
+
+<div class="back_to_list">
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+<style>
+    label {
+        margin-bottom:0px !important;
+    }
+</style>
+

@@ -1,0 +1,657 @@
+﻿@using Newtonsoft.Json.Linq;
+@using sweetnes18.AhelperClass;
+<!DOCTYPE html>
+<html ng-app="rootApp">
+<head>
+    <meta charset="utf-8" />
+    <meta name="google-site-verification" content="o2dDFezFY7bfeZd9K3KYfFGj2GYqizoF1_IpUS2Q4jY" />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+    <meta name="google-site-verification" content="DFB1Va45X76XDT-3aYwjEc3LH2yQ0PWBOH3e7F5m3GI" />
+    <title>@ViewData["Title"] - Sweetness</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="~/img/fav/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="~/img/fav/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/img/fav/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/img/fav/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/img/fav/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/img/fav/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="~/img/fav/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/img/fav/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="~/img/fav/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="~/img/fav/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/img/fav/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/img/fav/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/img/fav/favicon-16x16.png">
+    <link rel="manifest" href="~/img/fav/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="~/img/fav/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+
+    <link rel="stylesheet" href="~/css/style.css?v=@DateTime.Now.Millisecond" />
+    <link href="~/css/bootstrap.css" rel="stylesheet">
+    <link href="~/css/font-awesome.css" rel="stylesheet">
+    <link href="~/css/CustomCss.css?v=@DateTime.Now.Millisecond" rel="stylesheet">
+    <link href="~/css/ankitcss.css?v=@DateTime.Now.Millisecond" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Spinnaker" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900" rel="stylesheet">
+    <link href="/css/jquery.mCustomScrollbar.css?v=@DateTime.Now.Millisecond" rel="stylesheet">
+    <link href="/css/language_ar.css?v=@DateTime.Now.Millisecond" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://daneden.github.io/animate.css/animate.min.css" />
+    <link href="https://daneden.github.io/animate.css/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/customfrontnew.css?v=@DateTime.Now.Millisecond" />
+    <link href="/nexafont/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/fonts/fontstyles.css?v=@DateTime.Now.Millisecond" />
+    <link rel="stylesheet" href="https://rawgit.com/rzajac/angularjs-slider/master/dist/rzslider.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script src="~/js/angular-cookies.js?v=@DateTime.Now.Millisecond"></script>
+    <script src="https://rawgit.com/GMaxera/angularjs-slider/master/dist/rzslider.js"></script>
+    <script src="~/js/Frontend/custom.js?h=@DateTime.Now.Millisecond"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-sanitize.js?h=@DateTime.Now.Millisecond"></script>
+    <script>
+        //document.addEventListener('contextmenu', event => event.preventDefault());
+    </script>
+</head>
+<body class="ar @ViewData["Title"]">
+    <style>
+        .addtocartbutton {
+            position: fixed;
+            width: 100%;
+            top: 60%;
+            z-index: 200000;
+        }
+
+        .addtocartbuttoninner {
+            width: 53%;
+            margin: 0 auto;
+            background: #795548;
+            text-align: center;
+            padding: 9px 0px;
+            border-radius: 5px;
+            color: #fff;
+        }
+
+        .addtocartbuttonbg {
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            z-index: 10000;
+            background: rgba(255, 255, 255, 0.6);
+        }
+    </style>
+    <div class="onlymobileshow">
+        <div class=" addtocartbuttonbg">
+            <div class="addtocartbutton">
+                <div class="addtocartbuttoninner">
+                    {{"Added to cart" | translate }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="loader">
+
+        <!--<img src="~/images/loader.gif" />-->
+        <div style="color: #48271f" class="la-ball-scale-ripple-multiple la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <style>
+        .loader img {
+            width: 50px;
+            margin-top: 10%;
+        }
+
+        .loader {
+            background: rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 10000;
+            text-align: center;
+        }
+    </style>
+    <div class="close-hide"><img src="~/img/app-close.png?v=@DateTime.Now.Millisecond" /></div>
+    <div id="wrapper">
+        <div class="overlay" style="display: none;"></div>
+        <nav class="navbar navbar-inverse navbar-fixed-top mCustomScrollbar" id="sidebar-wrapper" role="navigation">
+            <div class="menu-top-head" ng-app="rightpannel" ng-controller="rightpannels">
+                <img width="100%" src="~/img/menubg.png" />
+                <div class="menu-top-header">
+                    <h2>{{"Hi "|translate}}&nbsp;{{checkoutusername|translate}}</h2>
+                    <div class="link-menu-login loginrightsidebar">
+                        <a href="/{{loginmyaccounturl}}"><i class="fa fa-user"></i> {{loginmyaccount|translate}}</a>
+                        <a href='/{{logoutregistrationurl}}'><i class="fa fa-sign-in"></i>  {{logoutregistration|translate}}</a>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="myaccountbox">
+                <div class="bordersbox">
+                    <h3>{{"Account" | translate  }}</h3>
+                    <ul class="nav sidebar-nav">
+                        <li>
+                            <a href="/Myaccount"><img src="~/img/home-icons/home1.png" />{{ "My Order" | translate  }}</a>
+                        </li>
+                        <li>
+                            <a href="/Myaccount/Favourites"><img src="~/img/home-icons/home2.png" />{{ "Favourites" | translate  }}</a>
+                        </li>
+                        <li>
+                            <a href="/support"><img src="~/img/home-icons/home3.png" />{{ "Support" | translate  }}</a>
+                        </li>
+                        <li>
+                            <a href="/Myorder/MyTrackOrder"><img src="~/img/home-icons/home4.png" />{{ "Track Order" | translate  }}</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="bordersbox">
+                    <h3>{{"Category" | translate  }}</h3>
+                    <ul class="nav sidebar-nav">
+                        <li>
+                            <a href="/Todaysweet?category=10"><img src="~/img/home-icons/home5.png" /> {{  "Cakes" | translate  }} <i class="fa fa-angle-right arrowrightbox" aria-hidden="true"></i></a>
+                        </li>
+                        <li>
+                            <a href="/Todaysweet?category=9"><img src="~/img/home-icons/home6.png" /> {{ "Cookies & Bakes" | translate  }} <i class="fa fa-angle-right arrowrightbox" aria-hidden="true"></i></a>
+                        </li>
+                        <li>
+                            <a href="/Todaysweet?category=2"><img src="~/img/home-icons/home7.png" /> {{ "Chocolates" | translate  }} <i class="fa fa-angle-right arrowrightbox" aria-hidden="true"></i></a>
+                        </li>
+                        <li>
+                            <a href="/Todaysweet?option=brand"><img src="~/img/home-icons/home8.png" /> {{ "Shop by Brand" | translate  }} </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bordersbox">
+                    <h3>{{"Policy"| translate  }}</h3>
+                    <ul class="nav sidebar-nav">
+                        <li>
+                            <a href="/about"><img src="~/img/home-icons/home9.png" /> {{"About Sweetness" | translate  }}</a>
+                        </li>
+                        <li>
+                            <a href="/PrivacyPolicy/terms"><img src="~/img/home-icons/home10.png" /> {{"Terms and Conditions" | translate  }}</a>
+                        </li>
+                        <li>
+                            <a href="/PrivacyPolicy"><img src="~/img/home-icons/home11.png" /> {{"Privacy Policy" | translate  }}</a>
+                        </li>
+                        <li style="display:none;">
+                            <a href="#"><img src="~/img/home-icons/home12.png" /> {{ "Consumer Rights" | translate  }}</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bordersbox language-box" ng-app="rightpannel" ng-controller="rightpannels">
+                    <h3>{{"Language" | translate  }}</h3>
+                    <select ng-model="selectedName" ng-change="changeLanguage()">
+                        <option value="en">English</option>
+                        <option value="ar">اللغة العربية</option>
+                    </select>
+                </div>
+            </div>
+        </nav>
+        <div id="page-content-wrapper">
+            <header>
+                <section class="header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button type="button" class="onlyhideorder hamburger animated fadeInLeft is-closed" data-toggle="offcanvas">
+                                    <span class="hamb-top"></span>
+                                    <span class="hamb-middle"></span>
+                                    <span class="hamb-bottom"></span>
+
+                                    <img src="~/img/app-icon.png" alt="logo"></a>
+                                </button>
+                                @{
+                                    if (ViewData["myaccount"] == "1")
+                                    {
+                                        <a href="/Myaccount" class="onlymobileshow back_btn"><img src="/img/impicon/back.png"></a>
+
+                                    }
+                                }
+                                <a href="/Myaccount" class="onlymobileshow back_btn mobile-none-setting"><img src="/img/impicon/back.png"></a>
+                                <span class="productsearch" ng-controller="searchingproducts">
+                                    <input type="text" ng-blur="searcdatahide()" ng-keyup="searchingdataproduct()" ng-model="product" placeholder="{{'Let us help you in searching'| translate }}" class="search-head">
+                                    <span class="productsearchresults">
+                                        <div ng-repeat="j in [chkproductdata.result]">
+                                            <div ng-repeat="i in j">
+
+                                                <a href="/ProductDetail/product/{{i.ProductID}}">
+                                                    <div class="productsearchresultsvalue">
+                                                        {{i.ProductTitle}}
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </span>
+                                </span>
+
+                            </div>
+
+                            <div class="col-md-4 text-center">
+
+                                <a href="/"><img src="/img/logo.png" alt="logo" class="logo-img"></a>
+
+                            </div>
+
+                            <div class="col-md-4 text-right languagetrans">
+
+                                <ul class="right-head">
+                                    @{
+                                        string v = "";
+
+                                        if (Session["login"] == "y")
+                                        {
+                                            v = "<li><a class='orange_btn' href='/Myaccount'>{{'My Account' | translate  }}</a></li><li><a class='orange_btn' href='/createaccount/logout'>{{ 'Logout' | translate  }}</a></li>";
+
+                                        }
+                                        else
+                                        {
+
+                                            v = ("<li><a href='/createaccount/login' class='orange_btn'>{{'Login' | translate  }}</a></li><li><a href='/createaccount' class='orange_btn'>{{ 'Create an Account' | translate  }}</a></li>");
+
+                                        }
+                                    }
+
+                                    @Html.Raw(v)
+                                    <li class="dropdown" ng-controller="extra">
+                                        <div class="loaders onlymobileshow" style="display:none"></div><a href="#" class="onlydesktopshow cardtoggle" data-toggle="dropdown" role="button" aria-expanded="false"><img src="~/img/cart.png"><span class="cardcount animated"></span></a>
+                                        <a href="/shoppingcart" class="onlymobileshow cardtoggle" role="button" aria-expanded="false"><img src="~/img/cart.png"><span class="cardcount animated"></span></a>
+                                        <!--add to cart dropdown end-->
+                                        <ul class="dropdown-menu dropdown-cart" role="menu">
+                                            <li>
+                                                <span class="item">
+                                                    <span class="item-left">
+                                                        <img src="/images/trend5.jpg" alt="" />
+                                                        <span class="item-info">
+                                                            <span>{{'Item name' | translate  }}</span>
+                                                            <span class="price">23$</span>
+                                                        </span>
+                                                    </span>
+                                                    <span class="item-right">
+                                                        <button class="btn btn-xs btn-danger pull-right">x</button>
+                                                    </span>
+                                                </span>
+                                            </li>
+                                            <li class="total_price_cart">
+                                                <span class="item">
+                                                    <span class="item-left">{{"Total:"| translate }}</span>
+                                                    <span class="item-right"> $2,229.97</span>
+                                                </span>
+                                            </li>
+
+                                            <li class="view_cart">
+                                                <a class="text-center col-xs-12" href="/shoppingcart">{{"View Cart"| translate }}</a>
+                                                <a class="hidden text-center  col-xs-12" href="/checkout">Checkout</a>
+                                            </li>
+                                        </ul> <!--add to cart dropdown end-->
+
+                                    </li>
+                                    <li style="display:none;"><a href="#"><img src="~/img/mike.png"></a></li>
+
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+                <div class="AllEventMsg"></div>
+            </header>
+            <div class="search_overlay"></div>
+            <div class="alert alert-@Session["status"]"> @Session["msg"]</div>
+            @{
+                Session["status"] = "";
+            }
+
+
+
+            @RenderBody()
+
+
+
+            <footer style="clear:both;" class='@ViewData["footercss"]'>
+
+                <section class="footer" id="FooterBrand" ng-app="FooterBrand" ng-controller="FooterBrandC">
+
+                    <div class="footer-top">
+
+                        <div class="container">
+
+                            <div class="row">
+
+                                <div class="col-md-3">
+
+                                    <h4>{{"Get to Know Us" | translate }}</h4>
+
+                                    <ul class="footer-list">
+                                        <li>
+                                            <a href="~/about">{{ "About Us" | translate }} </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/careers">{{"Careers" | translate }}</a>
+                                        </li>
+                                        <li>
+                                            <a href="~/support">{{"Sweetness Support" | translate }}</a>
+                                        </li>
+                                        <li class="hidden">
+                                            <a href="~/Myorder/TrackOrder">{{"Track Your Order" | translate }}</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+
+                                <div class="col-md-3">
+
+                                    <h4>{{"Let Us Help You" | translate }}</h4>
+
+                                    <ul class="footer-list">
+                                        <li>
+
+                                            <a href="~/vendoraccount">{{"Start selling Product" | translate }}</a>
+
+                                        </li>
+                                        <li>
+
+                                            <a href="~/vendor/login">{{"Seller Login" | translate }}</a>
+
+                                        </li>
+
+
+
+                                        <li>
+
+                                            <a href="~/Myaccount">{{"Your Account" | translate }}</a>
+
+                                        </li>
+
+                                        <li>
+
+                                            <a href="~/purchaseprotection">{{"100% Purchase Protection" | translate }}</a>
+
+                                        </li>
+
+                                        <li>
+
+                                            <a href="~/help">{{"Help" | translate }}</a>
+
+                                        </li>
+
+                                    </ul>
+
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="column-change" ng-show="brandjsonx.result.length!=0">
+                                        <h4>{{"Top Brands" | translate }}</h4>
+
+                                        <ul class="footer-list top-brand" ng-repeat="i in [brandjsonx.result]">
+                                            <li ng-repeat="j in i">
+
+                                                <a href="/Todaysweet?brand={{j.ID}}"><span ng-bind-html="msg"></span>{{j.BrandName | translate }}</a>
+
+                                            </li>
+                                        </ul>
+
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="col-md-12 col-xs-12">
+
+                                        <h4>{{"Download the App" | translate }}</h4>
+
+                                        <ul class="icon-list">
+
+                                            <li>
+
+                                                <a href="#"><img src="~/img/apple-icon.png"></a>
+
+                                            </li>
+
+                                            <li>
+
+                                                <a href="#"><img src="~/img/play-store.png"></a>
+
+                                            </li>
+
+                                        </ul>
+
+                                        <br>
+
+                                        <h4>{{"Connect with us" | translate }}</h4>
+
+                                        <ul class="icon-list">
+
+                                            <li>
+                                                <a href="https://www.facebook.com"><i class="fa fa-facebook"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="https://twitter.com"><i class="fa fa-twitter"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.instagram.com"><i class="fa fa-instagram"></i></a>
+                                            </li>
+
+                                        </ul>
+
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="footer-bottom">
+
+                        <div class="container">
+
+                            <div class="row">
+
+                                <div class="col-md-3">
+
+                                    <p>2018 Sweetness, {{"All Rights Reserved" | translate }}.</p>
+
+                                </div>
+
+                                <div class="col-md-6 text-center">
+
+                                    <ul class="term-con">
+
+                                        <li><a href="#">{{"Terms of Use" | translate }}</a></li>
+
+                                        <li><a href="#">{{"Terms of Sale" | translate }}</a></li>
+
+                                        <li><a href="#">{{"Privacy Policy" | translate }}</a></li>
+
+                                        <li><a href="#">{{"Consumer" | translate }}</a></li>
+
+                                    </ul>
+
+                                </div>
+
+                                <div class="col-md-3 text-right">
+
+                                    <ul class="pay-icon">
+
+                                        <li><a href="#"><img src="~/img/visa.png"></a></li>
+
+                                        <li><a href="#"><img src="~/img/master.png"></a></li>
+
+                                        <li><a href="#"><img src="~/img/american.png"></a></li>
+
+                                        <li><a href="#"><img src="~/img/cash.png"></a></li>
+
+                                    </ul>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <section>
+
+            </footer>
+        </div>
+    </div>
+
+    <style>
+        .pher, .mailer {
+            color: red !important;
+            font-weight: bold;
+        }
+    </style>
+
+
+    <environment include="Development">
+        <script src="~/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/Scripts/parsley.min.js"></script>
+        <script>
+            $('form').parsley();
+        </script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="~/Scripts/parsley.min.js"></script>
+        <script src="/js/layout.js?v=@DateTime.Now.Millisecond"></script>
+    </environment>
+
+    <!--BootStrap notify-->
+    <link rel="stylesheet" type="text/css" href="https://www.jqueryscript.net/demo/Simple-Flexible-jQuery-Alert-Notification-Plugin-notify-js/css/notify.css">
+    <script src="https://www.jqueryscript.net/demo/Simple-Flexible-jQuery-Alert-Notification-Plugin-notify-js/js/notify.js"></script>
+    <!--BootStrap notify-->
+
+
+    <script src="/js/OtherSome.js?v=@DateTime.Now.Millisecond"></script>
+    <script src="~/js/notification.js?v=@DateTime.Now.Millisecond"></script>
+    <script src="~/js/Frontend/simplejs.js?v=@DateTime.Now.Millisecond"></script>
+    <script data-require="angular-translate" data-semver="2.5.0" src="~/js/angular-translate.js"></script>
+    <script src="~/js/Frontend/Angulercustom.js?v=@DateTime.Now.Millisecond"></script>
+    <script src="~/js/Frontend/OrderOverView.js?v=@DateTime.Now.Millisecond"></script>
+    <script src="~/js/custom.js?v=@DateTime.Now.Millisecond"></script>
+    <script src="~/js/jquery.mCustomScrollbar.concat.min.js"></script>
+
+
+
+
+
+
+
+
+    <script src="~/js/ProductBox.js?v=@DateTime.Now.Millisecond"></script>
+    <script type="text/ng-template" id="productdisplay">
+        <div class="col-md-2 detail-div" ng-repeat="j in i">
+            <div class="productsmallbox">
+                <a href="/ProductDetail/product/{{j.ProductID}}">
+                    <div class="img-div {{j.productimg}}  {{j.productimage}}">
+                        
+                        <img src="https://sweetness.ae{{j.productimg}}">
+                    </div>
+                    <h5>{{ j.ProductTitle | translate | limitTo: 18  }}{{j.ProductTitle.length > 18 ? '...' : ''}}</h5>
+                    <span class="layout-price">
+                        <span ng-if="j.ProductSalePrice>0"><del>{{j.ProductSalePrice}} AED</del></span>
+                    </span>
+                    <span>{{j.ProductRegulerPrice}} AED</span>
+                </a>
+                <div data-wishlist="{{j.ProductID}}" class="productlistbox col-xs-12">
+                    <div class="addtocartbtn col-xs-4"><i class="fa fa-heart-o heart_box" aria-hidden="true"></i></div>
+                    <div class="addtocartbtn location col-xs-4"><img style=" width: 8px; " src="/img/Icon/icoinfo.png" /></div>
+                    <div ng-click="addtocart(j.ProductID,this)" class="addtocartbtn col-xs-4 productshow{{j.ProductID}}"><i data-proid="{{j.ProductID}}"></i><img style=" width: 19px; margin-top: -5px;" src="/img/Icon/1.png" /></div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <script type="text/ng-template" id="productdisplayMobile">
+        <div class="col-md-2 detail-div" ng-repeat="j in i | limitTo:4">
+            <div class="productsmallbox">
+                <a href="/ProductDetail/product/{{j.ProductID}}">
+                    <div class="img-div {{j.productimg}}  {{j.productimage}}">
+                        <img  src="https://sweetness.ae{{j.productimg}}">
+                    </div>
+                    <h5>{{ j.ProductTitle | limitTo: 18 | translate }}{{j.ProductTitle.length > 18 ? '...' : ''}}</h5>
+                    <h4 class="price-text">
+                        <span class="layout-price">
+                            <span ng-if="j.ProductSalePrice>0"><del>{{j.ProductSalePrice}} AED</del></span>
+                        </span>
+                        <span>{{j.ProductRegulerPrice}} AED</span>
+                    </h4>
+                </a>
+                <div data-wishlist="{{j.ProductID}}" class="productlistbox col-xs-12">
+                    <div class="col-xs-4"><i class="fa fa-heart-o heart_box" aria-hidden="true"></i></div>
+                    <div class="location col-xs-4"><img style=" width: 8px; " src="/img/Icon/icoinfo.png" /></div>
+                    <div ng-click="addtocart(j.ProductID,this)" class="addtocartbtn col-xs-4 productshow{{j.ProductID}}"><i data-proid="{{j.ProductID}}"></i><img style=" width: 19px; margin-top: -5px;" src="/img/Icon/1.png" /></div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <script type="text/ng-template" id="LastviewMobile">
+        <div class="col-md-12 LastviewMobileboxes" ng-repeat="j in i | limitTo:3">
+
+            <a href="/ProductDetail/product/{{j.ProductID}}">
+                <div class="img-div col-xs-3 {{j.productimg}} {{j.productimage}}">
+                    <img src="https://sweetness.ae{{j.productimg}}">
+                </div>
+                <div class="col-xs-9">
+                    <h5>{{ j.ProductTitle | limitTo: 18 }}{{j.ProductTitle.length > 18 ? '...' : ''}}</h5>
+                    <p>{{ j.ProductDec | limitTo: 50 }}{{j.ProductDec.length > 50 ? '...' : ''}}</p>
+                    <b>
+                        <span class="layout-price"><del ng-if="j.ProductSalePrice>0">{{j.ProductSalePrice}} AED</del></span>
+                        {{j.ProductRegulerPrice}} AED
+                    </b>
+                </div>
+            </a>
+
+
+
+        </div>
+    </script>
+    <script> 
+        setTimeout(function () {
+            angular.element($('.menu-top-head')).scope().changeLanguage(); 
+        }, 5000);
+        $(window).bind("load", function () {
+            angular.element($('.menu-top-head')).scope().changeLanguage(); 
+            setTimeout(function () {
+                angular.element($('.menu-top-head')).scope().changeLanguage();
+            }, 5000);
+        });
+        $(function () {
+            setTimeout(function () {
+                angular.element($('.menu-top-head')).scope().changeLanguage();
+            }, 5000);
+        });
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

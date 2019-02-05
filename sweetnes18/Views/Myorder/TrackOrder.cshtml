@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "My Account";
+}
+
+
+<section ng-app="Homex" ng-controller="HomeC" data-OrderID="@ViewData["orderid"]" class="userdetails customer-support">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">{{"Home"| translate }}</a></li>
+            <li class="breadcrumb-item"><a href="#">{{"Track Order"| translate }}</a></li>
+            
+        </ol>
+        <div class="row support-cont">
+          
+            <div class="col-md-12 account-right">
+                <div class="tab-content right-tab-cont">
+                    <div id="orders" class="tab-pane fade in active">
+
+                        <div class="border-bottom"></div>
+                        <div class="tab-content tab-cont-div">
+                            <div id="all-order" class="trackorder-new-bx tab-pane fade in active">
+                                <center><img width="100" src="/images/loader.gif" /></center>
+                            </div>
+
+                        </div>
+                    </div>
+                   </div>
+            </div>
+        </div>
+    </div>
+    <div class="popupbg">
+        <div class="bg-white">
+            <div class="calcelbtnpopup top-headerpop">
+                <a class="btn btn-danger btn-xs pull-right"><i class=" fa fa-close"></i></a>
+            </div>
+            <div class="popupbody">
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<script src="~/js/Frontend/OrderPage.js"></script>

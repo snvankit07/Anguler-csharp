@@ -1,0 +1,363 @@
+﻿@model sweetnes18.Areas.Vendor.Models.Products
+
+@using sweetnes18.Areas.administrator.Models
+
+@{
+                /**/
+
+                ViewBag.Title = "Edit Products";
+                Layout = "~/Areas/Vendor/Views/Shared/_Layout.cshtml";
+}
+<div class="userid" data-userid="@ViewData["userid"]"></div>
+
+<div class="donly vendoreditproject">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ProductID)
+        @Html.HiddenFor(model => model.NumberofVisit)
+        <div ng-controller="ProductEdit" ng-init="EditProductFunction('@ViewData["ID"]')" class="row">
+            <input name="proimage" value="{{productdata.productimage}}" type="hidden" />
+            <input type="hidden" class="form-control" value="{{productdata.NumberofVisit}}" name="ProductVisits" />
+            <div class="col-md-4">
+                <div class="whole_left">
+                    <label>Upload Cover image</label>
+                    <label class="browse_input input_box">
+                        <div class="upload_box" style="background:url('{{productdata.productimage}}')">
+                            <img style="{{hidden}}" src="/img/upload_ic_box.png">
+                            <h6 style="{{hidden}}">Upload </h6>
+                            <h6 style="{{hidden}}"> Product Image</h6>
+                        </div>
+
+                        <input type="file" accept="image/*" class="form-control-file exampleInputFile1" name="photo" aria-describedby="fileHelp">
+                        <span class="browse_btn">Browse</span>
+                    </label>
+
+                    <label>Upload other images of the product</label>
+                    <input type="hidden" name="imgfiles[]"  value="" class="form-control-file" aria-describedby="fileHelp">
+
+                    <div class="upload-other-images">
+                        <div style="float:left;" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-repeat="i in [0,1,2,3]">
+
+                            <label ng-if="i+1 <= 12" class="plus  imagesshow_{{i+1}}" style="background:url('{{galleryimage[i].ProductValue}}');">
+                                <div class="input_box" ng-if="i < 12">
+                                    <div ng-if="i != null">
+                                        <input type="hidden" name="imgfiles[]" value="{{galleryimage[i].ProductValue}}" class="form-control-file imagesSh_{{i+1}}" aria-describedby="fileHelp">
+                                        <img style="" src="/img/plus.png">
+                                        <input type="file" name="photos[]" class="form-control-file images_{{i+1}}" aria-describedby="fileHelp">
+                                    </div>
+                                    <div ng-if="i == null">
+                                        <input type="hidden" name="imgfiles[]" value="" class="form-control-file imagesSh_{{i+1}}" aria-describedby="fileHelp">
+                                        <img style="" src="/img/plus.png">
+                                        <input type="file" accept="image/*" name="photos[]" class="form-control-file images_{{i+1}}" aria-describedby="fileHelp">
+                                    </div>
+                                </div>
+
+                            </label>
+                            <div ng-click="deleteproductimg(i+1)" style="width:100%; padding:0px;" class="btn-xs btn btn-info"><i class="fa fa-trash" ></i></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-8 names_of_product edit-product-r">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                        <input type="text" required class="form-control" placeholder="Product Title*" value="{{productdata.ProductTitle}}" name="ProductTitle" />
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                        <input type="text" class="form-control" placeholder="Product Title Arabic*" value="{{productdata.ProductTitleAr}}" name="ProductTitleArabic">
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                        <select required class="form-control" id="BrandID" name="BrandID">
+                            <option value="">Select Product Brand *</option>
+                        </select><span class="plus-btn-add-cat"><i class="fa fa-plus" onclick="addnewcatbrand('b')"> Add Brand</i></span>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                        <input type="text" readonly class="form-control" value="{{productdata.SKU}}" placeholder="Product SKU*" name="SKU" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                        <select required class="form-control" id="CatID" name="CatID"></select>
+                        <span class="plus-btn-add-cat"><i class="fa fa-plus" onclick="addnewcatbrand('c')"> Add Category</i></span>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                        <input type="text" class="form-control" id="usr" data-parsley-type="number" placeholder="Product Quantity *" required name="ProductQun" value="{{productdata.ProductQun}}">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                        <input type="text" data-parsley-type="number" data-parsley-type="digits" required class="form-control mainprice" onkeyup="changepriceupdate()" data-parsley-range="[1, 5000000000000]" value="{{productdata.ActualAmount}}" name="ActualAmount" placeholder="Product Price*" />
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                        <input readonly type="text" required class="form-control Mainregulareprice" value="{{productdata.ProductRegulerPrice}} AED" name="ProductRegulerPrice" placeholder="Selling price" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                        <input type="text" data-parsley-type="number" data-parsley-type="digits" required class="form-control vendoroffer" data-parsley-range="[0, 100]" onkeyup="changepriceupdate()" value="{{productdata.vendoroffer}}" name="vendoroffer" placeholder="Your Offer" />
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                        <input readonly type="text" data-parsley-type="number" data-parsley-type="digits" class="form-control adminoffer" onkeyup="changepriceupdate()" value="{{productdata.adminoffer>0?productdata.adminoffer:''}}" name="adminoffer" placeholder="Admin Offer" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12 is-customization-pad">
+                        <div class="is-customization"> Is Customization: <sup style="display: block; margin-top: 12px;">(Please select if its applicable for customisation)</sup></div>
+                        <div class="is-customization-rd" ng-if="productdata.IsCustomized==1">
+                            <label><input checked="checked" type="checkbox" class="form-control chkboxDataiscustomization" data-vald="{{productdata.PreperationTime}}" value="1" name="customization" /> Yes</label>
+                        </div>
+                        <div class="is-customization-rd" ng-if="productdata.IsCustomized==0">
+                            <label><input type="checkbox" class="form-control chkboxDataiscustomization" value="1" data-vald="{{productdata.PreperationTime}}" name="customization" /> Yes</label>
+                        </div>
+
+
+
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                        <input type="text" ng-if="productdata.IsCustomized==1" required class="form-control customization_days" data-parsley-type="digits" data-parsley-type="number" name="customization_days" value="{{productdata.PreperationTime}}" placeholder="Customization Days" />
+                        <input type="text" ng-if="productdata.IsCustomized==0" style="display:none;" required class="form-control customization_days" data-parsley-type="digits" data-parsley-type="number" name="customization_days" value="{{productdata.PreperationTime}}" placeholder="Customization Days" />
+                    </div>
+                </div>
+                <!-- Hidden Value -->
+                <input type="hidden" value="1" name="productStatus" />
+                <input type="hidden" name="ProductSalePrice" value="{{productdata.ProductSalePrice}}" class="form-control" />
+                <input type="hidden" required name="productimg" value="0" class="hide form-control" />
+                <input type="hidden" required name="productimage" value="0" class="hide form-control" />
+                <!--  Hidden Value -->
+                <div class="row">
+
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+
+                        <select style="{{hidden}}" required class="form-control" id="userID" name="userID">
+                            <option value="">Select Product Vendor *</option>
+                        </select>
+                    </div>
+                </div>
+
+                <textarea class="form-control" rows="6" id="comment" name="ProductDec" placeholder="Product Description">  {{productdata.ProductDec}} </textarea>
+                <textarea class="form-control is-customization-edit" rows="6" id="comment" name="ProductDecArabic" placeholder="Product Description">  {{productdata.ProductDecAr}} </textarea>
+                <hr />
+                <div style="display:block; clear:both;">
+                    <h2>Specifications</h2>
+                    <div class="row specifirows">
+
+                        <div class="container productspecborder">
+                            <div>
+                                <div class="boxspec">
+                                    <b>Specifications(English)</b>
+                                    <div class="boxes col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                                        <input type="text" class="form-control" value="{{s.ProductKey}}" placeholder="Key" name="Specificationskey[]">
+                                    </div>
+                                    <div class="boxes col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                                        <input type="text" class="form-control" value="{{s.ProductValue}}" placeholder="Value" name="Specificationsvalue[]">
+                                    </div>
+                                    <div style="clear:both">
+                                    </div>
+                                </div>
+                                <div class="boxspecAr">
+                                    <b>Specifications(Arabic)</b>
+                                    <div class="boxes col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                                        <input type="text" class="form-control" value="{{s.ProductKeyAr}}" placeholder="Key Arabic" name="SpecificationskeyArabic[]">
+                                    </div>
+                                    <div class="boxes col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                                        <input type="text" class="form-control" value="{{s.ProductValueAr}}" placeholder="Value Arabic" name="SpecificationsvalueArabic[]">
+                                    </div>
+                                    <div style="clear:both">
+                                    </div>
+                                </div>
+                                <div class="boxes specibtn btns col-lg-6 col-sm-6 col-md-6 col-xs-12 col-xs-12-mb">
+                                    <a class="btn btn-info">+</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="spec">
+
+                        <div class="row deletedata" ng-repeat="s in  specifications">
+                            <div class="container productspecborder">
+                                <div>
+                                    <div class="boxspec">
+                                        <b>Specifications(English)</b>
+                                        <div class="boxes col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                                            <input required="" type="text" class="form-control" value="{{s.ProductKey}}" placeholder="Key" name="Specificationskey[]">
+                                        </div>
+                                        <div class="boxes col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                                            <input required="" type="text" class="form-control" value="{{s.ProductValue}}" placeholder="Value" name="Specificationsvalue[]">
+                                        </div>
+                                        <div style="clear:both">
+                                        </div>
+                                    </div>
+                                    <div class="boxspecAr">
+                                        <b>Specifications(Arabic)</b>
+                                        <div class="boxes col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                                            <input required="" type="text" class="form-control" value="{{s.ProductKeyAr}}" placeholder="Key Arabic" name="SpecificationskeyArabic[]">
+                                        </div>
+                                        <div class="boxes col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                                            <input required="" type="text" class="form-control" value="{{s.ProductValueAr}}" placeholder="Value Arabic" name="SpecificationsvalueArabic[]">
+                                        </div>
+                                        <div style="clear:both">
+                                        </div>
+                                    </div>
+                                    <div class="boxes specibtn btns col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                                        <a class="btn btn-info">+</a>
+                                    </div>
+                                    <div class="boxes specibtnminus btns col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                                        <a class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+                <hr />
+                <div style="display:block; clear:both;">
+                    <h2>Additional Information</h2>
+                    <div class="addition">
+
+                        <div class="row deletedata">
+                            <div class="container productspecborder">
+                                <div>
+                                    <div class="boxspec">
+                                        <b>Additional Information(English)</b>
+                                        <div class="boxes col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                                            <input type="text" class="form-control" value="{{s.ProductKey}}" placeholder="Key" name="AdditionalInformationkey[]">
+                                        </div>
+                                        <div class="boxes col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                                            <input type="text" class="form-control" value="{{s.ProductValue}}" placeholder="Value" name="AdditionalInformationvalue[]">
+                                        </div>
+                                        <div style="clear:both"></div>
+                                    </div>
+                                    <div class="boxspecAr">
+                                        <b>Additional Information(Arabic)</b>
+                                        <div class="boxes col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                                            <input type="text" class="form-control" value="{{s.ProductKeyAr}}" placeholder="Key Arabic" name="AdditionalInformationkeyAr[]">
+                                        </div>
+                                        <div class="boxes col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                                            <input type="text" class="form-control" value="{{s.ProductValueAr}}" placeholder="Value Arabic" name="AdditionalInformationvalueAr[]">
+                                        </div>
+                                        <div style="clear:both"></div>
+                                    </div>
+                                    <div class="boxes Additbtn btns col-lg-6 col-sm-6 col-md-6 col-xs-12 col-xs-12-mb"><a class="btn btn-info">+</a></div>
+                                    <div style="display:none;" class="boxes Additbtnminus btns col-lg-6 col-sm-6 col-md-6 col-xs-6"><a class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="addition">
+
+                        <div class="row deletedata" ng-repeat="s in AdditionalInformation">
+                            <div class="container productspecborder">
+                                <div>
+                                    <div class="boxspec">
+                                        <b>Additional Information(English)</b>
+                                        <div class="boxes col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                                            <input required="" type="text" class="form-control" value="{{s.ProductKey}}" placeholder="Key" name="AdditionalInformationkey[]">
+                                        </div>
+                                        <div class="boxes col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                                            <input type="text" required="" class="form-control" value="{{s.ProductValue}}" placeholder="Value" name="AdditionalInformationvalue[]">
+                                        </div>
+                                        <div style="clear:both"></div>
+                                    </div>
+                                    <div class="boxspecAr">
+                                        <b>Additional Information(Arabic)</b>
+                                        <div class="boxes col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                                            <input required="" type="text" class="form-control" value="{{s.ProductKeyAr}}" placeholder="Key Arabic" name="AdditionalInformationkeyAr[]">
+                                        </div>
+                                        <div class="boxes col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                                            <input type="text" required="" class="form-control" value="{{s.ProductValueAr}}" placeholder="Value Arabic" name="AdditionalInformationvalueAr[]">
+                                        </div>
+                                        <div style="clear:both"></div>
+                                    </div>
+                                    <div class="boxes Additbtn btns col-lg-6 col-sm-6 col-md-6 col-xs-6"><a class="btn btn-info">+</a></div><div class="boxes Additbtnminus btns col-lg-6 col-sm-6 col-md-6 col-xs-6"><a class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <input type="submit" value="Update" class="browse_btn buttonsd" />
+
+
+
+            </div>
+
+        </div>
+    }
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script>
+
+    $(document).on('click', '.chkboxDataiscustomization', function () {
+        if ($(this).prop("checked")) {
+            $('.customization_days').val($(this).attr('data-vald'));
+            $('.customization_days').show();
+            $('#parsley-id-' + id).show();
+        } else {
+
+            $('.customization_days').val(0);
+            $('.customization_days').hide();
+            id = $('.customization_days').attr("data-parsley-id");
+            $('#parsley-id-' + id).hide();
+        }
+    })
+    function changepriceupdate() {
+        mp = parseFloat($('.mainprice').val());
+
+        vof = parseFloat($('.vendoroffer').val());
+
+        aof = 0;
+
+        price = mp - ((mp * (vof + aof)) / 100)
+        $('.Mainregulareprice').val(price + " AED");
+    }
+</script>
+<style>
+    .chkboxDataiscustomization {
+        float: left;
+        width: 25px;
+        margin-top: 7px;
+    }
+</style>
+<script>
+    function addnewcatbrand(i) {
+        uID = $('.userid').attr('data-userid');
+        html = "";
+        type = "";
+        if (i == 'b') {
+            html = "Enter New Brand";
+            type = "Brand";
+        }
+        if (i == 'c') {
+            type = "Category";
+            html = "Enter New Category";
+        }
+        var NameCreate = prompt(html + " : ", "");
+
+        url = "/Vendor/vendorapi/AddBrandAndCat?user=" + uID + "&type=" + type + "&name=" + NameCreate;
+        $.ajax({
+            url: url,
+            success: function (result) {
+                window.location.reload();
+            }
+        });
+    }
+</script>

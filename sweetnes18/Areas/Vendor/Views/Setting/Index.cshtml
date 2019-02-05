@@ -1,0 +1,102 @@
+﻿@{
+    ViewData["Title"] = "Settings";
+}
+
+<!-- settings main box -->
+<div class="dashboard_right product add_new_product settings">
+
+    <div class="row">
+        <div class="col-md-6">
+            <h5> Settings</h5>
+        </div>
+
+        <div class="col-md-6 text-right">
+
+            <div class="cal_right">
+
+                <div class="upload_file_btn text-right">
+
+                    <label>
+                        <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+
+                        <span class="prev_next_btn"><i class="fa fa-file-text-o" aria-hidden="true"></i> + Upload CSV File</span>
+                    </label>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <hr class="brown">
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="whole_left">
+                <label>Upload Cover image</label>
+                <label class="browse_input">
+                    <div class="upload_box">
+                        <img src="/assets_admin/vendor/img/upload_ic_box.png" />
+                        <h6>Upload </h6>
+                        <h6> Product Image</h6>
+                    </div>
+
+                    <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+                    <span class="browse_btn">Browse</span>
+                </label>
+
+
+
+            </div>
+        </div>
+        <div class="col-md-8 names_of_product">
+            <h5>Personal Information</h5>
+            <div class="one_part">
+                <input type="text" class="form-control" id="usr" placeholder="First Name">
+
+                <input type="text" class="form-control" id="usr" placeholder="Last Name">
+
+                <input type="text" class="form-control" id="usr" placeholder="Email Address">
+
+                <input type="text" class="form-control" id="usr" placeholder="Contact Number">
+
+                <input type="text" class="form-control" id="usr" placeholder="Address">
+
+                <input type="text" class="form-control" id="usr" placeholder="City">
+
+                <input type="text" class="form-control" id="usr" placeholder="State">
+
+                <input type="text" class="form-control" id="usr" placeholder="Country">
+            </div>
+
+            <h5>Business Information</h5>
+
+            <input type="text" class="form-control" id="usr" placeholder="Business Name">
+
+            <input type="text" class="form-control about_company" id="usr" placeholder="About Company">
+
+            <textarea class="form-control" rows="6" id="comment" placeholder="Company Description"></textarea>
+
+            <div class="btn_cross">
+
+                <a href="#" class="category_btn">+ Add Category</a>
+                <a href="#" class="btn_with_cross">Muffins<span class="crossy"><i class="fa fa-times" aria-hidden="true"></i></span></a>
+                <a href="#" class="btn_with_cross">Cake<span class="crossy"><i class="fa fa-times" aria-hidden="true"></i></span></a>
+                <a href="#" class="btn_with_cross">Cookies<span class="crossy"><i class="fa fa-times" aria-hidden="true"></i></span></a>
+                <a href="#" class="btn_with_cross">Chocolates<span class="crossy"><i class="fa fa-times" aria-hidden="true"></i></span></a>
+
+            </div>
+
+            <h5>Change Password</h5>
+            <input type="text" class="form-control pass" id="usr" placeholder="Old Password">
+            <input type="text" class="form-control pass" id="usr" placeholder="New Password">
+            <input type="text" class="form-control pass" id="usr" placeholder="Re-type New Password">
+
+            <div class="save">
+                <a href="#" class="browse_btn">Save</a>
+            </div>
+
+
+        </div>
+    </div>
+
+    <hr class="brown">
+</div><!-- settings main box -->

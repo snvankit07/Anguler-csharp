@@ -1,0 +1,81 @@
+﻿@model sweetnes18.Areas.Vendor.Models.ProductOffer
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Vendor/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <dl class="dl-horizontal details_table">
+        <dt>
+            @Html.DisplayNameFor(model => model.OfferCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OfferCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OfferType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OfferType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OfferAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OfferAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OfferStartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OfferStartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OfferDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OfferDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OfferEndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OfferEndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OfferAddUserID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OfferAddUserID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OfferStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OfferStatus)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OfferID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

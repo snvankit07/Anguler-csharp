@@ -1,0 +1,51 @@
+﻿@model IEnumerable<sweetnes18.Areas.administrator.Models.CustomerProfile>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-striped product_table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerBillingAdd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerShippingAdd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerEmailID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerMobileNumber)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerBillingAdd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerShippingAdd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerEmailID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerMobileNumber)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CustomerID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CustomerID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CustomerID })
+        </td>
+    </tr>
+}
+
+</table>

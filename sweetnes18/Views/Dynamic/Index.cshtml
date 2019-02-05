@@ -1,0 +1,6 @@
+﻿@model IEnumerable<sweetnes18.Models.CMS>
+@foreach (var item in Model)
+{
+    ViewData["Title"] = Html.DisplayFor(modelItem => item.PageTitle);
+    @Html.Raw(HttpUtility.HtmlDecode(item.PageDec))
+}

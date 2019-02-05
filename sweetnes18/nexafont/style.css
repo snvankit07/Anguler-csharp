@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'mynexa';
+    src: url('nexa-light.eot'); /* IE9 Compat Modes */
+    src: url('nexa-light.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('nexa-light.woff2') format('woff2'), /* Super Modern Browsers */
+    url('nexa-light.woff') format('woff'), /* Pretty Modern Browsers */
+    url('nexa-light.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('nexa-light.svg#svgFontName') format('svg'); /* Legacy iOS */
+}

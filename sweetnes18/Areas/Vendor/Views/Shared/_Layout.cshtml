@@ -1,0 +1,513 @@
+﻿@using Newtonsoft.Json.Linq;
+@using sweetnes18.AhelperClass;
+<!DOCTYPE html>
+<html ng-app="vendorApp">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sweetness Vendor</title>
+    <script src="~/assets_admin/vendor/jquery/jquery.min.js"></script>
+    <link href="~/css/angular-datepicker.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/ankitcss.css?v=484" rel="stylesheet">
+    <environment include="Development">
+        <link media="only screen and (min-device-width: 781px)" href="~/assets_admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom fonts for this template-->
+        <link href="~/assets_admin/vendor/font-awesome/css/font-awesome.min.css" media="only screen and (min-device-width: 781px)" rel="stylesheet" type="text/css">
+        <!-- Custom styles for this template-->
+        <link href="~/assets_admin/css/sb-admin.css" rel="stylesheet" media="only screen and (min-device-width: 781px)">
+        <link media="only screen and (min-device-width: 781px)" href="~/assets_admin/css/customcss.css?h=ee15" rel="stylesheet">
+        <link media="only screen and (min-device-width: 781px)" href="~/assets_admin/css/customnewcss.css?h=ee14" rel="stylesheet">
+
+    </environment>
+    <environment exclude="Development">
+        <link media="only screen and (min-device-width: 781px)" href="~/assets_admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom fonts for this template-->
+        <link media="only screen and (min-device-width: 781px)" href="~/assets_admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <!-- Custom styles for this template-->
+        <link media="only screen and (min-device-width: 781px)" href="~/assets_admin/css/sb-admin.css" rel="stylesheet">
+        <link media="only screen and (min-device-width: 781px)" href="~/assets_admin/css/customcss.css?h=ee158" rel="stylesheet">
+        <link media="only screen and (min-device-width: 781px)" href="~/assets_admin/css/customnewcss.css?h=ee14" rel="stylesheet">
+    </environment>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        AOS.init();
+    </script>
+    <!--FOr Mobile-->
+    <link media="only screen and (max-device-width: 780px)" href="~/css/Vendor/bootstrap.css" rel="stylesheet">
+    <link media="only screen and (max-device-width: 780px)" href="~/css/Vendor/mdb.min.css" rel="stylesheet">
+    <link href="~/css/Vendor/Customcss.css?h=@DateTime.Now.Millisecond" rel="stylesheet">
+    <link media="only screen and (max-device-width: 780px)" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link media="only screen and (max-device-width: 780px)" href="~/css/Vendor/mobile.css?h=@DateTime.Now.Millisecond" rel="stylesheet">
+    <!--FOr Mobile-->
+</head>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+    <div class="loader">
+
+        <!--<img src="~/images/loader.gif" />-->
+        <div style="color: #48271f" class="la-ball-scale-ripple-multiple la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <span ng-controller="checkprofilecomplete">
+        <div class="profilemsg" ng-if="showhide==0">{{msg}}</div>
+    </span>
+    <header class="desktop monly">
+        <!-- Sidebar navigation -->
+        <div id="slide-out" class="side-nav fixed" style="transform: translateX(-100%);">
+            <div ng-controller="showtitle" class="container sidebar_logo">
+                <div class="col-xs-12" style="position:relative;">
+                    <div class="close-mobile"> 
+                        <a href="#" class="waves-effect">
+                            <img src="/img/menu_icn8.png">
+                        </a>
+                    </div>
+<div style="position: absolute; text-align: center; width: 100%; font-size: 5em; left: 0em; color: #000;">
+                    {{Businesstitle| limitTo: 1}}
+    </div>
+                    <img src="/img/profile_img.png?h=jkd" class="flex-center">
+                    <p>{{Businesstitle}}</p>
+                </div>
+            </div>
+
+            <div class="container menu_sidebar">
+                <div class="row">
+                    <div class="col-xs-6 menu_box">
+                        <a href="/vendor/Dashboard" class="waves-effect">
+                            <img src="/img/menu_icn1.png" class="flex-center"> Dashboard
+                        </a>
+                    </div>
+                    <div class="col-xs-6 menu_box">
+                        <a href="/vendor/Products/Create" class="waves-effect">
+                            <img src="/img/menu_icn2.png" class="flex-center"> + New Products
+                        </a>
+                    </div>
+                    <div class="col-xs-6 menu_box">
+                        <a href="/vendor/Products" class="waves-effect">
+                            <img src="/img/menu_icn3.png" class="flex-center"> Products
+                        </a>
+                    </div>
+                    <div class="col-xs-6 menu_box">
+                        <a href="/vendor/Order" class="waves-effect">
+                            <img src="/img/menu_icn4.png" class="flex-center"> Orders
+                        </a>
+                    </div>
+
+                    <div class="col-xs-6 menu_box">
+                        <a href="/vendor/Financial" class="waves-effect">
+                            <img src="/img/financial-icons.png" class="flex-center"> Financial
+                        </a>
+                    </div>
+                    <div class="col-xs-6 menu_box">
+                        <a href="/vendor/vendor_profile" class="waves-effect">
+                            <img src="/img/menu_icn9.png" class="flex-center"> Setting
+                        </a>
+                    </div>
+
+                    <div class="col-xs-6 menu_box">
+                        <a href="/vendor/login/logout" class="waves-effect">
+                            <img src="/img/menu_icn7.png" class="flex-center"> Logout
+                        </a>
+                    </div>
+                    <!--<div class="closebuttons col-xs-6 menu_box">
+                        <a href="#" class="waves-effect">
+                            <img src="/img/menu_icn8.png" class="flex-center"> Close
+                        </a>
+                    </div>-->
+                </div>
+            </div>
+            <!--/. Side navigation links -->
+
+        </div>
+        <!-- Sidebar navigation -->
+        <!-- Navbar -->
+        <nav class="navbar fixed-top">
+            <div class="container main_header">
+                <div class="row">
+                    <div class="col-xs-2 menu_btn">
+                        <a href="#" data-activates="slide-out" class="button-collapse"><img src="/img/drover_icn.png"></a>
+                    </div>
+                    <!-- Breadcrumb-->
+                    <div class="col-xs-6 logo">
+                        <a href="#"><img src="/img/logo.png" class="img-fluid flex-center"></a>
+                    </div>
+                    <div ng-controller="showtitle" class="col-xs-4 user_name">
+                        <a href="#" class="text-dark text-right">Hi, {{Businesstitle}}</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- /.Navbar -->
+    </header>
+    <div class="monly container dashboard_tabs_menu">
+        <div class="row">
+            <ul>
+                <li data-menuname="Dashboard/index" class="mainmenu waves-effect active">
+                    <a href="/vendor/Dashboard/index"><!-- <i class="fa fa-fw fa-dashboard"></i> --></a>
+                </li>
+                <li  data-menuname="Products/Create"   class="mainmenu waves-effect">
+                    <a href="/vendor/Products/Create"><!-- <i class="fa fa-fw fa-dashboard"></i> --></a>
+                </li>
+                <li data-menuname="Products/index"   class="mainmenu waves-effect">
+                    <a href="/vendor/Products/index"><!-- <i class="fa fa-fw fa-dashboard"></i> --></a>
+                </li>
+                <li data-menuname="Order/index"   class="mainmenu waves-effect">
+                    <a href="/vendor/Order/index"><!-- <i class="fa fa-fw fa-dashboard"></i> --></a>
+                </li>
+                <li data-menuname="Financial/index"   class="mainmenu waves-effect">
+                    <a href="/vendor/Financial/index"><!-- <i class="fa fa-fw fa-dashboard"></i>--></a>
+                </li>
+                <li data-menuname="vendor_profile/index"   class="mainmenu waves-effect">
+                    <a href="/vendor/vendor_profile/index"><!-- <i class="fa fa-fw fa-dashboard"></i>--></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <nav class="donly navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+        <a class="navbar-brand" href="/vendor/Dashboard"><img src="/img/logo1.png" alt="logo" class="logo-img"></a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" id="flip">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="panel">
+            <div ng-controller="showtitle" class="firm_image">
+                <h4>{{Businesstitle}}</h4>
+            </div>
+
+            <ul ng-controller="Menus" class="navbar-nav navbar-sidenav" id="exampleAccordion">
+
+                <li data-aos="fade-right" class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="{{i.text}}" ng-repeat="i in menusdata">
+                    <a class="nav-link" href="/vendor/{{i.link}}">
+                        <i class="fa {{i.icon}}"></i>
+                        <span class="nav-link-text">{{i.text}}</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav sidenav-toggler">
+                <li class="nav-item">
+                    <a class="nav-link text-center" id="sidenavToggler">
+                        <i class="fa fa-fw fa-angle-left"></i>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="hidden nav-item dropdown">
+                    <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-fw fa-envelope"></i>
+                        <span class="d-lg-none">
+                            Messages
+                            <span class="badge badge-pill badge-primary">12 New</span>
+                        </span>
+                        <span class="indicator text-primary d-none d-lg-block">
+                            <i class="fa fa-fw fa-circle"></i>
+                        </span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="messagesDropdown">
+                        <h6 class="dropdown-header">New Messages:</h6>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">
+                            <strong>David Miller</strong>
+                            <span class="small float-right text-muted">11:21 AM</span>
+                            <div class="dropdown-message small">Hey there! This new version of SB Admin is pretty awesome! These messages clip off when they reach the end of the box so they don't overflow over to the sides!</div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">
+                            <strong>Jane Smith</strong>
+                            <span class="small float-right text-muted">11:21 AM</span>
+                            <div class="dropdown-message small">I was wondering if you could meet for an appointment at 3:00 instead of 4:00. Thanks!</div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">
+                            <strong>John Doe</strong>
+                            <span class="small float-right text-muted">11:21 AM</span>
+                            <div class="dropdown-message small">I've sent the final files over to you for review. When you're able to sign off of them let me know and we can discuss distribution.</div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item small" href="#">View all messages</a>
+                    </div>
+                </li>
+                <li class="hidden nav-item dropdown">
+                    <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-fw fa-bell"></i>
+                        <span class="d-lg-none">
+                            Alerts
+                            <span class="badge badge-pill badge-warning">6 New</span>
+                        </span>
+                        <span class="indicator text-warning d-none d-lg-block">
+                            <i class="fa fa-fw fa-circle"></i>
+                        </span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="alertsDropdown">
+                        <h6 class="dropdown-header">New Alerts:</h6>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">
+                            <span class="text-success">
+                                <strong>
+                                    <i class="fa fa-long-arrow-up fa-fw"></i>Status Update
+                                </strong>
+                            </span>
+                            <span class="small float-right text-muted">11:21 AM</span>
+                            <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">
+                            <span class="text-danger">
+                                <strong>
+                                    <i class="fa fa-long-arrow-down fa-fw"></i>Status Update
+                                </strong>
+                            </span>
+                            <span class="small float-right text-muted">11:21 AM</span>
+                            <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">
+                            <span class="text-success">
+                                <strong>
+                                    <i class="fa fa-long-arrow-up fa-fw"></i>Status Update
+                                </strong>
+                            </span>
+                            <span class="small float-right text-muted">11:21 AM</span>
+                            <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item small" href="#">View all alerts</a>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/vendor/login/logout">
+                        <i class="fa fa-fw fa-sign-out"></i>Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb donly">
+                <li class="breadcrumb-item">
+                    <a href="/vendor/dashboard">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item active">@ViewBag.Title</li>
+            </ol>
+            <div class="row">
+                <div class="col-12">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid-->
+        <!-- /.content-wrapper-->
+        <footer class="sticky-footer">
+            <div class="container">
+                <div class="text-center">
+                    <small>Copyright © Your Website 2018</small>
+                </div>
+            </div>
+        </footer>
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fa fa-angle-up"></i>
+        </a>
+        <!-- Logout Modal-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="login.html">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script type="text/ng-template" id="Pagination">
+        <div class="package">
+            <div class="col-md-3 text-right">
+                <div class="dataTables_length">
+                    <label>
+                        Show
+                        <select name="example_length" ng-model="$parent.perpage" ng-change="assign(1);pagex();">
+                            <option value="10" ng-selected="true">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+
+            <!-- pagination  -->
+            <div class="col-md-3 text-right">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" aria-label="Previous" ng-click="decrement();pagex();">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        <li class="page-item" ng-repeat="n in [] | range:numberOfPages()">
+                            <a class="page-link" ng-click="assign(n);pagex();">{{n}}</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" aria-label="Next" ng-click="increment();pagex();">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </script>
+    <script type="text/ng-template" id="Search">
+        <table>
+            <thead>
+                <tr>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th> Term Search</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <datepicker date-format="yyyy-MM-dd">
+                            <input ng-model="$parent.date_Start" type="text" />
+                        </datepicker>
+                    </td>
+                    <td>
+                        <datepicker date-format="yyyy-MM-dd">
+                            <input ng-model="$parent.date_End" type="text" />
+                        </datepicker>
+                    </td>
+                    <td>
+                        <input ng-model="$parent.term" class="Termsearch" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" id="Result" value="Result" ng-click="assign(1);pagex();">
+                    </td>
+                    <td>
+                        <form id="form1" runat="server">
+                            <asp:Button Text="Export" OnClick="ExportCSV" runat="server" />
+                        </form>
+                        <input type="button" id="DownloadResult" value="Download Result" ng-click="downloads(1);pagex();">
+                    </td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </script>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/assets_admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="~/assets_admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="~/assets_admin/js/sb-admin.min.js"></script>
+    <script src="https://ckeditor.com/assets/libs/ckeditor4/4.9.2/ckeditor.js"></script>
+
+
+    <script src="~/Scripts/parsley.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script type="text/javascript" src='//rawgithub.com/prajwalkman/angular-slider/master/angular-slider.js' charset="utf-8"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="~/js/Vendor/custom.js"></script>
+    <script src="~/js/custom.js"></script>
+    <script src="~/js/Vendor/onlycustom.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script src="~/js/Vendor/Angulercustom.js?h=@DateTime.Now.Millisecond"></script>
+    <script type="text/javascript" src="~/js/Vendor/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/js/Vendor/mdb.min.js"></script>
+    <script src="~/js/angular-datepicker.js"></script>
+
+    <script>
+        $(document).on("click", ".closebuttons", function () {
+            $(".button-collapse").sideNav();
+        });
+
+        $(".button-collapse").sideNav();
+
+        new WOW().init();
+
+
+        $('form').parsley();
+    </script>
+    <style>
+        .parsley-error {
+            border: 1px solid red;
+        }
+
+        .parsley-errors-list {
+            padding: 0px !important;
+            margin: 0px !important;
+        }
+
+            .parsley-errors-list li {
+                list-style: none;
+                font-size: 12px;
+                color: red;
+                font-weight: 550;
+            }
+
+        body select.form-control.citydata {
+            display: block !important;
+            border: 1px solid;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+
+            var pathname = window.location.pathname;
+            arrOfStr = pathname.split('/'); 
+
+            console.log(arrOfStr);
+            $('.mainmenu').removeClass('active');
+            $('.mainmenu').each(function () {
+                
+                console.log(arrOfStr[3]);
+               
+                if ($(this).attr('data-menuname') == arrOfStr[2] + '/' + arrOfStr[3]) {
+                    $(this).addClass('active');
+                }
+                
+            })
+
+
+
+            $("#flip").click(function () {
+                $("#panel").slideToggle("slow");
+            });
+            $(".close-mobile").click(function () {
+                $("#slide-out").css("transform", "translateX(-100%)"); $("#sidenav-overlay").remove();
+            });
+        });
+
+        $('.menu_btn').click(function () {
+            $("html").addClass("overflow-hidden");
+        });
+        $('.close-mobile').click(function () {
+            $("html").removeClass("overflow-hidden");
+        });
+
+    </script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

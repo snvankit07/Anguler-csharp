@@ -1,0 +1,69 @@
+﻿@using Newtonsoft.Json.Linq;
+@using sweetnes18.AhelperClass;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Sweetness</title>
+
+    <environment include="Development">
+        <link href="~/assets_admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom fonts for this template-->
+        <link href="~/assets_admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <!-- Custom styles for this template-->
+        <link href="~/css/sb-admin.css" rel="stylesheet">
+   </environment> 
+    <environment exclude="Development">
+        <link href="~/assets_admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom fonts for this template-->
+        <link href="~/assets_admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <!-- Custom styles for this template-->
+        <link href="~/assets_admin/css/sb-admin.css" rel="stylesheet">
+     </environment>
+</head>
+
+<body class="bg-dark" >
+    @RenderBody()
+    <environment include="Development">
+        <script src="~/assets_admin/vendor/jquery/jquery.min.js"></script>
+        <script src="~/assets_admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="~/assets_admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/assets_admin/vendor/jquery/jquery.min.js"></script>
+        <script src="~/assets_admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="~/assets_admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+    <style>
+        body {
+            background-size: cover !important;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            bgupdate();
+            
+        })
+        function bgupdate() {
+            var i = 1;
+            v = setInterval(function () {
+                var n = i;
+                //$('body').css("background", "url('/img/vbanner/" + i + ".jpg')");
+                console.log(i);
+                i++;
+                if (i > 5) {
+                    clearInterval(v);
+                    i = 1;
+                    bgupdate();
+                }
+            }, 3000)
+
+        }
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,1797 @@
+/*rtl css*/
+
+body.ar {
+    direction: rtl;
+    unicode-bidi: embed;
+}
+
+.ar .header .col-md-4 {
+    float: right;
+}
+
+.ar .search-head {
+    width: 300px;
+    border: 1px solid #ea8e66;
+    height: 35px;
+    padding: 0px 15px;
+    border-radius: 25px;
+    outline: none;
+    float: left;
+}
+
+.ar ul.right-head li {
+    display: inline-block;
+    margin-left: 8px !important;
+    float: right;
+}
+
+.ar section.banner-slider .col-md-6 {
+    float: right;
+}
+
+.ar #wrapper.toggled #page-content-wrapper {
+    margin-right: 0px;
+}
+
+.ar .mCS-dir-rtl > .mCSB_inside > .mCSB_container {
+    margin-right: 0;
+    margin-left: 0px;
+}
+
+.ar .menu-top-header {
+    right: 15px;
+    left: auto;
+}
+
+.ar .close-hide {
+    right: 260px;
+    left: auto;
+}
+/*.ar .addtocartbtn.col-xs-4 {
+    float: right;
+}*/
+.ar .myaccountbox li a img {
+    margin-left: 9px !important;
+    margin-right: 0px !important;
+    float: right !important;
+}
+
+.ar .myaccountbox .bordersbox {
+    padding-left: 0px;
+    padding-right: 15px;
+    text-align: right !important;
+}
+
+.ar .myaccountbox h3 {
+    /* padding-right: 15px; */
+    text-align: right !important;
+}
+
+.ar .head-row .col-md-8 {
+    float: right;
+    text-align: right;
+}
+
+.ar .head-row .col-md-4 {
+    text-align: left;
+    float: right;
+}
+
+.ar .tab-list.nav-tabs > li {
+    margin-left: 25px;
+    margin-right: 0px;
+    float: right;
+}
+
+.ar .tab-list.nav-tabs {
+    border-bottom: 0px;
+    padding: 0px;
+}
+
+.ar .trending-div.onlydesktopshow .head-row .col-md-4 h3 {
+    text-align: right;
+}
+
+.ar .pull-right {
+    float: left !important;
+}
+
+.ar .footer-top .col-md-3 {
+    float: right !important;
+}
+
+.ar ul.icon-list {
+    list-style: none;
+    padding-left: 0;
+    padding-right: 0px;
+}
+
+.ar .footer-bottom .col-md-3 {
+    float: right;
+}
+
+.ar .footer-bottom .col-md-6 {
+    width: 50%;
+    float: right;
+}
+
+.ar ul.pay-icon, ul.term-con {
+    padding: 0px;
+}
+
+.ar .col-md-9.product-left {
+    float: right;
+}
+
+.ar .product-left .col-md-6 {
+    float: right;
+}
+
+.ar .product-left {
+    border-right: none;
+    border-left: 1px solid #ddd;
+}
+
+.ar .productlistbox.newhart {
+    float: right !important;
+}
+
+.ar .ratingsdata {
+    float: left;
+    border-left: none;
+    padding-left: 0px;
+    border-right: 1px solid #d6caca;
+    padding-right: 10px;
+}
+
+.ar ul.add-cart {
+    padding: 0px;
+}
+
+.ar .row.small-dtl-table .col-xs-3.ng-binding {
+    float: right;
+}
+
+.ar ul.delivery-option {
+    padding-right: 0;
+}
+
+.ar ul.add-cart li {
+    float: right;
+}
+
+.ar .apply-code a.orange_btn.ng-binding {
+    position: absolute;
+    left: 30px;
+}
+
+.ar .apply-code input {
+    padding-right: 15px;
+    padding-left: 40px;
+    margin-right: 0px;
+}
+
+.ar .brand-highlights .col-md-3, .ar .ratingstar {
+    float: right;
+}
+
+.ar .brand-highlights .col-md-9 .col-xs-4.ng-binding {
+    float: right;
+}
+
+.ar .bottom-recent .col-md-2.detail-div {
+    float: right;
+}
+
+.ar .ratingstar .stars.alignright {
+    float: left;
+}
+
+.ar .product-describe i.fa.fa-heart-o {
+    margin-right: 0px;
+}
+
+.ar .product-describe .price-text {
+    font-size: 25px;
+}
+
+.ar .product-quantity {
+    padding: 8px 10px;
+    width: 70px;
+}
+
+.ar ul.add-cart a.orange_btn.add-to-cart.ng-binding {
+    padding: 7px 20px;
+    font-size: 14px;
+}
+
+.ar .small-line {
+    font-size: 13px;
+    margin-top: 20px;
+}
+
+.ar .viewdetails .btn {
+    padding: 6px 4px;
+}
+
+.ar .viewdetails {
+    float: left !important;
+    margin-right: 10px;
+    margin-left: 0px;
+}
+
+.ar ul.dropdown-menu.dropdown-cart {
+    right: auto;
+    left: 0px !important;
+}
+
+.ar .languagetrans ul.right-head {
+    padding-left: 0;
+    padding: 0px;
+}
+
+    .ar .languagetrans ul.right-head li {
+        margin-left: 0px !important;
+        float: right;
+        margin-right: 15px;
+    }
+
+.ar ul.dropdown-cart li .item-left {
+    float: right;
+    margin-right: 0%;
+    margin-left: 1%;
+}
+
+    .ar ul.dropdown-cart li .item-left img {
+        width: 20%;
+        float: right;
+    }
+
+    .ar ul.dropdown-cart li .item-left span.item-info {
+        margin-left: 0px;
+        float: right;
+        margin-right: 10px;
+        text-align: right;
+    }
+
+.ar ul.cartpriceshow li.total_price_cart {
+    display: block !important;
+    width: 95%;
+    margin-right: 0px !important;
+    text-align: right;
+    margin-left: 15px !important;
+}
+
+.ar li.total_price_cart span.item-right {
+    text-align: left;
+}
+
+.ar li.view_cart a {
+    width: 100%;
+}
+
+.ar ul.cartpriceshow li {
+    margin-left: 0px !important;
+    float: right;
+    margin-right: 2px;
+}
+
+.ar .col-md-9.cart-left {
+    padding-right: 0px;
+    border-right: none;
+    float: right;
+    border-left: 1px solid #ddd;
+    padding-left: 30px;
+}
+
+.ar .shopping-cart-left .table > thead > tr > th {
+    text-align: right;
+}
+
+.ar .table-img {
+    width: 20%;
+    float: right;
+}
+
+.ar .shopping-cart-left td.text-center {
+    display: inline-flex;
+}
+
+.ar .cross-btn {
+    margin: 5px 4px 20px;
+}
+
+.ar .checkout-tab.nav-tabs > li {
+    margin-bottom: 0;
+    margin-right: 0px;
+    float: right;
+    margin-left: 30px;
+}
+
+    .ar .checkout-tab.nav-tabs > li a.ng-binding {
+        padding-right: 0px;
+    }
+
+.ar .checkout-tab span {
+    line-height: 30px;
+    margin-left: 10px;
+    margin-right: 0px;
+}
+
+.ar .checkout-tab.nav-tabs {
+    border-bottom: 1px solid #f8d3c3;
+    margin: 20px 0px;
+    padding: 0px;
+}
+
+.ar .col-md-8.checkout-left {
+    float: right;
+}
+
+.ar .order-overview {
+    border-left: none;
+    padding-left: 20px;
+    border-right: 1px solid #ddd;
+}
+
+.ar .cartproductdata .col-md-4 {
+    float: right;
+    padding-right: 0px;
+}
+
+.ar .cartproductdata .col-md-5 {
+    float: right;
+}
+
+.ar .orderoverview .sub-total .col-md-6 {
+    float: right;
+}
+
+.ar .orderoverview .grand-total .col-md-5 {
+    float: right;
+}
+
+.ar .orderoverview .grand-total .col-md-7.text-right {
+    text-align: left;
+}
+
+.ar .checkout-tab-cont .col-md-6 {
+    float: right;
+}
+
+.ar .createaccountchkbox input {
+    float: right !important;
+}
+
+.ar .top-address-track .col-md-6.col-xs-12.col-sm-6 {
+    float: right;
+}
+
+.ar .track-details.text-right {
+    text-align: left;
+}
+
+.ar .shipment-oredr-box .col-md-8.col-xs-12.col-sm-8 {
+    float: right;
+}
+
+.ar .product-img-box-track {
+    width: 25%;
+    float: right;
+}
+
+.ar .product-text-track {
+    width: 75%;
+    float: left;
+    padding-left: 0px;
+    padding-right: 20px;
+}
+
+.ar .star-box-tarck {
+    float: right;
+    width: auto;
+}
+
+.ar .category-list {
+    padding: 0px;
+}
+
+.ar span.box-check {
+    margin-right: 0px;
+    margin-left: 10px;
+}
+
+.ar .check-box span {
+    margin-right: 0px;
+    margin-left: 5px;
+}
+
+.ar .ordertab-click {
+    background-position: 2% center !important;
+}
+
+.ar .myaccountlisting.listingdatabox {
+    padding: 0px;
+}
+
+    .ar .myaccountlisting.listingdatabox li a {
+        padding-right: 0px;
+    }
+
+.ar .myaccountlisting li a img {
+    width: 20px;
+    margin-right: 7px;
+    margin-left: 10px;
+}
+
+.ar .myaccountlisting li:nth-child(4) a img {
+    margin-right: 1px;
+    margin-left: 7px;
+}
+
+.ar ul.order-invoice li {
+    border-right: none;
+    border-left: 1px solid #000;
+}
+
+.ar ul.order-invoice {
+    padding: 0px;
+}
+
+.ar .col-md-3.account-left {
+    float: right;
+}
+
+.ar .account-right .col-lg-4.col-sm-4.col-md-4.col-xs-12 {
+    float: right;
+}
+
+.ar .account-right .col-lg-2.col-sm-2.col-md-2.col-xs-12 {
+    float: right;
+}
+
+.ar .setting_box .col-md-8 {
+    float: right;
+}
+
+    .ar .setting_box .col-md-8 .col-md-4 {
+        float: right;
+    }
+
+.ar .resultshow-innerbx .col-md-2, .ar .resultshow-innerbx .col-md-5 {
+    float: right;
+}
+
+.ar .my_account_box {
+    float: right;
+}
+
+    .ar .account_fld_left, .ar .my_account_box .col-md-6.col-xs-12 {
+        float: right;
+    }
+
+.ar .sep-div.reset_pass_box .col-md-4 {
+    float: right;
+}
+
+.ar ul.order-invoice li:last-child {
+    border-left: none;
+    padding-right: 10px;
+}
+
+.ar ul.order-invoice li:first-child {
+    padding-right: 0px;
+}
+
+.ar .detail-div {
+    float: right;
+}
+
+.ar .resultshow-innerbx {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.ar label.customerlogin.ng-binding {
+    display: block;
+}
+
+.ar ul.term-con li a {
+    border-right: none;
+    border-left: 1px solid #76665a;
+}
+
+.ar .cloth-box {
+    float: right;
+}
+
+.ar .top-track-heading .col-md-8.col-xs-12.col-sm-6 {
+    float: right;
+}
+
+.mCS-dir-rtl > .mCSB_inside > .mCSB_container {
+    margin-left: 0px;
+}
+
+.ar .myaccountbox ul li a {
+    text-align: right;
+}
+
+.ar .myaccountbox h3 {
+    text-align: left;
+}
+
+.ar .sidebar-nav {
+    width: 230px;
+    text-align: left;
+}
+
+.ar #wrapper.toggled #sidebar-wrapper {
+    right: 0;
+    left: inherit;
+}
+
+.ar .shopping-cart-left tr {
+    border-bottom: 1px solid #ddd;
+}
+
+.ar .shopping-cart-left td {
+    border: none !important;
+}
+
+.ar .detail-div-filter {
+    float: right;
+}
+
+.ar .shopping-cart-left .small-line.ng-binding {
+    margin-top: 0px;
+}
+
+.ar .myaccountbox .arrowrightbox {
+    position: absolute;
+    right: auto;
+    left: 15px;
+}
+
+.ar ul.right-head li {
+    display: inline-block;
+    margin-left: 8px !important;
+    float: right;
+}
+
+body.ar {
+    text-align: right !important;
+}
+
+.ar button.onlyhideorder.hamburger.is-closed, .ar .hamburger.is-open {
+    left: auto;
+    right: : 0 !important;
+}
+
+.ar .menu-top-header {
+    text-align: right;
+}
+
+.ar .breadcrumb > li {
+    float: right;
+}
+
+.ar .apply-code .orange_btn {
+    right: auto;
+    left: 25px;
+}
+
+.ar .apply-code input {
+    text-align: right;
+}
+
+.ar .delivery-option span {
+    vertical-align: middle;
+    float: right;
+    text-align: right;
+    padding-top: 10px;
+}
+
+.ar span.shipment.ng-binding {
+    width: 60px;
+}
+
+.ar .search-head {
+    text-align: right;
+}
+
+.ar .checkout-tab span {
+    float: right;
+}
+
+.ar .tab-content.checkout-tab-cont input, .ar .tab-content.checkout-tab-cont textarea {
+    text-align: right;
+}
+
+.ar .shopping-cart-left tr td, .ar .shopping-cart-left tr, .ar.shopping-cart-left tr th {
+    float: right;
+    width: 100%;
+}
+
+    .ar .shopping-cart-left td:first-child, .ar .shopping-cart-left tr th:first-child {
+        width: 55%;
+    }
+
+    .ar .shopping-cart-left td:nth-child(2), .ar .shopping-cart-left tr th:nth-child(2) {
+        width: 17%;
+    }
+
+    .ar .shopping-cart-left td:nth-child(3), .ar .shopping-cart-left tr th:nth-child(3) {
+        width: 22%;
+        text-align: center;
+    }
+
+    .ar .shopping-cart-left td:nth-child(4), .ar .shopping-cart-left tr th:nth-child(4) {
+        width: 6%;
+    }
+
+.ar .shopping-cart-left .table > thead > tr > th {
+    border-bottom: none !important;
+}
+
+.ar .shopping-cart-left tr, .shopping-cart-left tr th {
+    padding: 20px 5px 10px !important;
+}
+
+.ar .tab-content.checkout-tab-cont input, .tab-content.checkout-tab-cont textarea {
+    text-align: right;
+}
+
+.ar .languagetrans ul.right-head {
+    float: left;
+}
+
+.ar .form-group input, .ar .form-group select, .ar .form-group textarea {
+    text-align: right !important;
+}
+
+.ar .navbar-fixed-top, .navbar-fixed-bottom {
+    right: 0 !important;
+}
+
+.ar .breadcrumb > li + li:before {
+    padding: 0 0px;
+    color: #ccc;
+    content: "/\00a0";
+    position: absolute;
+    left: auto !important;
+    right: -12px;
+}
+
+.ar .breadcrumb > li {
+    float: right;
+    margin-left: : 15px;
+}
+
+.ar .checkout-tab-cont label {
+    line-height: 25px;
+}
+
+.ar .check-box span {
+    float: right;
+}
+
+.ar .navbar-fixed-top, .navbar-fixed-bottom {
+    right: 0 !important;
+    left: auto !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*rtl desktop css end*/
+
+
+@media (max-width: 480px) {
+    .ar .apply-code .orange_btn {
+        top: 10px;
+    }
+
+    .ar .sidebar-nav {
+        width: 100%;
+        text-align: right;
+    }
+
+    .ar .menu-top-header {
+        right: 0px;
+        text-align: right;
+    }
+
+    .ar .footer-bottom .col-md-6, .ar .footer-bottom .col-md-3 {
+        width: 100%;
+        float: right;
+    }
+
+    .ar .header ul.right-head {
+        margin-top: -70px;
+        float: left;
+    }
+
+    .ar .close-hide {
+        right: 83% !important;
+        left: auto !important;
+    }
+
+    .ar .trandingbox.tranding1 {
+        margin-right: 0%;
+        float: right;
+        margin-left: 2%;
+    }
+
+    .ar .headingnexa {
+        padding-left: 0px;
+        padding-right: 6px;
+    }
+
+    .ar .see-all {
+        text-align: left;
+    }
+
+    .ar .trending-div .col-md-2.ng-scope {
+        width: 50%;
+        float: right !important;
+        height: 132px;
+    }
+
+    .ar .menu-top-header h2 {
+        text-align: right;
+    }
+
+    .ar .link-menu-login a {
+        margin-right: 0px;
+    }
+
+    .ar .img-div.col-xs-3 {
+        float: right;
+    }
+
+    .ar .head-row h3 {
+        text-align: right;
+    }
+
+    .ar .trending-div .detail-div, .detail-div {
+        min-height: 250px !important;
+    }
+
+    .ar .product-quantity {
+        padding: 5px 10px;
+        width: 100% !important;
+        margin-bottom: 10px;
+        height: 30px;
+    }
+
+    .ar .search-head {
+        width: 73%;
+        float: none;
+    }
+
+    .ar .header .col-md-4 {
+        float: right;
+        width: 100%;
+    }
+
+    .ar .shopping-cart-left .table-cont {
+        text-align: right;
+    }
+
+    .ar .shopping-cart-inner .cart-left .shopping-cart-left td:nth-child(2) {
+        margin-left: 0%;
+        padding-left: 15px !important;
+        border: none !important;
+        padding-top: 0px !important;
+        margin-right: 20%;
+        float: right;
+    }
+
+    .ar .shopping-cart-inner .cart-left .shopping-cart-left td:nth-child(4) {
+        float: left !important;
+        text-align: :right !important;
+        display: inline-block;
+        width: auto !important;
+    }
+
+    .ar .col-md-9.cart-left {
+        padding-left: 15px;
+    }
+
+    .ar .subtotal-right .apply-code a.orange_btn.ng-binding {
+        width: auto;
+        bottom: -11px;
+        height: 29px;
+    }
+
+    .ar .checkout-tab.nav-tabs > li {
+        margin-left: 0px;
+        width: 33%;
+    }
+
+    .ar .checkout-tab-cont .col-md-6 {
+        float: right;
+        width: 100%;
+    }
+
+    .ar .createaccountchkbox input {
+        margin-right: 0px !important;
+        margin-left: 7px !important;
+    }
+
+    .ar ul.add-cart p {
+        margin-top: 0px !important;
+    }
+
+    .ar .shopping-cart-inner .cart-left .shopping-cart-left thead th:first-child {
+        padding-left: 0px !important;
+        padding-top: 0px !important;
+    }
+
+    .ar .col-md-6.moye {
+        padding-right: 15px !important;
+    }
+
+    .ar .col-md-6.seco {
+        padding-left: 15px !important;
+    }
+
+    .ar .track-details ul {
+        text-align: center;
+    }
+
+    .ar .product-img-box-track {
+        width: 100%;
+    }
+
+    .ar .product-text-track {
+        width: 100%;
+    }
+
+    .ar .white-track-box, .white-track-box {
+        margin-top: 20px !important;
+    }
+
+    .ar .star-box-tarck {
+        float: none;
+        text-align: center;
+    }
+
+        .ar .star-box-tarck label.star {
+            float: none;
+        }
+
+    .ar .delivery-option a {
+        padding: 17px 0px !important;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .ar .detail-div-filter {
+        float: right;
+        min-height: 245px;
+    }
+
+    .ar ul.tabshowbox.ordertab-show {
+        padding: 0px;
+    }
+
+        .ar ul.tabshowbox.ordertab-show li.ng-binding {
+            padding-right: 0px;
+        }
+
+    .ar .subtotal-right label.customerlogin input {
+        margin-right: 5px !important;
+        margin-left: 5px !important;
+    }
+
+    .ar .subtotal-right .small-line {
+        margin-top: 0px;
+        text-align: right;
+    }
+
+    .ar .recentviewbox h5.ng-binding {
+        text-align: right;
+    }
+
+    .ar .recentviewbox b.ng-binding {
+        text-align: right;
+    }
+
+    .ar .recentviewbox p.ng-binding {
+        text-align: right;
+    }
+
+    .ar .trending-div .detail-div h5, .ar .trending-div .detail-div h4 {
+        text-align: right;
+    }
+
+    .ar .resultshow-innerbx .col-md-2:first-child {
+        width: 25%;
+        float: right;
+    }
+
+    .ar .resultshow-innerbx .col-md-5, .ar .resultshow-innerbx .col-md-2 {
+        width: 75%;
+        float: right;
+        text-align: left;
+        text-align: right;
+    }
+
+    .ar .resultshow-innerbx .col-md-3 {
+        width: 75%;
+        float: left;
+        text-align: right;
+    }
+
+    .ar .account_fld_right {
+        padding-left: 15px;
+        padding-right: 7px;
+    }
+
+    .ar .account_fld_left {
+        padding-right: 15px;
+        padding-left: 7px;
+    }
+
+    .ar .my_account_box select, .setting_box select {
+        background-position: 9%;
+        background-repeat: no-repeat;
+    }
+
+    .ar .sep-div.reset_pass_box .col-md-4 {
+        float: right;
+        width: 100%;
+    }
+
+    .ar #account_setting .head-row h3, .ar #setting .head-row h3 {
+        text-align: right !important;
+        float: right;
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    .ar .apply-code input {
+        width: 85%;
+        text-align: right;
+    }
+
+    .ar .header .search-head {
+        text-align: right;
+    }
+
+    .ar .row.onlymobileshow.recentviewbox .col-xs-9 {
+        text-align: right;
+    }
+
+    .ar .delivery-option span {
+        vertical-align: middle;
+        float: none;
+        text-align: center;
+        padding-top: 0;
+    }
+
+    .ar .shopping-cart-left .table-cont h5, .ar .shopping-cart-left .table-cont .small-line, .ar span.red-text.ng-binding {
+        text-align: right;
+    }
+
+    .ar .subtotal-right h4 {
+        width: 60%;
+        float: right;
+        text-align: left;
+        margin-right: 0px;
+        margin-left: 5px;
+    }
+
+    .ar h1.price-text.pricingtotal {
+        width: 38%;
+        float: left;
+        text-align: right;
+    }
+
+    .ar .header .search-head {
+        box-shadow: none;
+        outline: none;
+    }
+
+    .ar .headingnexa {
+        text-align: right;
+    }
+
+    .ar a.onlymobileshow.back_btn {
+        left: auto;
+        right: 10px;
+    }
+
+    .ar .header ul.right-head {
+        margin-top: -75px !important;
+    }
+
+    .ar .resultopen .col-lg-6.col-sm-6.col-md-6.col-xs-12 h5, .ar .resultopen .col-lg-2.col-sm-2.col-md-2.col-xs-12 h5 {
+        text-align: right !important;
+    }
+
+    .ar .resultshow-innerbx .quantity-box {
+        float: right;
+    }
+
+    .ar .myaccountlisting li:first-child a img {
+        float: right;
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+
+    .ar .myaccountlisting li a img {
+        margin-right: 1px;
+        float: right;
+        margin-left: 5px;
+    }
+
+    .ar .listingdatabox .tabshowbox li img {
+        float: right;
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+
+    .ar .tab-content.right-tab-cont h3.ng-binding {
+        float: right;
+        text-align: right;
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    .ar .create-account a.ng-binding {
+        margin-right: 3px;
+    }
+
+    .ar .myaccountbox .arrowrightbox {
+        transform: rotate(180deg);
+    }
+
+    .ar .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+        background-color: transparent !important;
+    }
+
+    .ar .mCSB_scrollTools .mCSB_draggerRail {
+        background-color: transparent !important;
+    }
+
+    .ar .bordersbox.language-box.ng-scope select {
+        padding: 0px 10px 0px 75%;
+    }
+
+    .ar .product-describe span.green-text {
+        float: right;
+    }
+}
+/*max-width: 480px*/
+
+
+/*rtl  mobile css end*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*ltr css */
+
+.myaccountbox .nav > li > a > img {
+    max-width: none;
+    float: left;
+}
+
+.myaccountbox ul li a {
+    text-align: left;
+}
+
+.myaccountbox h3 {
+    text-align: left;
+}
+
+.sidebar-nav {
+    width: 230px;
+    text-align: left;
+}
+
+.menu-top-header {
+    left: 0px;
+}
+
+    .menu-top-header h2 {
+        text-align: left;
+    }
+
+.menu-top-header {
+    text-align: left;
+}
+
+ul.pay-icon, ul.term-con {
+    padding: 0px;
+}
+
+body.en {
+    text-align: left !important;
+}
+
+button.onlyhideorder.hamburger.is-closed, .hamburger.is-open {
+    left: 0;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+    right: auto;
+}
+
+ul.right-head li {
+    float: left;
+}
+
+.header ul.right-head {
+    padding: 0px;
+}
+
+.breadcrumb {
+    margin-bottom: 30px !important;
+}
+
+    .breadcrumb > li {
+        float: left;
+    }
+
+.apply-code .orange_btn {
+    position: absolute;
+    right: 25px;
+}
+
+.apply-code input {
+    position: relative;
+    text-align: left;
+}
+
+ul.add-cart {
+    padding: 0px;
+}
+
+span.shipment.ng-binding {
+    padding: 0px;
+    width: 90px;
+}
+
+.delivery-option span {
+    vertical-align: middle;
+    float: left;
+    text-align: left;
+    padding-top: 10px;
+}
+
+.cartpriceshow {
+    width: 100%;
+    display: inline-grid;
+}
+
+.search-head {
+    text-align: left;
+}
+
+.checkout-tab.nav-tabs {
+    padding: 0px;
+}
+
+.checkout-tab span {
+    float: left;
+}
+
+.tab-content.checkout-tab-cont input, .tab-content.checkout-tab-cont textarea {
+    text-align: left;
+}
+
+.shopping-cart-left tr td, .shopping-cart-left tr, .shopping-cart-left tr th {
+    padding: 20px 5px !important;
+    float: left;
+    width: 100%;
+}
+
+    .shopping-cart-left td:first-child, .shopping-cart-left tr th:first-child {
+        width: 55%;
+    }
+
+    .shopping-cart-left td:nth-child(2), .shopping-cart-left tr th:nth-child(2) {
+        width: 20%;
+    }
+
+    .shopping-cart-left td:nth-child(3), .shopping-cart-left tr th:nth-child(3) {
+        width: 10%;
+    }
+
+    .shopping-cart-left td:nth-child(4), .shopping-cart-left tr th:nth-child(4) {
+        width: 15%;
+    }
+
+.shopping-cart-left .table > thead > tr > th {
+    border-bottom: none !important;
+}
+
+.shopping-cart-left tr, .shopping-cart-left tr th {
+    padding: 20px 5px 0px !important;
+}
+
+.cross-btn {
+    line-height: 30px !important;
+}
+
+.shopping-cart-left .plus-minus {
+    margin: 0px;
+    float: left;
+}
+
+input.form-control.orange_btn.gopayment {
+    text-align: center;
+}
+
+.productcartlisting {
+    min-width: 300px;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    text-align: left !important;
+}
+
+.shopping-cart-inner a.btn.btn-success {
+    background-color: #ea8b62;
+    color: #fff;
+    font-size: 16px;
+    display: inline-block;
+    padding: 7px 20px;
+    border-radius: 25px;
+    font-family: 'Spinnaker', sans-serif;
+    border: none;
+}
+
+.navbar-fixed-top, .navbar-fixed-bottom {
+    right: auto !important;
+}
+
+.breadcrumb > li + li:before {
+    padding: 0 0px;
+    color: #ccc;
+    content: "/\00a0";
+    position: absolute;
+    left: -12px;
+}
+
+.breadcrumb > li {
+    float: left;
+    margin-right: 15px;
+    position: relative;
+}
+
+.checkout-tab-cont label {
+    line-height: 25px;
+}
+
+.check-box span {
+    float: left;
+}
+
+.myaccountbox ul li a i {
+    margin-right: 15px !important;
+}
+
+section.about-page .breadcrumb {
+    padding: 8px 0px !important;
+}
+
+.menu-top-header select {
+    height: 30px !important;
+    margin-top: 5px !important;
+    /*width: 75%;*/
+    border-radius: 25px;
+    padding: 2px 10px;
+    background-color: #fff;
+    -webkit-appearance: none;
+    position: relative;
+}
+/*.menu-top-header select::after {
+    content: "\f107";
+    font-size: 20px;
+    right: 0px;
+    top: 5px;
+    position: absolute;
+}*/
+
+
+
+
+/*ltr desktop css*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 480px) {
+    .header .search-head {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+    .menu-top-header select {
+        height: 33px !important;
+        margin-top: 15px !important;
+        width: 100%;
+        border-radius: 25px;
+        padding: 2px 10px;
+        background-color: #fff;
+    }
+
+    .loginrightsidebar a {
+        padding: 7px 20px;
+        text-align: center;
+        border-radius: 25px;
+        font-weight: bold;
+    }
+
+        .loginrightsidebar a:last-child {
+            color: #fff;
+            background: #ea8b62;
+        }
+
+        .loginrightsidebar a:first-child {
+            color: #333;
+            background: #fff;
+        }
+
+        .loginrightsidebar a:hover {
+            text-decoration: none;
+        }
+
+    .link-menu-login a i {
+        display: none;
+    }
+
+    section.about-page .breadcrumb {
+        padding: 8px 10px !important;
+    }
+
+    .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+        background-color: transparent !important;
+    }
+
+    .mCSB_scrollTools .mCSB_draggerRail {
+        background-color: transparent !important;
+    }
+    /*.img-div img {
+    max-height: 130px; 
+    min-height: 130px;
+}*/
+    .you-may-like .detail-div.ng-scope {
+        min-height: 270px !important;
+    }
+
+    .breadcrumb > .active {
+        color: #777;
+        font-size: 13px;
+    }
+
+    footer.ProductDetailsFooter {
+        padding-bottom: 45px;
+    }
+
+    .shopping-cart-left tr, .shopping-cart-left tr th {
+        padding: 0px 5px 0px !important;
+    }
+
+    .shopping-cart-inner .cart-left .shopping-cart-left thead th:first-child {
+        padding-top: 0px !important;
+    }
+
+    .delivery-option a {
+        padding: 17px 0px !important;
+        text-align: center;
+    }
+
+    .menu-top-header {
+        text-align: left;
+    }
+
+    .shopping-cart-left .table-cont h5, .shopping-cart-left .table-cont .small-line {
+        text-align: left;
+    }
+
+    .LastviewMobileboxes.ng-scope {
+        height: 105px !important;
+    }
+
+    span.red-text.ng-binding {
+        display: block;
+        color: red;
+    }
+
+    .breadcrumb a {
+        color: #555555;
+        font-size: 13px;
+    }
+
+    section.shopping-cart-page ol.breadcrumb {
+        padding-left: 0px;
+    }
+
+    .product-describe span.green-text {
+        width: auto !important;
+        padding-left: 5px;
+        float: left;
+    }
+
+    .delivery-option a {
+        border-radius: 50px !important;
+    }
+
+    .breadcrumb {
+        padding: 8px 0px !important
+    }
+
+    .mobile_category1, .mobile_category2 {
+        text-align: center !important;
+    }
+
+    label.boxborder {
+        margin-top: 0px !important;
+        margin-bottom: 0px
+    }
+
+    .reviewshowmore {
+        display: block;
+        float: left;
+        margin-bottom: 10px !important;
+        text-align: center;
+        width: 100%;
+    }
+
+    .Reviewdatausershow h3.ng-binding {
+        padding: 0px 10px;
+    }
+
+    .choclate-brand {
+        padding-bottom: 0px;
+    }
+
+    .Parent {
+        margin-bottom: 10px;
+        padding: 0px !important;
+    }
+
+    ul.tabshowbox.ordertab-show {
+        padding: 0px;
+    }
+
+        ul.tabshowbox.ordertab-show li.ng-binding {
+            padding-left: 0px;
+        }
+
+    .resultopen .col-lg-6.col-sm-6.col-md-6.col-xs-12 h5, .resultopen .col-lg-2.col-sm-2.col-md-2.col-xs-12 h5 {
+        text-align: left !important;
+        font-size: 12px;
+        margin-top: 0px;
+    }
+
+    .resultshow-innerbx .col-md-2:first-child {
+        width: 25%;
+        float: left;
+    }
+
+    .resultshow-innerbx .col-md-5, .resultshow-innerbx .col-md-2, .resultshow-innerbx .col-md-3 {
+        width: 75%;
+        float: right;
+        text-align: left;
+    }
+
+        .resultshow-innerbx .col-md-5 p {
+            padding-top: 0px !important;
+        }
+
+        .resultshow-innerbx .col-md-5 p {
+            padding-top: 0px !important;
+            margin-bottom: 5px;
+        }
+
+    .resultshow-innerbx .quantity-box {
+        border: none;
+        color: #828282;
+        font-size: 14px !important;
+        font-weight: 400;
+        padding: 5px 0 !important;
+        text-align: center;
+        width: 65px !important;
+    }
+
+    .resultshow-innerbx {
+        border-bottom: 1px dotted #ccc !important;
+        margin-left: 0px;
+        padding-top: 8px !important;
+    }
+
+        .resultshow-innerbx:last-child {
+            border-bottom: 0px dotted #ccc !important;
+        }
+
+    .head-row h3 {
+        font-size: 17px;
+        text-align: left;
+    }
+
+    .trending-div .detail-div h5, .trending-div .detail-div h4 {
+        text-align: left;
+    }
+
+    .recentviewbox p.ng-binding {
+        font-size: 11px !important;
+        text-align: left;
+    }
+
+    .recentviewbox b.ng-binding {
+        color: #000;
+        text-align: left;
+    }
+
+    .headingnexa {
+        text-align: left;
+    }
+
+    .shopping-cart-left .table-cont .small-line {
+        margin-bottom: 5px !important;
+        margin-top: 0px;
+        color: #787878;
+        text-align: left;
+    }
+
+    .shopping-cart-left .table-cont h5 {
+        text-align: left;
+        margin-bottom: 5px !important;
+    }
+
+    span.red-text.ng-binding {
+        text-align: left;
+    }
+
+    .subtotal-right .small-line {
+        margin-top: 0px;
+        text-align: left;
+    }
+
+    .apply-code {
+        width: 100%;
+    }
+
+    .onlyhideorder.hamburger.is-closed {
+        float: left;
+    }
+
+    .subtotal-right label.customerlogin input {
+        margin-top: 2px !important;
+        margin-right: 5px !important;
+        margin-left: 5px !important;
+    }
+
+    .recentviewbox h5.ng-binding {
+        font-size: 13px;
+        color: gray;
+        margin: 0px 0px 5px;
+        text-align: left;
+    }
+
+    ul.icon-list {
+        text-align: center;
+    }
+
+    .row.onlymobileshow.recentviewbox .col-xs-9 {
+        text-align: left;
+    }
+
+    .cross-btn {
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        border: 1px solid #ea8b62;
+        border-radius: 50%;
+        text-align: center;
+        color: gray;
+        font-size: 20px;
+        line-height: 25px;
+        line-height: 30px;
+    }
+
+    .apply-code input {
+        width: 85%;
+        text-align: left;
+    }
+
+    .subtotal-right .subtotal_overlay {
+        z-index: 999 !important;
+    }
+
+    .shopping-cart-page {
+        padding-top: 0px !important;
+        padding-bottom: 110px !important;
+    }
+
+    .shopping-cart-inner .cart-left {
+        padding-bottom: 0px;
+    }
+
+    button.onlyhideorder.hamburger.is-closed, .hamburger.is-open {
+        left: 10px;
+    }
+
+    .header .search-head {
+        text-align: left;
+    }
+
+    ul.right-head li {
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+    }
+
+    .hamburger {
+        top: 0px !important;
+    }
+
+    .header ul.right-head {
+        margin-top: -67px !important;
+    }
+
+    .delivery-option span {
+        float: none;
+        text-align: center;
+        padding-top: 0px;
+    }
+
+    .moye {
+        padding-right: 15px !important;
+        width: 100%;
+    }
+
+    .seco {
+        width: 100%;
+        padding-left: 15px !important;
+    }
+
+    a.onlymobileshow.back_btn {
+        left: 10px;
+    }
+
+    .resultshow-innerbx .quantity-box {
+        float: left;
+    }
+
+    .myaccountlisting li a img {
+        float: left;
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+
+    .listingdatabox .tabshowbox li img {
+        float: left;
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+
+    .product-quantity {
+        text-align: center !important;
+    }
+
+    ul.icon-list {
+        padding: 0px;
+    }
+
+    .create-account a.ng-binding {
+        margin-left: 3px;
+    }
+
+    .table-responsive.shopping-cart-left {
+        overflow-x: hidden !important;
+    }
+
+    .subtotal-right p {
+        font-size: 13px;
+    }
+
+    .subtotal-right label.customerlogin {
+        font-size: 12px;
+    }
+
+    .subtotal-right .orange_btn {
+        font-size: 13px !important;
+    }
+
+    h1.price-text.pricingtotal {
+        font-size: 14px !important;
+    }
+
+    .subtotal-right h4 {
+        font-size: 12px !important;
+    }
+
+    .subtotal-right .small-line {
+        display: none;
+    }
+
+    .subtotal-right .apply-code input {
+        display: none;
+    }
+
+    .subtotal-right a.orange_btn.applycoupon.ng-binding {
+        display: none !important;
+    }
+
+    .loginrightsidebar {
+        margin-bottom: 10px;
+    }
+
+    .bordersbox.language-box.ng-scope select {
+        width: 95%;
+        height: 30px;
+        border-radius: 25px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        padding: 0px 10px;
+        margin: 10px 0px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        z-index: 99999;
+    }
+}
+/*max-width: 480px*/
+
+
+/*ltr css end*/

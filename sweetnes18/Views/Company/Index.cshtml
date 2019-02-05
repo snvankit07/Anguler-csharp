@@ -1,0 +1,18 @@
+﻿@{
+    Layout = "~/Views/Shared/_Shippingcompany.cshtml";
+}
+<form class="modal-content animate" id="shippinglogin" method="post" action="/Company">
+    <div class="imgcontainer">
+        <img src="/img/logo.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="innerboxcontainer">
+        <label for="uname"><b>Username</b></label>
+        <input class="form-control user" type="text" placeholder="Enter Username" name="uname" required>
+
+        <label for="psw"><b>Password</b></label>
+        <input class="form-control pass" type="password" placeholder="Enter Password" name="psw" required>
+
+        <button type="submit">Login</button>
+    </div>
+</form>

@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Thank you ";
+    Layout = "~/Areas/Vendor/Views/Shared/_LayoutLogin.cshtml";
+}
+
+
+<section class="thankyou">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-5 col-sm-5 col-xs-12 col-md-offset-2 text-center thankyou_box">
+                <h1>Thank You!</h1>
+                <p> <strong>Thanks for registering with us.</strong></p>
+                <hr>
+                <p class="lead">
+                    <a class="continue_btn" href="/vendor/login">Continue to Login</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<style>
+    .thankyou_box {
+        background: #fff;
+        text-align: center;
+        margin: 63px auto;
+        padding: 45px;
+        border-radius: 7px;
+    }
+
+        .thankyou_box h1 {
+            color: #ea8b62;
+        }
+
+    .thankyou .lead a {
+        background-color: #ea8b62;
+        color: #fff;
+        font-size: 16px;
+        display: inline-block;
+        padding: 7px 20px;
+        border-radius: 25px;
+    }
+
+    section.thankyou {
+        padding: 0px 15px;
+    }
+</style>

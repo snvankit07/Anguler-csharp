@@ -1,0 +1,124 @@
+﻿@{
+    ViewData["Title"] = "useraddress";
+}
+
+
+<section ng-app="Homex" ng-controller="HomeC" ng-init="getaddressdata(@ViewData["userdata"])" class="userdetails customer-support">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">{{"Home"|translate}}</a></li>
+            <li class="breadcrumb-item"><a href="#">{{"My Account"|translate}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{"All Orders"|translate}}</li>
+        </ol>
+        <div class="row support-cont">
+            <div class="col-lg-3 col-sm-3 col-md-3 account-left">
+                <h4>{{"My Account"|translate}}</h4>
+
+                <ul class="nav nav-tabs side-tabs myaccountlisting listingdatabox">
+                    <li onclick="window.location.href='/Myaccount'">
+                        <a class="ordertab-click" data-toggle="tab" href="/Myaccount"><img class="iconorder" src="/img/impicon/all_order.png" />{{"Orders"| translate }}</a>
+                    </li>
+                    <li onclick="window.location.href='/Myaccount/Favourites'" class="tabshowbox-hide" data-value="favourite"><a data-toggle="tab" href="#favourite"><img src="/img/impicon/favourite.png"> {{"My Favourites"| translate }}</a></li>
+                    <li onclick="window.location.href='/Myaccount/Setting'" class="active"><a href="https://sweetness.ae/Myaccount/Setting"><img src="/img/impicon/setting.png"> {{"Settings"| translate }}</a></li>
+                    <li class="hidden tabshowbox-hide"><a href="#setting"><img src="/img/impicon/setting.png">{{"Settings"| translate }}</a></li>
+                    <li class="hidden"><a href="/createaccount/logout">{{"Logout"| translate }}</a></li>
+                </ul>
+
+            </div>
+            <div class="col-lg-9 col-sm-9 col-md-9 account-right">
+                <div class="tab-content right-tab-cont">
+                    <div id="orders" class="tab-pane fade">
+
+
+                    </div>
+                    <div id="favourite" class="tab-pane fade">
+                    </div>
+                    <div id="account_setting" class="tab-pane fade in active">
+
+                        <div class="sep-div">
+
+                            <div class="row">
+                                <div class="col-md-12  my_account_box">
+                                    <a class="orange_btn" href="/Myaccount/addnewAddress">{{"Add New" | translate }}</a>
+                                    <hr />
+                                    <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12" ng-repeat="i in shippingaddress">
+                                        <div class="alert alert-success user-address">
+                                            <i ng-click="deleteaddress(@ViewData["userdata"],i.Id)" class="pull-right fa fa-trash"></i>
+                                            <b>{{i.Fname}} {{i.Lname}}</b><hr style="margin:5px 0;" />
+                                            {{i.StreetName}} {{i.BuildingName}} {{i.Location}}<br />
+                                            {{i.CityName}}<br />
+                                            <b>{{"Mobile"|translate }}: </b>{{i.Mobile}}<br />
+                                            <b>{{"Email"|translate }}: </b>{{i.email}}
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div id="setting" class="tab-pane fade setting_box">
+                        <div class="row head-row">
+                            <div class="col-md-12">
+                                <h3>{{"Settings"| translate }}</h3>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="border-bottom"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="row form-group">
+                                    <div class="col-md-4">
+                                        <label>{{"Select your language"| translate }}</label>
+                                    </div>
+                                    <div class="col-md-8 hidden">
+                                        <select>
+                                            <option>English (UK)</option>
+                                            <option>English (UK)</option>
+                                            <option>English (UK)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-md-4">
+                                        <label>{{"Notifications"| translate }}</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <label class="on-off-toggle">
+                                            <input type="radio" name="r1" checked="">
+                                            <span class="off-btn">{{"OFF"| translate }}</span>
+                                        </label>
+                                        <label class="on-off-toggle">
+                                            <input type="radio" name="r1">
+                                            <span class="on-btn">{{"ON"| translate }}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="logout" class="tab-pane fade">
+                        <h3>{{"Logout"| translate }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="popupbg">
+        <div class="bg-white">
+            <div class="calcelbtnpopup top-headerpop">
+                <a class="btn btn-danger btn-xs pull-right"><i class=" fa fa-close"></i></a>
+            </div>
+            <div class="popupbody">
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<script src="~/js/Frontend/OrderPage.js?v=@DateTime.Now.Millisecond"></script>
+

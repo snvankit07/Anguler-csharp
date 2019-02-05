@@ -1,0 +1,114 @@
+﻿@model IEnumerable<sweetnes18.Areas.Vendor.Models.vendor_profile>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Vendor/Views/Shared/_Layout.cshtml";
+}
+<div ng-controller="VendorProfile" class="vendorprofile-mobile">
+    <form ng-init="ShowVendorProfile('@ViewData["userid"]');" ng-submit="VendorProfileUpdate('@ViewData["userid"]')" method="post">
+        <div ng-bind-html="msg"></div>
+        <div class="col-md-12 names_of_product vendor_profile-new">
+
+            <div class="one_part vendor_profile-inputs vendor_profile-1">
+                <div class="col-md-12"><h5>Personal Information</h5></div>
+                <div class="col-md-6 mobileboxmargin col-xs-12 pull-left">
+                    <input type="text" class="form-control" ng-model="Profiledata.userdata[0].fname" value="{{Profiledata.userdata[0].fname}}" placeholder="First Name">
+                </div>
+                <div class="col-md-6 mobileboxmargin  col-xs-12 pull-left">
+                    <input type="text" class="form-control" ng-model="Profiledata.userdata[0].lname" value="{{Profiledata.userdata[0].lname}}" placeholder="Last Name">
+                </div>
+                <div class="col-md-6 mobileboxmargin  col-xs-12 pull-left">
+                    <input type="text" class="form-control" ng-model="Profiledata.userdata[0].username" value="{{Profiledata.userdata[0].username}}" readonly placeholder="Email Address">
+                </div>
+                <div class="col-md-6 mobileboxmargin  col-xs-12 pull-left">
+                    <input type="text" class="form-control" ng-model="Profiledata.usermetadata.Vatnumber" value="{{Profiledata.usermetadata.Vatnumber}}" placeholder="VAT Number">
+                </div>
+                <div class="col-md-6  mobileboxmargin col-xs-12 pull-left">
+                    <input type="text" class="form-control" ng-model="Profiledata.userdata[0].mobileno" readonly value="{{Profiledata.userdata[0].mobileno}}" placeholder="Contact Number">
+                </div>
+                <div class="col-md-6 mobileboxmargin  col-xs-12  pull-left">
+                    <input type="text" class="form-control" ng-model="Profiledata.usermetadata.add" value="{{Profiledata.usermetadata.add}}" placeholder="Address">
+                </div>
+                <div class="col-md-6 Citybox  mobileboxmargin col-xs-12 pull-left">
+
+                    <input type="text" class="form-control" ng-model="Profiledata.usermetadata.City" value="{{Profiledata.usermetadata.City}}" placeholder="City">
+                </div>
+                <div class="col-md-6 mobileboxmargin col-xs-12  pull-left" style="display:none;">
+                    <input type="text" class="form-control" ng-model="Profiledata.usermetadata.State" value="{{Profiledata.usermetadata.State}}" placeholder="State">
+                </div>
+                <div class="col-md-6 mobileboxmargin col-xs-12  pull-left">
+                    <input type="text" readonly class="form-control country" ng-model="Profiledata.usermetadata.Country" value="{{Profiledata.usermetadata.Country}}" placeholder="Country">
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+
+
+            <div class="one_part col-md-12 vendor_profile-inputs vendor_profile-2">
+                <h5 style="clear:both;">Business Information</h5>
+                <div class=" mobileboxmargin col-xs-12">
+                    <input required type="text" class="form-control" id="Business" ng-model="Profiledata.usermetadata.Business" value="{{Profiledata.usermetadata.Business}}" placeholder="Business Name">
+                </div>
+                <div class=" mobileboxmargin col-xs-12">
+                    <input required type="text" class="form-control about_company" ng-model="Profiledata.usermetadata.About" value="{{Profiledata.usermetadata.About}}" placeholder="About Company">
+                </div>
+                <div class=" mobileboxmargin col-xs-12">
+                    <textarea required class="form-control" rows="6" ng-model="Profiledata.usermetadata.Dec" placeholder="Company Description"> {{Profiledata.usermetadata.Dec}}</textarea>
+                </div>
+            </div>
+
+
+            <div class="one_part col-md-12 vendor_profile-inputs vendor_profile-2">
+                <h5 style="clear:both;">Business Banking Info</h5>
+                <div class=" mobileboxmargin col-xs-12">
+                    <input required type="text" class="form-control" id="Accountholder" ng-model="Profiledata.usermetadata.Accountholder" value="{{Profiledata.usermetadata.Accountholder}}" placeholder="Business Accountholder">
+                </div>
+                <div class=" mobileboxmargin col-xs-12">
+                    <input required type="text" class="form-control about_company" ng-model="Profiledata.usermetadata.Accountnumber" value="{{Profiledata.usermetadata.Accountnumber}}" placeholder="Business Accountnumber">
+                </div>
+                <div class=" mobileboxmargin col-xs-12">
+                    <input required type="text" class="form-control about_company" ng-model="Profiledata.usermetadata.IBAN" value="{{Profiledata.usermetadata.IBAN}}" placeholder="Business IBAN">
+                </div>
+                <div class=" mobileboxmargin col-xs-12">
+                    <input required type="text" class="form-control about_company" ng-model="Profiledata.usermetadata.Swiftcode" value="{{Profiledata.usermetadata.Swiftcode}}" placeholder="Business Swiftcode">
+                </div>
+                <div class=" mobileboxmargin col-xs-12">
+                    <input required type="text" class="form-control about_company" ng-model="Profiledata.usermetadata.Bankname" value="{{Profiledata.usermetadata.Bankname}}" placeholder="Business Bankname">
+                </div>
+                <div class=" mobileboxmargin col-xs-12">
+                    <input required type="text" class="form-control about_company" ng-model="Profiledata.usermetadata.Bankcity" value="{{Profiledata.usermetadata.Bankcity}}" placeholder="Business Bankcity">
+                </div>
+                <div class=" mobileboxmargin col-xs-12">
+                    <input required type="text" class="form-control about_company" ng-model="Profiledata.usermetadata.Bankcountry" value="{{Profiledata.usermetadata.Bankcountry}}" placeholder="Business Bankcountry">
+                </div>
+                
+
+            </div>
+
+
+
+            <div class="one_part col-md-12 vendor_profile-inputs vendor_profile-3">
+                <h5>Change Password</h5>
+                <div class=" mobileboxmargin col-xs-12  ">
+                    <input type="text" class="form-control pass" id="usr" ng-model="Profiledata.oldpass" placeholder="Old Password">
+                </div>
+                <div class=" mobileboxmargin col-xs-12  ">
+                    <input type="text" class="form-control pass" id="usr" ng-model="Profiledata.newpass" placeholder="New Password">
+                </div>
+                <div class=" mobileboxmargin col-xs-12  ">
+                    <input type="text" class="form-control pass" id="usr" ng-model="Profiledata.cnewpass" placeholder="Re-type New Password">
+                </div>
+                <div class="save mobileboxmargin col-xs-12">
+                    <input type="submit" ngClick="Submit" style="padding: 8px 0; width: 20vw;" class="browse_btn col-xs-12 btn-danger" value="Save" name="Save" />
+                </div>
+            </div>
+
+
+        </div>
+    </form>
+</div>
+
+<style>
+    input, textarea {
+        border: 1px solid #000 !important;
+    }
+</style>

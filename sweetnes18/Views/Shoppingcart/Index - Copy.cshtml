@@ -1,0 +1,225 @@
+﻿@using Sweetnes18.Controllers
+@{
+    ViewData["Title"] = "Shopping Cart";
+}
+<form ng-app="getshoppingcart" class="Checkoutform" ng-controller="RadioController" ng-init="ShowShoppingCart()" action="{{checkouturl}}">
+
+    <section class="shopping-cart-page">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="~/">{{"Home" | translate }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{"Shopping Cart" | translate }}</li>
+            </ol>
+            <div ng-if="showboxcart==1">
+                <div class="row shopping-cart-inner">
+                    <div class="col-md-9 cart-left">
+                        <div class="table-responsive shopping-cart-left">
+                            <table class="table">
+                                <tbody>
+                                    <tr ng-repeat="i in Shoppingdata">
+                                        <td class="shiping{{i.Flag}}">
+                                            <div class="table-img">
+                                                <img src="{{i.Product.productimage}}">
+                                            </div>
+                                            <div class="table-cont">
+                                                <h5 class="shopping_title">{{i.Product.ProductTitle|translate}} </h5>
+                                                <p class="shopping_smline small-line">{{"by" | translate }} {{i.Vendor.fname}} {{i.Vendor.lname}} </p>
+                                                <span ng-if="i.Flag==true" class="green-text">{{"In Stock" | translate }}</span>
+                                                <span ng-if="i.Flag==false" class="red-text err">{{"Out of Stock" | translate }}</span>
+                                                <div class="error">{{i.FlagMsg | translate }}</div>
+                                                <p class="free_shipping_mobile">{{"Eligible for FREE Shipping" | translate }}</p>
+                                                <span class="price-text priceingAddition mobile">
+                                                    {{i.Product.ProductRegulerPrice}}
+                                                </span> AED
+                                            </div>
+
+                                        </td>
+
+                                        <td class="shiping{{i.Flag}}">
+
+                                            <div class="plus-minus">
+
+                                                <input type="text" onkeyup="updatecardProduct()" data-qun="{{i.Product.ProductQun}}" data-Pid="{{i.Product_id}}" name="quant[1]" class="form-control input-number quntity validateq" value="{{i.ProductPurchaseQun}}" min="1" max="{{i.Product.ProductQun}}" data-parsley-required-message="Max product quantity available {{i.Product.ProductQun}} ">
+                                                <span class="err"></span>
+                                            </div>
+                                        </td>
+                                        <td class="shiping{{i.Flag}}">
+                                            <span class="price-text priceingAddition">{{i.Product.ProductRegulerPrice}}</span> AED
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="#" data-productid="{{i.Product_id}}" title="Delete Cart"  class="cross-btn">x</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-3 subtotal-right">
+                        <div class="subtotal_overlay">
+                            <h4>{{"Subtotal" | translate }} (<span>0</span> {{"items" | translate }}):</h4>
+                            <hr />
+                            <span class='adds'></span>
+                            <input data-user='@ViewData["userLoginID"]' data-address="0" readonly class="ShippingAddress" required name="ShippingAddress" placeholder="Select Your Address" />
+                            <br />
+                            <select name="ShippingCompany" class="ShippingCompany">
+                                <option value="1"> 1-shipping</option>
+                                <option value="2"> 2-shipping</option>
+                                <option value="3"> 3-shipping</option>
+                            </select>
+                            <hr />
+                            <table style="width:100%">
+                                <tr>
+                                    <td class="fontsshowheading">{{"Product Subtotal"| translate }}:</td>
+                                    <td class="fontsshow "><span class="subtotals">{{ProductTotal| number:2}}</span> AED</td>
+                                </tr>
+                                <tr>
+                                    <td class="fontsshowheading">{{"Offer Discount"| translate }}:</td>
+                                    <td class="fontsshow">- <span class="offer">{{OfferAmount| number:2}}</span> AED</td>
+                                </tr>
+                                <tr>
+                                    <td class="fontsshowheading">{{"Shipping"| translate }}:</td>
+                                    <td class="fontsshow">+ <span class="shipments">{{Shipping| number:2}}</span> AED</td>
+                                </tr>
+                                <tr class="totalcalculation">
+                                    <td class="fontsshowheading">{{"Total"| translate }}(<span class="quntt">{{Quantity}}</span>){{"items"| translate }}(s):</td>
+                                    <td class="fontsshow"><span class="totalprice">{{TotalPrice| number:2}}</span> AED</td>
+                                </tr>
+                            </table>
+
+
+                            <hr />
+                            <label class="customerlogin"><input required type="radio" value="1" ng-change="RadioChange('1')" ng-model="chkoutbox" name="userlogin" /> {{"Customer Checkout" | translate }}</label>
+                            <label class="customerlogin"><input required type="radio" value="0" ng-change="RadioChange('0')" ng-model="chkoutbox" name="userlogin" /> {{"Guest Checkout" | translate }}</label>
+                            <input class="orange_btn" type="submit" value="{{'Proceed to Checkout' | translate }}" />
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="you-may-like hidden">
+                    <div class="row head-row">
+                        <div class="col-md-8">
+                            <h3>You May Also Like</h3>
+                        </div>
+                        <div class="col-md-4 text-right">
+                            <a href="#" class="see-all">{{"See all..." | translate }}</a>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="border-bottom"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="popupbg">
+                    <div class="bg-white">
+                        <div class="calcelbtn"> <a class="btn btn-danger btn-xs"><i class=" fa fa-close"></i></a></div>
+                        <div class="popupbody">
+                        
+                        </div>
+                        <div  class="calcelbtn downbtn"><spam class="addnewaddewss"><i class="fa fa-plus-circle"></i></spam><a class="btn-xs btn btn-danger">Cancel</a></div>
+                    </div>
+
+                </div>
+            </div>
+            <div ng-if="showboxcart==0">
+                <div style="text-align:center; padding:2em 0;">
+                    <a href="/" class="orange_btn ng-binding">
+                        Continue Shopping
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+
+<script>
+    
+    $(document).on('click','.ShippingAddress', function () {
+        $('.popupbg').fadeIn(1000);
+        
+                $.ajax({ 
+                    url: "/ajaxapi/GetShippingAddress",
+                    success: function (result) {
+                        res = (result);
+                        HTML = "";
+                        for (i = 0; i < res.result.length; i++) {
+                            HTML += "<div class='addressdata' data-id='" + res.result[i].Id+"'><label><div class='addressdatavaluekey'><input value='' name='address' type='radio'></div><div class='addressdatavalue'><b>"+res.result[i].Fname
+                            HTML += " " + res.result[i].Lname + "</b>"; 
+                            HTML += "<div>" + res.result[i].BuildingName + res.result[i].StreetName + res.result[i].CityName + res.result[i].Location;
+                            HTML += "<div>Mobile:" + res.result[i].Mobile;
+                            HTML += "<div>Email:" + res.result[i].email;
+                            HTML += "</div>";
+                            HTML += "</div> ";
+                            HTML += "</div> ";
+                            HTML += "</div> ";
+                            HTML += '<a class="orange_btn selectaddress" >Deliver This Address</a> <a class="btn btn-success"><i class="fa fa-edit"></i></a><a class="btn btn-success"><i  style="display:none;" class="fa fa-trash"></i></a>';
+                            HTML += "</label> ";
+                            HTML += "</div >"; 
+                        }
+                        $('.popupbody').html(HTML);
+                    }
+                });
+            
+        $(document).on('click', '.selectaddress', function () {
+            $('.ShippingAddress').attr('data-address', $(this).parents('.addressdata').attr('data-id'));
+            $('.ShippingAddress').val($(this).parents('.addressdata').find('.addressdatavalue b').html());
+            $('.ShippingCompany').val();
+            $('.adds').html($(this).parents('.addressdata').find('.addressdatavalue').html());
+            AID = $(this).parents('.addressdata').attr('data-id');
+            SID = $('.ShippingCompany').val();
+            $.ajax({
+                url: "/Shoppingcart/GetShippingAddress?AddresID=" + AID + "&ShippingCompany=" + SID,
+                success: function (addshipping) {
+                    cartpageupdate();
+                }
+            })
+
+            $('.popupbg').fadeOut(1000);
+        });
+        $(document).on('change', '.ShippingCompany', function () {
+            AID = $('.ShippingAddress').attr('data-address');
+            SID = $('.ShippingCompany').val();
+            $.ajax({
+                url: "/Shoppingcart/GetShippingAddress?AddresID=" + AID + "&ShippingCompany=" + SID,
+                success: function (addshipping) {
+                    cartpageupdate();
+                }
+            })
+        });
+        
+        $('.calcelbtn').find('a').click(function () {
+            $('.popupbg').fadeOut(1000);
+        })
+
+    });
+</script>
+<style>
+    .blockx{display:block !important;}
+    #FooterBrand {
+        display: none;
+    }
+    .coupons i {
+        float: right;
+        cursor: pointer;
+    }
+    .coupons {
+        background: #d0e3d0;
+        padding: 8px;
+        display: block;
+    }
+    .noerror {
+        border: 1px dotted green;
+        color: green;
+    }
+    .error {
+        font-weight:bolder;
+        color:red;
+    }
+    .couponmsg {
+        font-size: 12px;
+        text-align: center;
+        margin-top: 6px;
+        border-radius: 7px;
+    }
+    .applycoupon{ cursor:pointer;}
+</style>

@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "~/Views/Shared/_ShippingcompanyHeader.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="box col-md-4 col-md-offset-4">
+            <form enctype="multipart/form-data" method="post" action="/company/canceleresion">
+                Order ID:
+                <input class="form-control" type="text" readonly name="orderID" value="@ViewData["Order"]" />
+                <input class="form-control" type="hidden" name="ordertype" value="@ViewData["type"]" />
+                Issue Image:
+                <input required class="form-control" type="file" placeholder="Select your File" name="image" />
+                <br />
+                Your Comment: 
+                <textarea required style="max-width:100%;" class="form-control" placeholder="Your Comment" name="Comment"></textarea>
+                <br />
+                <input class="form-control btn btn-info" type="submit" name="save" value="submit" />
+            </form>
+        </div>
+    </div>
+</div><style>
+    .box {
+        background: #fff;
+        box-shadow: 0 0 4px #000;
+        border-radius: 6px;
+        padding: 49px;
+    }
+</style>

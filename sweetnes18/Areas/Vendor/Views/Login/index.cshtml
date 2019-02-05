@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "index";
+    Layout = "~/Areas/Vendor/Views/Shared/_LayoutLogin.cshtml";
+}
+<div class="container">
+    <div class="card card-login mx-auto mt-5">
+        <div class="card-header">
+            <center> <img src="/img/logo1.png" alt="logo" class="logo-img"></center><hr />
+            <div class="card-header-Login"><h4>Login Vendor Account</h4></div>
+        </div>
+        <div class="card-body">
+            <div style="color:red; font-weight:bold">@ViewData["ErrorMSg"]</div>
+            <form action="~/vendor/login" enctype="application/x-www-form-urlencoded" method="post">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email or mobile phone number*</label>
+                    <input class="form-control" name="username" id="exampleInputEmail1" type="text" aria-describedby="emailHelp" placeholder="Email or mobile phone number">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password*</label>
+                    <input class="form-control" id="exampleInputPassword1" name="password" type="password" placeholder="Password">
+                </div>
+                <input type="submit" class="btn btn-primary btn-block" value="Login" />
+                <br />Create an Account? <a href="/vendoraccount">Sign up</a><br />
+                <br />Forgot password? <a href="/vendoraccount/ForgetPassword">Click here</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,184 @@
+﻿@{
+    ViewData["Title"] = "addnewaddress";
+}
+
+
+<section ng-app="Homex" ng-controller="HomeC" ng-init="getaddressdata(@ViewData["userdata"])" class="userdetails customer-support">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">{{"Home"|translate}}</a></li>
+            <li class="breadcrumb-item"><a href="/Myaccount/UserAddress">{{"Add New Address"|translate}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{"All Orders"|translate}}</li>
+        </ol>
+        <div class="row support-cont">
+            <div class="col-lg-3 col-sm-3 col-md-3 account-left">
+                <h4>{{"My Account"|translate}}</h4>
+
+                <ul class="nav nav-tabs side-tabs myaccountlisting listingdatabox">
+                    <li onclick="window.location.href='/Myaccount'">
+                        <a class="ordertab-click" data-toggle="tab" href="/Myaccount"><img class="iconorder" src="/img/impicon/all_order.png" />{{"Orders"| translate }}</a>
+                    </li>
+                    <li onclick="window.location.href='/Myaccount/Favourites'" class="tabshowbox-hide" data-value="favourite"><a data-toggle="tab" href="#favourite"><img src="/img/impicon/favourite.png"> {{"My Favourites"| translate }}</a></li>
+                    <li onclick="window.location.href='/Myaccount/Setting'" class="active"><a href="https://sweetness.ae/Myaccount/Setting"><img src="/img/impicon/setting.png"> {{"Settings"| translate }}</a></li>
+                    <li class="hidden tabshowbox-hide"><a href="#setting"><img src="/img/impicon/setting.png">{{"Settings"| translate }}</a></li>
+                    <li class="hidden"><a href="/createaccount/logout">{{"Logout"| translate }}</a></li>
+                </ul>
+
+            </div>
+            <div class="col-lg-9 col-sm-9 col-md-9 account-right">
+                <div class="tab-content right-tab-cont">
+                    <div id="orders" class="tab-pane fade">
+
+
+                    </div>
+                    <div id="favourite" class="tab-pane fade">
+                    </div>
+                    <div id="account_setting" class="tab-pane fade in active">
+
+                        <div class="sep-div">
+
+                            <div class="row">
+                                <div class="col-md-12  my_account_box">
+                                    <div class="row head-row">
+                                        <div class="col-md-12">
+                                            <h3 class="ng-binding">{{'Add Address'| translate }}</h3>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="border-bottom"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row add-new-address">
+                                        <form class="col-lg-10 col-sm-10 col-md-10 col-xs-12 form-group" method="post" action="/Myaccount/addnewAddress">
+                                            <input type="hidden" name="userID" value="@ViewData["userdata"]" />
+
+                                            <div class="col-md-6 col-xs-12 addnewaddressdata">
+                                                <input required type="text" class="form-control" name="fname" placeholder="{{'First Name'| translate }}" />
+                                            </div>
+                                            <div class="col-md-6 col-xs-12 addnewaddressdata">
+                                                <input type="text" class="form-control" name="lname" placeholder="{{'Last Name'| translate }}" />
+                                            </div>
+                                            <div class="col-md-6 col-xs-12 addnewaddressdata">
+                                                <select required class="form-control city" name="city"></select>
+                                            </div>
+                                            <div class="col-md-6 col-xs-12 addnewaddressdata">
+                                                <input required type="text" class="form-control" name="StreetName" placeholder="{{'Street Name'| translate }}" />
+                                            </div>
+                                            <div class="col-md-6 col-xs-12 addnewaddressdata">
+                                                <input required type="text" class="form-control" name="BuildingName" placeholder="{{'Building Name'| translate }}" />
+                                            </div>
+                                            <div class="col-md-6 col-xs-12 addnewaddressdata">
+                                                <input required type="text" class="form-control" name="Location" placeholder="{{'New Location'| translate }}" />
+                                            </div>
+                                            <div class="col-md-6 col-xs-12 addnewaddressdata">
+                                                <input required type="text" class="form-control" name="Mobile" value="@ViewData["mobile"]" placeholder="{{'Mobile Number'| translate }}" />
+                                            </div>
+                                            <div class="col-md-6 col-xs-12 addnewaddressdata">
+                                                <input required type="text" class="form-control" name="email" value="@ViewData["email"]" placeholder="{{'Email Address'| translate }}" />
+                                            </div>
+
+                                            <div class="col-md-12 col-xs-12 addnewaddressdata add-btn-rng">
+                                                <input class="orange_btn submitbtn" type="submit" name="submit" value="{{'Submit'| translate }}">
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div id="setting" class="tab-pane fade setting_box">
+                        <div class="row head-row">
+                            <div class="col-md-12">
+                                <h3>{{"Settings"| translate }}</h3>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="border-bottom"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="row form-group">
+                                    <div class="col-md-4">
+                                        <label>{{"Select your language"| translate }}</label>
+                                    </div>
+                                    <div class="col-md-8 hidden">
+                                        <select>
+                                            <option>English (UK)</option>
+                                            <option>English (UK)</option>
+                                            <option>English (UK)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-md-4">
+                                        <label>{{"Notifications"| translate }}</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <label class="on-off-toggle">
+                                            <input type="radio" name="r1" checked="">
+                                            <span class="off-btn">{{"OFF"| translate }}</span>
+                                        </label>
+                                        <label class="on-off-toggle">
+                                            <input type="radio" name="r1">
+                                            <span class="on-btn">{{"ON"| translate }}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="logout" class="tab-pane fade">
+                        <h3>{{"Logout"| translate }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="popupbg">
+        <div class="bg-white">
+            <div class="calcelbtnpopup top-headerpop">
+                <a class="btn btn-danger btn-xs pull-right"><i class=" fa fa-close"></i></a>
+            </div>
+            <div class="popupbody">
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<script src="~/js/Frontend/OrderPage.js?v=@DateTime.Now.Millisecond"></script>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: "/ajaxapi/ShipingCityList",
+            success: function (result) {
+                res = result.result;
+                console.log(res);
+                html = '<option value="">{{"Select"|translate }}</option>';
+                for (i = 0; i < result.result.length; i++) {
+                    console.log('---------S----------');
+                    console.log(res[i]);
+                    console.log('---------E----------');
+                    html += '<option value="' + res[i].id + '">{{"' + res[i].name + '"|translate }}</option>';
+                }
+                $('.city').html(html);
+                var $div = $('.city');
+                angular.element(document).injector().invoke(function ($compile) {
+                    var scope = angular.element($div).scope();
+                    $compile($div)(scope);
+                });
+            }
+        });
+
+    })
+
+</script>
+<style>
+    .addnewaddressdata {
+        margin-top: 10px;
+    }
+</style>

@@ -1,0 +1,118 @@
+﻿
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Vendor/Views/Shared/_Layout.cshtml";
+}
+
+<div class="form-horizontal form_order_edit" ng-controller="OrderTypeS" ng-init="OrderDetailsShow('@ViewData["VendorID"]')">
+    <div class="container delivered_contant">
+
+
+        <div class="row btns_row order-edit-title">
+            <div class="col-md-5">
+
+            </div>
+
+            <div class="col-md-7 text-right m-order-n">
+                <div class="form_box">
+                    <a href="/vendor/Order" class="form_box-back m-back-b">
+                        Back to Order <img src="/img/back_icn.png">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row wholepayment-listing-details">
+
+            <div class="col-md-12 col-xs-12">
+
+                <div class="wholepayment-destp-box margin-f-des">
+                    <h3>Order Detail</h3>
+                    <div class="transaction-listing">
+                        <ul>
+                            <li><span>Order Placed</span> <span class="text-right">{{OrderListDetails.MainCartdata.OrderCreatedDate}}</span></li>
+                            <li><span>Order Id#</span> <span class="text-right">{{OrderListDetails.OrderID}}</span></li>
+                            <li><span>Total</span> <span class="text-right">{{OrderListDetails.MainCartdata.OrderTotal}} Aed ({{OrderListDetails.MainCartdata.ProductPurchaseQun}}-item)</span></li>
+                            <li class="hidden"><span>Shipping Date</span> <span class="text-right">May 6,2018</span></li>
+                            <li class="hidden"><span>Delivered Date</span> <span class="text-right">May 6,2018</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="wholepayment-destp-box">
+                    <h3>Shipping Detail</h3>
+                    <div class="white-order-det">
+                        <div class="white-order-det-img"><img onerror="imgError(this);" src="{{OrderListDetails.MainCartdata.Product.productimage}}"></div>
+                        <div class="white-order-det-text">
+                            <h4>{{OrderListDetails.MainCartdata.Product.ProductTitle}}</h4>
+                            <p ng-if="OrderListDetails.MainCartdata.Product.vendoroffer==0 && OrderListDetails.MainCartdata.Product.adminoffer==0">{{OrderListDetails.MainCartdata.Product.ProductRegulerPrice}} AED</p>
+                            <p ng-if="OrderListDetails.MainCartdata.Product.vendoroffer > 0 || OrderListDetails.MainCartdata.Product.adminoffer > 0"><del>{{OrderListDetails.MainCartdata.Product.ProductSalePrice}} AED</del> {{OrderListDetails.MainCartdata.Product.ProductRegulerPrice}} AED</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="wholepayment-destp-box">
+                    <h3>Shipping Address</h3>
+                    <div class="shipping-destp-box">{{OrderListDetails.MainCartdata.ShippingAddress.Fname}} {{OrderListDetails.MainCartdata.ShippingAddress.Lname}}</div>
+                    <div class="shipping-destp-box">{{OrderListDetails.MainCartdata.ShippingAddress.StreetName}} {{OrderListDetails.MainCartdata.ShippingAddress.BuildingName}} {{OrderListDetails.MainCartdata.ShippingAddress.Location}}</div>
+                    <div class="shipping-destp-box">{{OrderListDetails.MainCartdata.ShippingAddress.CityName}}</div>
+                    <div class="shipping-destp-box" ng-if="OrderListDetails.MainCartdata.ShippingAddress.ShoppingNote"><hr /><b>Shipping Note:</b> {{OrderListDetails.MainCartdata.ShippingAddress.ShoppingNote}}</div>
+                </div>
+
+
+                <div ng-if="OrderListDetails.Customizemsg || OrderListDetails.CustomizeImage" class="wholepayment-destp-box">
+                    <h3>Customize Notes</h3>
+                    <div class="white-order-det">
+                        <div class="white-order-det-img"><img onerror="imgError(this);" src="{{OrderListDetails.CustomizeImage}}"></div>
+                        <div class="white-order-det-text">
+                            <h4>{{OrderListDetails.Customizemsg}}</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-if="OrderListDetails.CancleMsg || OrderListDetails.CancleImage" class="wholepayment-destp-box">
+                    <h3>Cancle Notes</h3>
+                    <div class="white-order-det">
+                        <div class="white-order-det-img"><img onerror="imgError(this);" src="{{OrderListDetails.CancleImage}}"></div>
+                        <div class="white-order-det-text">
+                            <h4>{{OrderListDetails.CancleMsg}}</h4>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="wholepayment-destp-box">
+                    <h3>Order Summary</h3>
+                    <div class="transaction-listing">
+                        <ul>
+                            <li><span>Items</span> <span class="text-right">{{OrderListDetails.MainCartdata.ProductPurchaseQun}} Items</span></li>
+
+
+                            <li><span>ProductSubtotal</span> <span class="text-right">{{OrderListDetails.MainCartdata.ProductPurchasePrice}} Aed</span></li>
+                            <li><span>Discount</span> <span class="text-right">-{{OrderListDetails.MainCartdata.Discount}} Aed</span></li>
+                            <li><span>Shipping</span> <span class="text-right">+{{OrderListDetails.MainCartdata.Shipping}} Aed</span></li>
+                            <li style="border-top: 1px solid #ccc; padding-top: 11px;"><span>OrderTotal</span> <span class="text-right">{{OrderListDetails.MainCartdata.OrderTotal}} Aed</span></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div data-id="{{OrderListDetails.OrderID}}" ng-click="detailsupdatestatus(OrderListDetails.OrderID)" ng-if="OrderListDetails.MainCartdata.Product.IsCustomized==1 && OrderListDetails.MainCartdata.pickanddeliverStatus==-1" class="approve-order-mob"><a href="#">Approve Order</a></div>
+
+
+            </div>
+
+        </div>
+
+        <!-- delivered_list -->
+
+
+    </div>
+
+
+
+</div>

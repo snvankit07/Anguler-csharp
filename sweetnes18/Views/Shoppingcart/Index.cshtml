@@ -1,0 +1,301 @@
+﻿@using Sweetnes18.Controllers
+@{
+    ViewData["Title"] = "Shopping Cart";
+}
+<form name="Cform" ng-app="getshoppingcart" class="Checkoutform" ng-controller="RadioController" ng-init="ShowShoppingCart()" method="post" action="{{checkouturl}}">
+
+    <section class="shopping-cart-page">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="~/">{{"Home" | translate }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{"Shopping Cart" | translate }}</li>
+            </ol>
+            <div>
+                <div class="row shopping-cart-inner">
+                    <div style="display:none;" class="tocontinue"> 
+                        <div style="text-align:center; padding:2em 0;">
+                            <a href="/" class="orange_btn ng-binding">
+                                {{"Continue Shopping" | translate }}
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-9 cart-left">
+                        <div class="table-responsive shopping-cart-left">
+                            <table class="table">
+                                <tbody>
+                                    <tr ng-repeat="i in Shoppingdata"> 
+                                        <td class="shiping{{i.Flag}}">
+                                            <div class="table-img">
+                                                <img src="{{i.Product.productimage}}">
+                                            </div>
+                                            <div class="table-cont">
+                                                <h5 class="shopping_title">{{i.Product.ProductTitle|translate}} </h5>
+                                                <p class="shopping_smline small-line">{{"by" | translate }} {{i.Vendor.fname}} {{i.Vendor.lname}} </p>
+                                                <span ng-if="i.Flag==true" class="green-text">{{"In Stock" | translate }}</span>
+                                                <span ng-if="i.Flag==false" class="red-text err">{{"Out of Stock" | translate }}</span>
+                                                <div class="error">{{i.FlagMsg | translate }}</div>
+                                                <p class="free_shipping_mobile">{{"Eligible for FREE Shipping" | translate }}</p>
+                                                <span class="price-text priceingAddition mobile">
+                                                    {{i.Product.ProductRegulerPrice}}
+                                                </span> AED
+                                            </div>
+
+                                        </td>
+
+                                        <td class="shiping{{i.Flag}}">
+
+                                            <div class="plus-minus">
+
+                                                <input type="text" onkeyup="updatecardProduct()" data-qun="{{i.Product.ProductQun}}" data-Pid="{{i.Product_id}}" name="quant[1]" class="form-control input-number quntity validateq" value="{{i.ProductPurchaseQun}}" min="1" max="{{i.Product.ProductQun}}" data-parsley-required-message="Max product quantity available {{i.Product.ProductQun}} ">
+                                                <span class="err"></span>
+                                            </div>
+                                        </td>
+                                        <td class="shiping{{i.Flag}}">
+                                            <span class="price-text priceingAddition">{{i.Product.ProductRegulerPrice}}</span> AED
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="#" data-productid="{{i.Product_id}}" title="Delete Cart" class="cross-btn">x</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="updatequnpage boderupdate-footer"><a class="pull-right btn btn-info " onclick="updatecardProduct()">{{"Update Cart"|translate}}</a></div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 subtotal-right">
+                        <div class="subtotal_overlay">
+                            <h4 class="mobile-none-prz">{{"Order Summary" | translate }} (<span>0</span> {{"items" | translate }}):</h4>
+                            <hr />
+                            <span class='adds'></span>
+                            <div class="name-sh">{{"Shipping Address" | translate }}</div>
+                            {{form.input.$error.required}}
+                            <input data-user='@ViewData["userLoginID"]' data-address="0" readonly class="ShippingAddress" ng-required="requiredx" name="ShippingAddress" placeholder='{{"Select Your Address" | translate }}' />
+                            @*<span ng-if="!Cform.ShippingAddress.$valid">The value is required</span>*@
+                            <br />
+                            <div class="name-sh">{{"Shipping Company" | translate }}</div>
+                            <select name="ShippingCompany" class="ShippingCompany">
+                                <option value="1"> {{"Galaxy gate" | translate }}</option>
+                                <option value="2"> {{"2-shipping" | translate }}</option>
+                                <option value="3"> {{"3-shipping" | translate }}</option>
+                            </select>
+                            <div class="name-sh">{{"Important: if you make your order before 1pm it will deliver in same day* (this only for sweets in stock and not need time to prepare)" | translate }}</div>
+                            <hr />
+                            <div class="mob-white-tb">
+                                <table style="width:100%">
+                                    <tr>
+                                        <td class="fontsshowheading">{{"Product Subtotal"| translate }}:</td>
+                                        <td class="fontsshow "><span class="subtotals">{{ProductTotal| number:2}}</span> AED</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fontsshowheading">{{"Offer Discount"| translate }}:</td>
+                                        <td class="fontsshow">- <span class="offer">{{OfferAmount| number:2}}</span> AED</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font"showhead"ng">{{'Shipping'| translate }}:</td>
+                                        <td class="fontsshow">+ <span class="shipments">{{Shipping| number:2}}</span> AED</td>
+                                    </tr>
+                                    <tr class="totalcalculation mobile-none-prz">
+                                        <td class="fontsshowheading">{{"Total"| translate }}(<span class="quntt">{{Quantity}}</span>){{"items"| translate }}:</td>
+                                        <td class="fontsshow"><span class="totalprice">{{TotalPrice| number:2}}</span> AED</td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <hr class="mobile-none-prz" />
+                            <label class="customerlogin mobile-none-prz"><input required type="radio" value="1" ng-change="RadioChange('1')" ng-model="chkoutbox" name="userlogin" /> {{"Customer Checkout" | translate }}</label>
+                            <label class="customerlogin mobile-none-prz"><input required type="radio" value="0" ng-change="RadioChange('0')" ng-model="chkoutbox" name="userlogin" /> {{"Guest Checkout" | translate }}</label>
+                            <label class="check-box check-box1">
+                                <input name="termsanduse" required type="checkbox" />
+                                <span><i class="fa fa-check" aria-hidden="true"></i></span>
+                                {{"I agree to the" | translate }} <a href="/PrivacyPolicy/Terms" target="_blank">{{"Terms and conditions" | translate }}</a>
+                            </label>
+                            <input class="orange_btn mobile-none-prz paynowbuttons" type="submit" value="{{'Proceed to Checkout' | translate }}" />
+                            <a style="display:none;" class="orange_btn mobile-none-prz paynowbuttons1" href="/createaccount/login?c=shoppingcart&a=Index">{{'Proceed to Checkout' | translate }}</a>
+                            <div class="note-you">{{'Note: You can customize your products (custom text or image) after completing the order' | translate }}</div>
+                        </div>
+
+
+
+                        <div class="white-cart-mobile-t">
+
+                            <div class="total-priz-mob-tg">
+                                <label class="customerlogin"><input required type="radio" value="1" ng-change="RadioChange('1')" ng-model="chkoutbox" name="userlogin" /> {{"Customer Checkout" | translate }}</label>
+                                <label class="customerlogin"><input required type="radio" value="0" ng-change="RadioChange('0')" ng-model="chkoutbox" name="userlogin" /> {{"Guest Checkout" | translate }}</label>
+                            </div>
+                            <div class="total-priz-mob">
+                                <span>{{"Total"| translate }}(<span class="quntt">{{Quantity}}</span>) {{"items"| translate }}:</span><span><span class="totalprice">{{TotalPrice| number:2}}</span> AED</span>
+                            </div>
+                            <label class="check-box check-box2">
+                                <input name="termsanduse" id="termsanduse" ng-required="requiredx" ng-model="abc" type="checkbox" />
+                                <span><i class="fa fa-check" aria-hidden="true"></i></span>
+                                {{"I agree to the" | translate }} <a href="/PrivacyPolicy/Terms" target="_blank">{{"Terms and conditions" | translate }}</a>
+                            </label> 
+                            <p ng-if="!abc && x" class="check-boxP"  >This value is required</p>
+
+                            <div class="total-btn-mob">
+                                <input class="orange_btn paynowbuttons" type="submit" value="{{'Proceed to Checkout' | translate }}" ng-click="firsttime()" />
+                                <a style="display:none;" class="orange_btn  paynowbuttons1" href="/createaccount/login?c=shoppingcart&a=Index">{{'Proceed to Checkout' | translate }}</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div class="you-may-like hidden">
+                    <div class="row head-row">
+                        <div class="col-md-8">
+                            <h3>{{"You May Also Like" | translate }}</h3>
+                        </div>
+                        <div class="col-md-4 text-right">
+                            <a href="#" class="see-all">{{"See all..." | translate }}</a>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="border-bottom"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="popupbg">
+                    <div class="bg-white">
+                        <div class="calcelbtn top-headerpop">
+                            <a class="backbtnshipping btn btn-xs pull-left"><img src="/img/impicon/back.png"></a>
+                            <a class="btn btn-danger btn-xs pull-right"><i class=" fa fa-close"></i></a>
+                        </div>
+                        <div class="popupbody">
+
+                        </div>
+                        <div class="calcelbtn downbtn"><spam class="addnewaddewss"><i class="fa fa-plus-circle"></i></spam></div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </section>
+</form>
+
+<script>
+    
+    function showAddressForm() {
+        $.ajax({
+            url: "/shoppingcart/Newshoppingaddress",
+            success: function (result) {  
+                $('.popupbody').html(result);   
+                $('.addnewaddewss').hide();
+                $.ajax({
+                    url: "/ajaxapi/ShipingCityList",
+                    success: function (result) {
+                        console.log(result);
+                        html = "";
+                        for (i = 0; i < result.result.length; i++) {
+                            console.log(result.result[i]);
+                            html += '<option value="' + result.result[i].id + '">{{"' + result.result[i].name + '"| translate }}</option>';
+                        }
+                        $('.popupbody').find('select').html(html);
+                        var $div = $('.popupbody').find("form");  
+                        angular.element(document).injector().invoke(function ($compile) {
+                            var scope = angular.element($div).scope();
+                            $compile($div)(scope);
+                        });
+                    }
+                })
+            }
+        })
+    }
+    $(document).on('click', '.addnewaddewss', function () {
+        showAddressForm();
+    })
+    $(document).on('click', '.ShippingAddress,.backbtnshipping', function () {
+        $('.addnewaddewss').show(); 
+        $('.popupbg').fadeIn(1000);
+        $.ajax({
+            url: "/ajax/CheckLogin",
+            success: function (result) {
+                if (result.Status) {
+                    $.ajax({
+                        url: "/ajaxapi/GetShippingAddress",
+                        success: function (result) {
+                            res = (result);
+                            HTML = "";
+                            for (i = 0; i < res.result.length; i++) {
+                                HTML += "<div class='addressdata' data-id='" + res.result[i].Id + "' ng-controller='RadioController'><label><div class='addressdatavaluekey'><input value='' name='address' type='radio'><span>&nbsp;</span></div><div class='addressdatavalue'><b>" + res.result[i].Fname
+                                HTML += " " + res.result[i].Lname + "</b>";
+                                HTML += "<div>" + res.result[i].BuildingName + " , " + res.result[i].StreetName + " , " + res.result[i].CityName + " , " + res.result[i].Location;
+                                HTML += "<div>{{'Mobile'|translate}}:" + res.result[i].Mobile;
+                                HTML += "<div>{{'Email'|translate}}:" + res.result[i].email;
+                                HTML += "</div>";
+                                HTML += "</div> ";
+                                HTML += "</div> ";
+                                HTML += "</div> ";
+                                HTML += '<div class="pop-del-box"><a class="orange_btn selectaddress" >{{"Deliver to this address"|translate}}</a> <a style="display:none;" class="btn btnop"><i class="fa fa-trash"></i></a></div>';
+                                HTML += "</label> ";
+                                HTML += "</div >";
+                            }
+                            $('.popupbody').html(HTML);
+                            var $div = $('.addressdata');
+                            angular.element(document).injector().invoke(function ($compile) {
+                                var scope = angular.element($div).scope();
+                                $compile($div)(scope);
+                            });
+                        }
+                    });
+
+                } else {
+                    showAddressForm(); 
+                }
+            }
+        })
+
+
+
+
+        $('.calcelbtn').find('a').click(function () {
+            $('.popupbg').fadeOut(1000);
+        })
+
+    });
+</script>
+<style>
+    .blockx {
+        display: block !important;
+    }
+
+    #FooterBrand {
+        display: none;
+    }
+
+    .coupons i {
+        float: right;
+        cursor: pointer;
+    }
+
+    .coupons {
+        background: #d0e3d0;
+        padding: 8px;
+        display: block;
+    }
+
+    .noerror {
+        border: 1px dotted green;
+        color: green;
+    }
+
+    .error {
+        font-weight: bolder;
+        color: red;
+    }
+
+    .couponmsg {
+        font-size: 12px;
+        text-align: center;
+        margin-top: 6px;
+        border-radius: 7px;
+    }
+
+    .applycoupon {
+        cursor: pointer;
+    }
+</style>

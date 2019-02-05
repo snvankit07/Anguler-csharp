@@ -1,0 +1,99 @@
+﻿@model sweetnes18.Areas.Vendor.Models.Order
+
+@{
+    ViewBag.Title = "Edit";
+
+    Layout = "~/Areas/Vendor/Views/Shared/_Layout.cshtml";
+}
+
+<div class="form-horizontal form_order_edit" ng-controller="Financial" ng-init="showvendordata('@ViewData["VendorID"]','@ViewData["Status"]')">
+    <div class="container delivered_contant">
+
+
+        <div class="row btns_row order-edit-title">
+            <div class="col-md-5">
+
+            </div>
+
+            <div class="col-md-7 text-right m-order-n">
+                <div class="form_box">
+                    <a href="/vendor/Financial" class="form_box-back m-back-b">
+                        Back to Financial <img src="/img/back_icn.png">
+                    </a>
+
+                    <h5 class="monly pending-or-h1">{{Wholepayment.message}}</h5>
+                    <input type="text" placeholder="FROM" class="form-control from_calender">
+                    <input type="text" placeholder="TO" class="form-control from_calender">
+                    <a href="#" class="search_ic"> <i class="fa fa-search" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row delivered_list order-edit-list panding-list-order wholepayment-listing">
+            <ul>
+                <li ng-repeat="i in Wholepayment.result" data-aos-easing="linear" data-aos-duration="1500" data-aos="flip-down" class="waves-effect listdata">
+                    <a href="/vendor/Financial/details/{{i.id}}">
+                        <div class="orders_name-panding">
+                            <div class="orders_first-panding">
+                                <div class="col-xs-12 text-left Order_date">
+                                    <p>{{i.dates | date:'medium'}}</p>
+                                </div>
+                                <div class="col-xs-12 orders_name">
+                                    <h5>{{ i.Decription}}</h5>
+                                </div>
+                            </div>
+                            <div class="orders_first-panding">
+                                <div class="col-xs-4 order_id">
+                                    <h5>#{{i.OrderId}}</h5>
+                                </div>
+                                <div class="col-xs-3 product_price">
+                                    <p>{{i.PayableAmount}} AED</p>
+                                </div>
+                                <div class="col-xs-5 text-right Deliver_Status">
+                                    <p>{{i.TotalAmount}} AED</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+        <!-- delivered_list -->
+
+        <div class="row Botm_btns order-edit-csv">
+
+            <a href="#"> <img src="/img/doc.png"> Copy</a>
+            <a href="#"> <img src="/img/csv.png"> CSV</a>
+        </div>
+    </div>
+
+
+
+</div>
+<style>
+    .boxfordetail {
+        padding: 15px 0;
+        border-top: 1px solid;
+    }
+
+    .detailsshow {
+        display: none;
+        background: #fff;
+        clear: both;
+    }
+</style>
+<script>
+    $(document).on('click', '.listdata', function () {
+        $('.detailsshow').hide("slide");
+        $(this).find('.detailsshow').toggle("slide");
+    })
+</script>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

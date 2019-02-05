@@ -1,0 +1,135 @@
+﻿@model sweetnes18.Areas.administrator.Models.CompanyRate
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/administrator/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.ID)
+
+    <div class="form-group" style="display:none;">
+        @Html.LabelFor(model => model.CID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CID, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CID, "", new { @class = "text-danger" })
+            <input class="source" data-val="true" data-val-number="The field CID must be a number." id="source" name="source" type="hidden" value="">
+            <input class="destini" data-val="true" data-val-number="The field CID must be a number." id="destination" name="destination" type="hidden" value="">
+        </div>
+    </div>
+
+    <div class="form-group">
+        Source City
+        <div class="col-md-10">
+            <select required data-id="@ViewData["sou"]" class="form-control selection sourcecode" name="sourcecode"></select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        Destination City
+        <div class="col-md-10">
+            <select required data-id="@ViewData["des"]" class="form-control selection  destinationcode" name="destinationcode"></select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        Shipping Price
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        Extra Quantity Price
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ExtraQuntityprice, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ExtraQuntityprice, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group" style="display:none;">
+        @Html.LabelFor(model => model.SameVendorProductprice, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SameVendorProductprice, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SameVendorProductprice, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script>
+    $(document).ready(function () {
+        
+
+           
+            $.ajax({
+                url: "/ajaxapi/ShipingCityList",
+                success: function (result) {
+                    html = '';
+                    html += '<option  value="">select</option>';
+                    res = result.result;
+                    for (i = 0; i < res.length; i++) {
+                        select = "";
+                        id = $('.sourcecode').attr('data-id');
+                        if (parseInt(id) == parseInt(res[i].id)) {
+                            select = "selected='selected'";
+                        }
+                        html += '<option ' + select +' value="' + res[i].id + '">' + res[i].name + '</option>';
+                    }
+                    $('.sourcecode').html(html);
+                }
+            });
+
+        
+        $.ajax({
+            url: "/ajaxapi/ShipingCityList",
+            success: function (result) {
+                html = '';
+                res = result.result;
+                html += '<option  value="">select</option>';
+                for (i = 0; i < res.length; i++) {
+                    select = "";
+                    id = $('.destinationcode').attr('data-id');
+                    if (parseInt(id) == parseInt(res[i].id)) {
+                        select = "selected='selected'";
+                    }
+                    html += '<option ' + select + ' value="' + res[i].id + '">' + res[i].name + '</option>';
+                }
+                $('.destinationcode').html(html);
+
+            }
+        });
+       
+
+
+    })
+    $(document).on('change', '.sourcecode', function () {
+        $('.source').val($(this+" option: selected").text());
+    })
+    $(document).on('change', '.destinationcode', function () {
+        $('.destini').val($(this + " option: selected").text());
+    })
+</script>

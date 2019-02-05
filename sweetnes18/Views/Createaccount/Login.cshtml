@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+<section class="create-account">
+
+    <form action="~/createaccount/login" enctype="application/x-www-form-urlencoded" method="post">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <h3>{{"Customer Login"| translate }}</h3>
+                    <div class="@ViewData["Class"]">@ViewData["MSG"]</div>
+                    <div class="form-group row">
+                        <div class="col-md-12 col-xs-12">
+                            <input autocomplete="nope" type="text" required placeholder="{{'Email or mobile phone number' | translate }}" name="username">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12 col-xs-12">
+                            <input autocomplete="nope" type="password" required placeholder="{{ 'Password' | translate }}" name="password">
+                            <!-- <span>Minimum 6 Characters</span>-->
+                        </div>
+                    </div>
+                    <input type="hidden" name="controller" value="@HttpContext.Current.Request.QueryString["c"]" />
+                    <input type="hidden" name="action" value="@HttpContext.Current.Request.QueryString["a"]" />
+                    <!--<p>{{"We will send you a text to verify your phone."| translate }}<br>{{"Message and Data rates may apply."| translate }}</p>-->
+                    <input type="submit" class="orange_btn" value="{{'Login'| translate }}" />
+                    <br />
+                    <div>
+                        <p>{{"Create an Account?"| translate }}<a href="~/createaccount">{{"Sign Up"| translate }}</a></p>
+                        <p>{{"Forgot password?"| translate }}<a href="~/Createaccount/ForgotPassword">{{"Click here"| translate }}</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>

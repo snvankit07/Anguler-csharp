@@ -1,0 +1,24 @@
+﻿@model sweetnes18.Areas.administrator.Models.Products
+@{
+    sweetnes18.Areas.administrator.Models.Products p = new sweetnes18.Areas.administrator.Models.Products();
+    p = Model;
+}
+<div class="container" ng-controller="Standard" ng-init="showpayout('@ViewData["VendorID"]')">
+
+    <table>
+        <tr>
+            <th>Payment</th>
+            <th>Date</th>
+        </tr>
+        <tr ng-repeat="i in payout">
+            <td>{{i.Payment}}</td>
+            <td>{{i.CreatedDate}}</td>
+        </tr>
+
+    </table>
+
+</div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

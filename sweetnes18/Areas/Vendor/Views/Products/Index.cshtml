@@ -1,0 +1,114 @@
+﻿
+
+@{
+    ViewBag.Title = "Products List";
+    Layout = "~/Areas/Vendor/Views/Shared/_Layout.cshtml";
+}
+<div class="my-product-vendor" ng-controller="Standard" ng-init="init('Product');">
+    <div class="monly">
+        <div class="">
+            <div class="col-xs-12 delivered_title">
+                <h3>My Product</h3>
+            </div>
+            <div class="col-xs-12 form_box">
+                <datepicker date-format="yyyy-MM-dd">
+                    <input ng-model="date_Start" type="text" placeholder="FROM" class="form-control from_calender" />
+                </datepicker>
+                <datepicker date-format="yyyy-MM-dd">
+                    <input ng-model="date_End" type="text" placeholder="TO" class="form-control from_calender" />
+                </datepicker>
+                <input ng-model="term" class="form-control from_calender" placeholder="SEARCH TERM" />
+                <a href="#" class="search_ic" ng-click="assign(1);pagex();"> <i class="fa fa-search" aria-hidden="true"></i></a>
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+        <div class="row My_Product_list">
+
+            <ul>
+                <li data-aos-easing="linear" data-aos-duration="1500" data-aos="flip-down" data-aos-duration="2000" ng-repeat="i in StandardJson" class="waves-effect ">
+                    <a href="/Vendor/Products/edit/{{i.ProductID}}">
+                        <div class="col-xs-3 My_Product_img">
+                            <img src="{{i.productimage}}">
+                        </div>
+                        <div class="col-xs-7 orders_name My_Product_contnt">
+                            <h4>{{i.ProductTitle}}</h4>
+
+                            <p> {{i.ProductRegulerPrice}} AED</p>
+                            <p>Qty.{{i.ProductQun}}</p>
+                        </div>
+                        <div class="col-xs-2 My_Product_edit" style="padding-right:0px;">
+                            <div class="details-icon-pro"></div>
+                            <div class="edit-icon-pro"></div>
+                        </div>
+                    </a>
+                </li>
+
+
+            </ul>
+
+        </div>
+        <div class="buttonFixed row Botm_btns offer_bottm_btnss">
+            <a href="#" ng-click="decrement();pagex();">PREV</a>
+            <a href="#" ng-click="increment();pagex();"> <img src="img/doc.png">NEXT</a>
+            <a href="#" ng-click="downloads(1);pagex();"> <img src="img/csv.png"> CSV</a>
+        </div>
+
+    </div>
+    <div class="donly">
+        <p class="cre-product-on">
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <div ng-include="'Search'"></div>
+        <table class="table table-striped product_table">
+            <tr>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                    Quantity
+
+                </th>
+                <th>
+                    Status
+
+                </th>
+
+                
+
+                <th>Action</th>
+            </tr>
+            <tr data-aos-easing="linear" data-aos-duration="1500" data-aos="flip-down" data-aos-duration="2000" ng-repeat="i in StandardJson">
+                <td>
+                    {{i.ProductTitle}}
+                </td>
+                <td>
+                    {{i.ProductRegulerPrice}} AED
+                </td>
+                <td>
+                    {{i.ProductQun}}
+                </td>
+                <td ng-if="i.productStatus==1">
+                    <i  style="font-size:18px; color:green;" ng-click="statusupdate(i.productStatus,i.ProductID)"  class="fa fa-check-circle"></i>
+                </td>
+                <td ng-if="i.productStatus==0">
+                    <i  style="font-size:18px; color:red;"  ng-click="statusupdate(i.productStatus,i.ProductID)" class="fa fa-circle"></i>
+                </td>
+                
+
+                <td>
+
+                    <a href="/Vendor/Products/edit/{{i.ProductID}}"><i class='fa fa-pencil' aria-hidden='true'></i></a>
+                    <a href="/ProductDetail/product/{{i.ProductID}}"><i class='fa fa-eye' aria-hidden='true'></i></a>
+                    <a ng-click="deleteproductdata(i.ProductID)"><i class='fa fa-trash-o' aria-hidden='true'></i></a>
+
+                </td>
+            </tr>
+        </table>
+        <div ng-include="'Pagination'"></div>
+    </div>
+</div>
+
+

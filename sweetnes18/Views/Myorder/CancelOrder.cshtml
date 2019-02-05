@@ -1,0 +1,53 @@
+﻿@using sweetnes18.Models;
+
+@{
+
+    ViewData["Title"] = "Cancel Order";
+
+}
+<style>
+    .errorinvalid {
+        width: 100%;
+        display: inline-block;
+        color: red;
+        font-size:16px;
+        padding-left: 0px;
+        margin-bottom: 16px;
+    }
+    .img-card {
+        margin-bottom: 5px;
+        width: 100%;
+    }
+</style>
+
+
+    <section class="checkout-page">
+        <div class="container">
+            <div class="cancelpage"><h3>
+                     
+                         {{"You have cancelled your payment transaction"| translate }}
+                     
+                </h3>
+                                    <div>{{"You can select to retry your transaction or start a new one if you wish to change your shopping cart"| translate }}.</div>
+                                    <a class="btn btn-info" href="/shoppingcart">{{"Retry your payment"| translate }}</a>
+            </div>
+        </div>
+    </section>
+<style>    .cancelpage {
+        text-align: center;
+        width: 47%;
+        margin: 0 auto;
+    }
+        .cancelpage div {
+            margin-bottom: 18px;
+        }
+        .cancelpage h3 {
+        }
+        .cancelpage a {
+        }
+</style>
+
+
+
+
+

@@ -1,0 +1,6 @@
+﻿#mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item > .nav-link
+{
+    font-size:13px !important;
+}
+#sidenavToggler{ display:none;}
+#mainNav.fixed-top .navbar-sidenav{ height:auto !important;}

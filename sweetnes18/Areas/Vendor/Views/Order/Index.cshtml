@@ -1,0 +1,354 @@
+﻿@model IEnumerable<sweetnes18.Areas.Vendor.Models.Order>
+
+@{
+    /**/
+
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Vendor/Views/Shared/_Layout.cshtml";
+}
+<span ng-controller="OrderTypeS" ng-init="OrderTypeShow('@ViewData["ID"]')">
+    <div class="monly">
+        <div class="container Orders_box">
+            <div class="row">
+                <div class="col-xs-12 Orders_title">
+
+                    <h3>Orders</h3>
+                </div>
+            </div>
+            <div class="row Orders_lists">
+                <ul>
+                    <li class="waves-effect hidden">
+                        <a href="/Vendor/Order/Edit/1">
+                            <img src="/img/impicon/all_order.png">
+                            <p>All Order</p>
+                        </a>
+                    </li>
+                    <li class="waves-effect">
+                        <a href="/Vendor/Order/Edit/2">
+                            <img src="/img/impicon/open_order.png">
+                            <p>Pending Order</p>
+                        </a>
+                    </li>
+                    <li class="waves-effect">
+                        <a href="/Vendor/Order/Edit/3">
+                            <img src="/img/impicon/cart_complete.png">
+                            <p>Complete Order</p>
+                        </a>
+                    </li>
+                    <li class="waves-effect">
+                        <a href="/Vendor/Order/Edit/4">
+                            <img src="/img/impicon/cancelled_order.png">
+                            <p>Cancel Order</p>
+                        </a>
+                    </li>
+                </ul>
+            </div><!-- delivered_list -->
+        </div>
+    </div>
+
+    <div class="donly vender-order-p">
+        <div class="row btns_row">
+            <div class="col-md-5">
+                <h5>Order</h5>
+            </div>
+
+            <div class="col-md-7 text-right">
+
+                <div class="cal_right">
+                    <p>
+                        @Html.ActionLink("Create New", "Create")
+                    </p>
+
+                    <a href="#" class="copy_btn csv"> <i class="fa fa-file-archive-o" aria-hidden="true"></i> CSV</a>
+
+                    <label for="usr" class="from">from</label>
+                    <input type="text" class="form-control from_calender" id="usr">
+
+                    <label for="usr" class="to">to</label>
+                    <input type="text" class="form-control to_calender" id="usr">
+                    <a href="#" class="search_ic"> <i class="fa fa-search" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+
+
+        <table class="table product_table">
+            <tr>
+                <th>
+                    Order ID
+                </th>
+                <th>
+                    Order Date
+                </th>
+                <th>
+                    Order Status
+                </th>
+                <th>
+                    Shipping Company
+                </th>
+                <th>
+                    Order Cost
+                </th>
+                <th>
+                    IsCustomized
+                </th>
+                <th>Action</th>
+            </tr>
+            <tr ng-repeat="j in OrderList">
+                <td>
+                    {{j.OrderID}}
+                </td>
+                <td>
+                    {{j.MainCartdata.OrderCreatedDate}}
+                    
+                </td>
+                <td ng-if="j.MainCartdata.pickanddeliverStatus<-2" class="popupshowcustom">
+                    <span ng-if="j.MainCartdata.pickanddeliverStatus==-3">Not Pickedup</span>
+                    <span ng-if="j.MainCartdata.pickanddeliverStatus==-4">Order Return</span>
+
+                    <div class="ordercustomizeddatabox" ng-if="j.CancleImage || j.CancleMsg">
+                        <div class="popupshowclose"><i class="fa fa-close"></i></div>
+                        <img style="width:100%;" src="{{j.CancleImage}}" />
+                        <span>
+                            <p>{{j.CancleMsg}}</p>
+                        </span>
+                        <div class="popupshowclose"><i class="fa fa-close"></i></div>
+                    </div>
+                </td>
+                <td ng-if="j.MainCartdata.pickanddeliverStatus>=-2">
+                    <span ng-if="j.MainCartdata.pickanddeliverStatus==-1">Waiting acceptance</span>
+                    <span ng-if="j.MainCartdata.pickanddeliverStatus==0">pending</span>
+                    <span ng-if="j.MainCartdata.pickanddeliverStatus==-2">Cancel</span>
+                    <span ng-if="j.MainCartdata.pickanddeliverStatus > 0 && j.MainCartdata.pickanddeliverStatus < 6">In Shippment</span>
+                    <span ng-if="j.MainCartdata.pickanddeliverStatus>=6">Complete</span>
+                    <div class="ordercustomizeddatabox" ng-if="j.CancleImage || j.CancleMsg">
+                        <div class="popupshowclose"><i class="fa fa-close"></i></div>
+                        <img style="width:100%;" src="{{j.CancleImage}}" />
+                        <span>
+                            <p>{{j.CancleMsg}}</p>
+                        </span>
+                        <div class="popupshowclose"><i class="fa fa-close"></i></div>
+                    </div>
+                </td>
+                <td>
+                    {{j.MainCartdata.shippingCompanys.name}}
+                </td>
+                <td>
+                    {{j.MainCartdata.OrderTotal}} AED
+                </td>
+                <td class="popupshowcustom">
+                    <i ng-if="j.MainCartdata.Product.IsCustomized==1 || j.MainCartdata.Product.IsCustomized==2" class="cusomization fa fa-2x fa-check-circle"></i>
+                    <div class="ordercustomizeddatabox" ng-if="j.Customizemsg || j.CustomizeImage">
+                        <div class="popupshowclose"><i class="fa fa-close"></i></div>
+                        <img style="width:100%;" src="{{j.CustomizeImage}}" />
+                        <span>
+                            <p>{{j.Customizemsg}}</p>
+                        </span>
+                        <div class="popupshowclose"><i class="fa fa-close"></i></div>
+                    </div>
+                </td>
+                <td>
+                    <a data-id="{{j.OrderID}}" ng-click="updatestatus(j.OrderID,'@ViewData["ID"]')" ng-if="j.MainCartdata.Product.IsCustomized==1 && j.MainCartdata.pickanddeliverStatus==-1" class="btn btn-info blinking">Approve</a>
+                    &nbsp;&nbsp;
+                    <a href="#" class="showbgdetails search_ic"> <i class="fa fa-search" aria-hidden="true"></i></a>
+                    <div class="popupbg">
+                        <div class="popupbgfrontbox">
+                            <div class="closebtnheader header"><i class="closebtn fa fa-close"></i></div>
+                            <div class="popupbody">
+<div style="max-height: 90vh;  overflow-y: auto;    margin-right: 0px;    padding: 31px;" class="row wholepayment-listing-details newindex-order">
+                                    <div class="wholepayment-destp-box margin-f-des">
+                                        <h3>Order Detail</h3>
+                                        <div class="transaction-listing">
+                                            <ul>
+                                                <li><span>Order Placed</span> <span class="text-right">{{j.MainCartdata.OrderCreatedDate}}</span></li>
+                                                <li><span>Order Id#</span> <span class="text-right">{{j.OrderID}}</span></li>
+                                                <li><span>Total</span> <span class="text-right">{{j.MainCartdata.OrderTotal}} Aed ({{j.MainCartdata.ProductPurchaseQun}}-item)</span></li>
+                                                <li class="hidden"><span>Shipping Date</span> <span class="text-right">May 6,2018</span></li>
+                                                <li class="hidden"><span>Delivered Date</span> <span class="text-right">May 6,2018</span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="wholepayment-destp-box">
+                                        <h3>Shipping Detail</h3>
+                                        <div class="white-order-det">
+                                            <div class="white-order-det-img"><img onerror="imgError(this);" src="{{j.MainCartdata.Product.productimage}}"></div>
+                                            <div class="white-order-det-text">
+                                                <h4>{{j.MainCartdata.Product.ProductTitle}}</h4>
+                                                <p ng-if="j.MainCartdata.Product.vendoroffer==0 && j.MainCartdata.Product.adminoffer==0">{{j.MainCartdata.Product.ProductRegulerPrice}} AED</p>
+                                                <p ng-if="j.MainCartdata.Product.vendoroffer > 0 || j.MainCartdata.Product.adminoffer > 0"><del>{{j.MainCartdata.Product.ProductSalePrice}} AED</del> {{j.MainCartdata.Product.ProductRegulerPrice}} AED</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="wholepayment-destp-box">
+                                        <h3>Shipping Address</h3>
+                                        <div class="shipping-destp-box">{{j.MainCartdata.ShippingAddress.Fname}} {{j.MainCartdata.ShippingAddress.Lname}}</div>
+                                        <div class="shipping-destp-box">{{j.MainCartdata.ShippingAddress.StreetName}} {{j.MainCartdata.ShippingAddress.BuildingName}} {{j.MainCartdata.ShippingAddress.Location}}</div>
+                                        <div class="shipping-destp-box">{{j.MainCartdata.ShippingAddress.CityName}}</div>
+                                        <div class="shipping-destp-box" ng-if="j.MainCartdata.ShippingAddress.ShoppingNote"><hr /><b>Shipping Note:</b> {{j.MainCartdata.ShippingAddress.ShoppingNote}}</div>
+                                    </div>
+
+
+                                    <div ng-if="j.Customizemsg || j.CustomizeImage" class="wholepayment-destp-box">
+                                        <h3>Customize Notes</h3>
+                                        <div class="white-order-det">
+                                            <div class="white-order-det-img"><img onerror="imgError(this);" src="{{j.CustomizeImage}}"></div>
+                                            <div class="white-order-det-text">
+                                                <h4>{{j.Customizemsg}}</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div ng-if="j.CancleMsg || j.CancleImage" class="wholepayment-destp-box">
+                                        <h3>Cancle Notes</h3>
+                                        <div class="white-order-det">
+                                            <div class="white-order-det-img"><img onerror="imgError(this);" src="{{j.CancleImage}}"></div>
+                                            <div class="white-order-det-text">
+                                                <h4>{{j.CancleMsg}}</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="wholepayment-destp-box">
+                                        <h3>Order Summary</h3>
+                                        <div class="transaction-listing">
+                                            <ul>
+                                                <li><span>Items</span> <span class="text-right">{{j.MainCartdata.ProductPurchaseQun}} Items</span></li>
+
+
+                                                <li><span>ProductSubtotal</span> <span class="text-right">{{j.MainCartdata.ProductPurchasePrice}} Aed</span></li>
+                                                <li><span>Discount</span> <span class="text-right">-{{j.MainCartdata.Discount}} Aed</span></li>
+                                                <li><span>Shipping</span> <span class="text-right">+{{j.MainCartdata.Shipping}} Aed</span></li>
+                                                <li style="border-top: 1px solid #ccc; padding-top: 11px;"><span>OrderTotal</span> <span class="text-right">{{j.MainCartdata.OrderTotal}} Aed</span></li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                </td>
+            </tr>
+
+
+        </table>
+    </div>
+</span>
+<style>
+    body .popupdetailsbg {
+        background: #eae7e7;
+        margin: 0px !important;
+        padding: 0px !important;
+        font-weight: 500;
+        overflow-y: auto;
+        height: 80vh;
+        overflow-x: hidden;
+    }
+
+    .popupbody {
+        padding: 5px 5px;
+    }
+
+    .closebtnheader {
+        border-bottom: 1px solid #bbb4b4;
+        padding: 1px 14px;
+        text-align: right;
+        font-size: 22px;
+    }
+
+    .closebtnfooter {
+        border-top: 1px solid #bbb4b4;
+        padding: 1px 14px;
+        text-align: right;
+        font-size: 22px;
+    }
+
+    .closebtn {
+    }
+
+    .popupbg {
+        padding-top: 20px;
+        display: none;
+        position: fixed;
+        background: rgba(0, 0, 0, 0.7);
+        width: 100vw;
+        top: 0px;
+        left: 0px;
+        z-index: 100000;
+        height: 100vh;
+    }
+
+    .popupbgfrontbox {
+        width: 500px;
+        margin: 0 auto;
+        background: #fff;
+        border-radius: 5px;
+        /* box-shadow: 0 0px 4px #fff; */
+        border: 1px solid #989292;
+    }
+
+    .blinking {
+        background: #000 !important;
+        color: #fff !important;
+        padding: 2px 9px !IMPORTANT;
+    }
+
+    .ordercustomizeddatabox {
+        display: none;
+        width: 180px;
+        position: absolute;
+        background: #fff;
+        padding: 5px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 2px #000;
+        z-index: 100;
+    }
+
+    .popupshowcustom i, .popupshowcustom span {
+        cursor: pointer;
+    }
+
+    .popupshowclose {
+        text-align: right;
+        display: block;
+        background: #000;
+        color: #fff;
+        cursor: pointer;
+    }
+</style>
+<script>
+
+    $(document).on('click', '.showbgdetails', function () {
+        $(this).parent().find('.popupbg').show();
+
+    })
+
+    $(document).on('click', '.popupshowclose,.closebtn', function () {
+
+        $('.ordercustomizeddatabox,.popupbg').hide();
+    })
+    $(document).on('click', '.popupshowcustom i,.popupshowcustom span', function () {
+
+        $('.ordercustomizeddatabox').hide();
+        $(this).parent('.popupshowcustom').find('.ordercustomizeddatabox').fadeIn();
+
+    })
+    function updatestatus(status) {
+        status = $('.btn.btn-info').attr('data-id');
+        alert(status)
+        $.ajax({
+            url: "/vendor/VendorAjax/UpdateStatus?id=" + status,
+            success: function (result) {
+
+                window.location.reload();
+            }
+        });
+    }
+</script>
+

@@ -1,0 +1,131 @@
+﻿@using sweetnes18.Models;
+@{ CustomerProfile c = (sweetnes18.Models.CustomerProfile)ViewData["s"]; }
+
+
+@{
+ ViewData["Title"] = "Check Out";
+}
+<form  ng-app="getshoppingcart" ng-controller="checkoutuser" ng-submit="checkoutuserfun()">
+    <section  class="checkout-page">
+        
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="~/">{{ "Home"| translate }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{"About Us"| translate }}</li>
+            </ol>
+            <div class="row">
+                <div class="col-md-8 checkout-left">
+                    <ul class="nav nav-tabs checkout-tab">
+                        <li class="active"><a data-toggle="tab" href="#shipping"><span>1</span>{{"Shipping"| translate }}</a></li>
+                        <li class=""><a href="#"><span>2</span>{{"Payment"| translate }}</a></li>
+                        <li class=""><a href="#"><span>3</span>{{"Done"| translate }}</a></li>
+                    </ul>
+                    <div class="tab-content checkout-tab-cont">
+                        <div id="shipping" class="tab-pane fade in active">
+                            <div class="row form-group">
+                                <div class="col-md-6">
+                                    <label>{{"First Name"| translate }}*</label>
+                                    <input required type="text" ng-model="fname" id="fname" name="fname" placeholder="{{'Your First Name' | translate }}" value="{{checkoutuser.fname}}">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>{{"Last Name"| translate }}</label>
+                                    <input  type="text" ng-model="lname" id="lname" name="lname" placeholder="{{'Your Last Name' | translate }}" value="{{checkoutuser.lname}}">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-6">
+                                    <label>{{"Mobile Number"| translate }}*</label>
+                                    <input ng-keyup="testmobilenumber()" minlength="10" data-parsley-type="digits" required type="text" ng-model="mobile" id="mobile" name="mobile" placeholder="+971 - 00000 000 000" value="{{checkoutuser.mobileno}}">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>{{"Email"| translate }}*</label>
+                                    <input ng-keyup="testemail()" required type="email" ng-model="email" id="email" name="email" placeholder="example@xyz.com" value="{{checkoutuser.username}}">
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label>{{"Billing Address"| translate }}*</label>
+                                    <textarea required ng-model="billing" placeholder='{{"Enter your Location"|translate }}' id="address1" name="address1">{{checkoutuser.billing}}</textarea>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label>{{"Shipping Address"| translate }}*</label>
+                                    <textarea required ng-model="shipping" placeholder='{{"Enter your Location"|translate}}' id="address2" name="address2">{{checkoutuser.shipping}}</textarea>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="createaccountchkbox col-md-12">
+                                    <div><input ng-model="createacc" style="float: left; width: 44px;" class="form-control" name="createaccount" type="checkbox" /> <div style="padding-top: 12px;">{{'Create account' | translate }}</div></div>
+
+                                </div>
+                            </div>
+                            <input class="form-control orange_btn gopayment" type="submit" value="{{'Process To Payment' | translate }} >" />
+                            <a href="javascript:void(0);" class="hidden orange_btn gopayment"></a>
+
+                        </div>
+                        <div id="payment" class="tab-pane fade">
+                        </div>
+                        <div id="done" class="tab-pane fade done">
+                        </div>
+                    </div>
+                </div>
+                <div ng-controller="getAllCartdata" class="col-md-4 order-overview">
+                    
+                    <h4>{{"Order Overview"| translate }}</h4>
+                    <br>
+                    <div class="orderoverview">
+                        <div class="productshowoverview" >
+                            <div class="row cartproductdata" ng-repeat="j in cartstatus">
+                                
+                                <div class="col-md-4">
+                                    <div class="side-img">
+                                        <img src="{{j.Product.productimage}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <b>{{j.Product.ProductTitle | translate }}</b>
+                                    <p>By:{{j.Vendor.fname | translate }}</p>
+                                    <p style="font-size:11px; color:green" ng-if="j.Flag==true">{{"In Stock"| translate}}</p>
+                                    <p style="font-size:11px; color:red" ng-if="j.Flag==false">{{j.FlagMsg| translate}}</p>
+
+                                </div>
+                                <div class="col-md-3">
+                                    <b class="showprice">{{j.Product.ProductRegulerPrice }} AED</b>
+                                    <div class="plus-minus">
+                                        
+                                        <input readonly type="text" name="quant[1]" class="form-control input-number" value="{{j.ProductPurchaseQun}}" min="1" max="10">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row sub-total">
+
+                            <div class="col-md-6">
+                                <h4>{{"Subtotal"| translate }}</h4>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <h4 class="price-text" ng-bind-html="subtotal"></h4>
+                            </div>
+                        </div>
+                        <div class="row grand-total">
+                            <div class="col-md-5">
+                                <h4><b>{{"Grand Total"| translate }}</b></h4>
+                            </div>
+                            <div class="col-md-7 text-right">
+                                <h2 class="price-text" ng-bind-html="grandsubtotal"></h2>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="small-line">{{"Offer total Includes any Applicable VAT"| translate }}</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+
+
+
+

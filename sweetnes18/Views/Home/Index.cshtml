@@ -1,0 +1,455 @@
+﻿@model sweetnes18.Models.Products
+@using sweetnes18.Models
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+ 
+<div ng-app="Homex" ng-controller="HomeC">
+    <section class="banner-slider">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+                        <!-- Indicators -->
+
+                        <ol class="carousel-indicators">
+
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+
+                            <li data-target="#myCarousel" data-slide-to="1"></li>
+
+                            <li data-target="#myCarousel" data-slide-to="2"></li>
+
+                        </ol>
+
+
+
+                        <!-- Wrapper for slides -->
+
+                        <div class="carousel-inner">
+
+                            <div class="item active">
+                                <a href="/Todaysweet?brand=7">
+                                    <img src="/img/Homebanner/advt_01.png">
+                                </a>
+
+                            </div>
+                            <div class="item">
+                                <a href="/Todaysweet?brand=9">
+                                    <img src="/img/Homebanner/advt_02.png">
+                                </a>
+                            </div>
+
+
+
+                            <div class="item">
+                                <a href="/Todaysweet?brand=5">
+                                    <img src="/img/Homebanner/advt_03.png">
+                                </a>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div id="myCarousel1" class="carousel slide" data-ride="carousel">
+
+                        <!-- Indicators -->
+
+                        <ol class="carousel-indicators">
+
+                            <li data-target="#myCarousel1" data-slide-to="0" class="active"></li>
+
+                            <li data-target="#myCarousel1" data-slide-to="1"></li>
+
+                            <li data-target="#myCarousel1" data-slide-to="2"></li>
+
+                        </ol>
+
+
+
+                        <!-- Wrapper for slides -->
+
+                        <div class="carousel-inner">
+
+                            <div class="item active">
+                                <a href="/Todaysweet?category=1">
+                                    <img src="~/img/brand4.jpg">
+                                </a>
+
+                            </div>
+
+
+
+                            <div class="item">
+                                <a href="/Todaysweet?category=2">
+                                    <img src="~/img/brand5.jpg">
+                                </a>
+                            </div>
+
+
+
+                            <div class="item">
+                                <a href="/Todaysweet?category=3">
+                                    <img src="~/img/brand6.jpg">
+                                </a>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+    <section class="onlymobileshow">
+        <div class="container">
+
+            <div class="row">
+                <h3 class="headingnexa">{{ "Trending Now" | translate }}</h3> 
+                <div class="trandingboxwithshow">
+                    <div class="onlymobileshow col-xs-8 trandingbox tranding1" style="background:url({{TrandingSweetjson.result[0].productimg}})">
+                        <a href="/ProductDetail/product/{{TrandingSweetjson.result[0].ProductID}}">
+                            <img style="width:100%" src="/images/trandinbg.png" />
+                        </a>
+                    </div>
+                    <div class="col-xs-4 trandingbox">
+                        <div class="col-xs-12 trandingbox tranding2" style="background:url({{TrandingSweetjson.result[1].productimg}})"><a href="/ProductDetail/product/{{TrandingSweetjson.result[1].ProductID}}"><img style="width:100%" src="/images/trandinbg.png" /></a></div>
+                        <div class="col-xs-12 trandingbox tranding3" style="background:url({{TrandingSweetjson.result[2].productimg}})"><a href="/ProductDetail/product/{{TrandingSweetjson.result[2].ProductID}}"><img style="width:100%" src="/images/trandinbg.png" /></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="trending-div onlydesktopshow">
+
+        <div class="container">
+
+            <div class="row  head-row">
+
+                <div class="col-md-8">
+
+                    <ul class="nav nav-tabs tab-list">
+
+                        <li class="active" ng-show="TrandingSweetjson.result.length!=0"><a data-toggle="tab" href="#trending_now">{{ "Trending Now" | translate }} </a></li>
+
+                        <li ng-show="NewProductsjson.result.length!=0"><a data-toggle="tab" href="#new-products">{{ "New Products" | translate }}</a></li>
+
+                        <li style="display:none;" ng-show="TodaySweetjson.result.length!=0"><a data-toggle="tab" href="#today-sweet">{{ "Today's Sweet" | translate }}</a></li>
+
+                    </ul>
+
+                </div>
+
+                <div class="col-md-4 text-right">
+
+                    <a href="/Todaysweet?option=Lastview">{{ "See all..." | translate }}</a>
+
+                </div>
+
+                <div class="col-md-12">
+
+                    <div class="border-bottom"></div>
+
+                </div>
+
+            </div>
+
+            <div class="tab-content tab-cont-div">
+
+                <div id="trending_now" class="tab-pane fade in active" ng-show="TrandingSweetjson.result.length!=0">
+                    <div class="row">
+                        <div ng-include="'productdisplay'" ng-repeat="i in [TrandingSweetjson.result]"></div>
+
+                    </div>
+                </div>
+
+                <div id="new-products" class="tab-pane fade" ng-show="NewProductsjson.result.length!=0">
+
+                    <div class="row">
+                        <div ng-include="'productdisplay'" ng-repeat="i in [NewProductsjson.result]"></div>
+                    </div>
+                </div>
+
+                <div id="today-sweet" class="tab-pane fade" ng-show="TodaySweetjson.result.length!=0">
+                    <div class="row">
+                        <div ng-include="'productdisplay'" ng-repeat="i in [TodaySweetjson.result]"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="trending-div">
+        <div class="container Browsebybrand" ng-show="Brandjson.result.length!=0">
+            <div class="row head-row">
+                <div class="col-md-8">
+                    <h3>{{ "Browse by Brands" | translate }}</h3>
+                </div>
+                <div class="col-md-4 text-right">
+                    <a href="/Todaysweet?option=brand" class="see-all">{{ "See all..." | translate }}</a>
+                </div>
+                <div class="col-md-12">
+                    <div class="border-bottom"></div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div ng-repeat="i in [Brandjson.result]">
+                    <div class="col-md-2 desktopbrand" ng-repeat="j in i">
+                        <div class="brand-img">
+                            <a href="/Todaysweet?brand={{j.ID}}">
+                                <img onerror="imgError(this);" src="{{j.BrandImage}}" class="img-responsive">
+                            </a>
+
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-xs-6 mobilebrand" ng-repeat="j in i">
+                        <div class="">
+                            <a href="/Todaysweet?brand={{j.ID}}">
+                                <img onerror="imgError(this);" src="{{j.BrandBgImage}}" class="img-responsive">
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="trending-div">
+
+        <div class="container" ng-show="choclatejson.length!=0">
+
+            <div class="row head-row">
+
+                <div class="col-md-8">
+
+                    <h3>{{ "Chocolates" | translate }}</h3>
+
+                </div>
+
+                <div class="col-md-4 text-right">
+
+                    <a href="/Todaysweet?category=1" class="see-all">{{ "See all..." | translate }}</a>
+
+                </div>
+
+                <div class="col-md-12">
+
+                    <div class="border-bottom"></div>
+
+                </div>
+
+            </div>
+
+            <div class="row onlydesktopshow">
+                <div ng-include="'productdisplay'" ng-repeat="i in [choclatejson]"></div>
+            </div>
+            <div class="row onlymobileshow">
+                <div ng-include="'productdisplayMobile'" ng-repeat="i in [choclatejson] "></div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="trending-div onlydesktopshow">
+
+        <div class="container" ng-show="Lastviewjson.result.length!=0">
+
+            <div class="row">
+
+                <div class="col-md-12">
+
+                    <div class="row head-row">
+
+                        <div class="col-md-4">
+
+                            <h3>{{"Last Viewed Products" | translate }}</h3>
+
+                        </div>
+                        <div class="col-md-4 pull-right text-right">
+                            <a href="/Todaysweet?option=Lastview" class="see-all">{{"See all..." | translate }}</a>
+                        </div>
+                        <div class="col-md-12">
+
+                            <div class="border-bottom"></div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row onlydesktopshow">
+                        <div ng-include="'productdisplay'" ng-repeat="i in [Lastviewjson.result]"></div>
+                    </div>
+                    <div class="row onlymobileshow">
+                        <div ng-include="'productdisplayMobile'" ng-repeat="i in [Lastviewjson.result] "></div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+
+    </section>
+
+    <section class="trending-div onlymobileshow recentviewboxnew">
+
+        <div class="container" ng-show="Lastviewjson.result.length!=0">
+
+            <div class="row">
+
+                <div class="col-md-12">
+
+                    <div class="row head-row">
+
+                        <div class="col-md-4">
+
+                            <h3 style="font-size:14px;">{{"Recently Viewed Product" | translate }}</h3>
+
+                        </div>
+                        <div class="col-md-4 pull-right text-right">
+                            <a href="/Todaysweet?option=Lastview" class="see-all">{{"See all..." | translate }}</a>
+                        </div>
+                        <div class="col-md-12">
+
+                            <div class="border-bottom"></div>
+
+                        </div>
+
+                    </div>
+
+                    
+                    <div class="row onlymobileshow recentviewbox">
+                        <div ng-include="'LastviewMobile'" ng-repeat="i in [Lastviewjson.result] "></div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+
+    </section>
+
+
+
+    <div class="col-xs-12 onlymobileshow fullwidthboxbrand">
+        <a href="/Todaysweet?brand={{Brandjson.result[2].ID}}">
+            <img onerror="imgError(this,1);" src="{{Brandjson.result[2].BrandBgImage}}" class="img-responsive">
+        </a>
+    </div>
+
+    <section class="trending-div">
+
+        <div class="container" ng-show="DryfruitProductsjson.result.length!=0">
+
+            <div class="row head-row">
+
+                <div class="col-md-8">
+
+                    <h3>{{ "Dryfruit Chocolates" | translate }}</h3>
+
+                </div>
+
+                <div class="col-md-4 text-right">
+
+                    <a href="/Todaysweet?category=2" class="see-all">{{"See all..." | translate }}</a>
+
+                </div>
+
+                <div class="col-md-12">
+
+                    <div class="border-bottom"></div>
+
+                </div>
+
+            </div>
+
+            <div class="row onlydesktopshow">
+                <div ng-include="'productdisplay'" ng-repeat="i in [DryfruitProductsjson]"></div>
+            </div>
+            <div class="row onlymobileshow">
+                <div ng-include="'productdisplayMobile'" ng-repeat="i in [DryfruitProductsjson] "></div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="trending-div">
+
+        <div class="container" ng-show="DarkProductsjson.result.length!=0">
+
+            <div class="row head-row">
+
+                <div class="col-md-8">
+
+                    <h3>{{"Dark Chocolates" | translate }}</h3>
+
+                </div>
+
+                <div class="col-md-4 text-right">
+
+                    <a href="/Todaysweet?category=3" class="see-all">{{ "See all..." | translate }}</a>
+
+                </div>
+
+                <div class="col-md-12">
+
+                    <div class="border-bottom"></div>
+
+                </div>
+
+            </div>
+            <div class="row onlydesktopshow">
+                <div ng-include="'productdisplay'" ng-repeat="i in [DarkProductsjson]"></div>
+            </div>
+            <div class="row onlymobileshow">
+                <div ng-include="'productdisplayMobile'" ng-repeat="i in [DarkProductsjson] "></div>
+            </div>
+        </div>
+    </section>
+    <div class="col-xs-12 onlymobileshow fullwidthboxbrand">
+        <a href="/Todaysweet?brand={{Brandjson.result[5].ID}}">
+            <img src="{{Brandjson.result[5].BrandBgImage}}" class="img-responsive">
+        </a>
+    </div>
+    <br />
+</div>
+
+

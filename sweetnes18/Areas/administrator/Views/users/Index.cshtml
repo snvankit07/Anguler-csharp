@@ -1,0 +1,83 @@
+﻿@model IEnumerable<sweetnes18.Areas.administrator.Models.user>
+
+@{
+    /**/
+
+    ViewBag.Title = "Users Lists";
+    Layout = "~/Areas/administrator/Views/Shared/_Layout.cshtml";
+
+}
+
+
+
+<div class="container" ng-controller="ShowAllUser" ng-init="showusers(2)">
+    <h2>{{usersD}}s List</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <label><input checked="checked" type="radio" name="utype" ng-click="showusers(2,0,400)" value="2" /> Vendor</label>
+        <label><input type="radio" name="utype" ng-click="showusers(1,0,400)" value="1" /> Customer</label>
+    </div>
+    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        dd
+    </div>
+    <!-- pagination end -->
+    <table class="table table-striped">
+
+        <thead>
+            <tr>
+
+                <th>Name</th>
+                <th>Mobile Number</th>
+                <th>User Type</th>
+                <th>Username</th>
+                <th>Status</th>
+                <th>Device</th>
+                <th>Offer</th>
+                <th>           </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="i in uselistdata">
+
+                <td>{{i.fname}} {{i.lname}}</td>
+                <td> {{i.mobileno}}</td>
+                <td>{{ ( i.usertype == 0 )?"admin":( ( i.usertype == 2 )?"vendor":"customer" ) }}</td>
+                <td>{{i.username}}</td>
+
+                <td>
+                    <span class="publics public" ng-click="changestatus(i.id,i.status,1)" ng-if="i.status==1"><i class="fa fa-check-circle"></i></span>
+                    <span class="publics unpublic" ng-click="changestatus(i.id,i.status,1)" ng-if="i.status==0"><i class="fa fa-minus-circle "></i></span>
+                </td>
+                <td ng-if="i.devicetype!=null">{{i.devicetype}}</td>
+                <td ng-if="i.devicetype==null">Web</td>
+                <td ng-if="i.usertype == 1 && i.shipping==0">Offer Used</td>
+                <td ng-if="i.usertype == 1 && i.shipping==1">Offer Not used</td>
+                <td ng-if="i.usertype == 2">not eligible</td>
+                <td>
+                    <a title="{{i.fname}} {{i.lname}} Dashboard " ng-if="i.usertype == 2" ng-click="openDashboard(i.id)"><i class='fa fa-mail-forward' aria-hidden='true'></i></a>
+                    <a href="/administrator/users/edit/{{i.id}}"><i class='fa fa-pencil' aria-hidden='true'></i></a>
+                    <a ng-click="changestatus(i.id,-2,2)" href="#"><i class='fa fa-trash-o' aria-hidden='true'></i></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<style>
+    .public {
+        color: green;
+    }
+
+    .unpublic {
+        color: red;
+    }
+
+    .publics {
+        font-size: 19px;
+        text-align: center;
+        display: block;
+    }
+</style> 

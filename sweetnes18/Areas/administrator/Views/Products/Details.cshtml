@@ -1,0 +1,69 @@
+﻿@model sweetnes18.Areas.administrator.Models.Products
+
+@{
+    ViewBag.Title = "Products Details";
+    Layout = "~/Areas/administrator/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Products</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductDec)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductDec)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductSalePrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductSalePrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductRegulerPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductRegulerPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductQun)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductQun)
+        </dd>
+
+        
+
+        <dt>
+            @Html.DisplayNameFor(model => model.productimage)
+        </dt>
+
+        <dd>
+            <img src="/@Html.DisplayFor(model => model.productimage)" />
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

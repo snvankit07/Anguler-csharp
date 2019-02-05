@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "My Order Track";
+}
+
+
+<section ng-app="Homex" ng-controller="HomeC" class="customer-support create-account myorder-track">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">{{"Home"|translate}}</a></li>
+            <li class="breadcrumb-item"><a href="#">{{"Track Order"|translate}}</a></li>
+
+        </ol>
+        <div class="row support-cont">
+            <div class="col-md-4 col-md-offset-4 account-right">
+                <h3 class="ng-binding">{{ "Track Your Order"| translate }}</h3> 
+                <form method="post" action="/Myorder/TrackOrder">
+
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <input Minlength="10"  required class="search-head form-control" type="text" name="orderid" />
+                        </div>
+                    </div>
+
+                    <div class="form-group row"> 
+                        <div class="col-md-12">
+                            <input type="submit" class="orange_btn" value="{{'Submit'| translate }}" />
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</section>
+

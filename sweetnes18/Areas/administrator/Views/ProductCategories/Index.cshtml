@@ -1,0 +1,58 @@
+﻿@model IEnumerable<sweetnes18.Areas.administrator.Models.ProductCategory>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div class="container" ng-controller="Standard" ng-init="init('ProductCategory');">
+    @*<div class="col-md-12 ">
+            <div class="btn-group btn-light" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-secondary">Available</button>
+                <button type="button" class="btn btn-secondary">Pending</button>
+                <button type="button" class="btn btn-secondary">Addintional fees</button>
+                <button type="button" class="btn btn-secondary">Now filter</button>
+            </div>
+        </div>*@
+    <div class="col-md-6">
+        <div class="dataTables_length">
+
+        </div>
+    </div>
+    <div ng-include="'Search'"></div>
+    <div ng-include="'Pagination'"></div>
+    <!-- pagination end -->
+    <table class="table table-striped">
+        @*// table-responsive*@
+        <thead>
+            <tr>
+                <th>Category Name</th>
+                <th>Category Slug</th>
+                <th>Parent Category</th>
+                <th>Category Status</th>
+                <th>Category Image</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="i in StandardJson">
+                <td>{{i.CategoryName}}</td>
+                <td>{{i.CategorySlug}}</td>
+                <td> {{i.ParentCategoryID}}</td>
+                <td>{{i.CategoryStatus}}</td>
+                <td><img class="img-responsive img-thumbnail imagesbox" src="{{i.CategoryImage}}" /></td>
+                <td>
+                    <a href="/administrator/ProductCategories/Edit/{{i.ID}}"><i class='fa fa-pencil' aria-hidden='true'></i></a> |
+                    <a target="_new" href="/administrator/ProductCategories/Details/{{i.ID}}"><i class='fa fa-eye' aria-hidden='true'></i></a> |
+                    <a href="/administrator/ProductCategories/Delete/{{i.ID}}"><i class='fa fa-trash-o' aria-hidden='true'></i></a> |
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+  

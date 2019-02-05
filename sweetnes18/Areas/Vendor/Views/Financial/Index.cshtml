@@ -1,0 +1,134 @@
+﻿@model IEnumerable<sweetnes18.Areas.Vendor.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Vendor/Views/Shared/_Layout.cshtml";
+}
+<div class="monly">
+    <div class="container Orders_box financial-transactions">
+        <div class="row">
+            <div class="col-xs-12 Orders_title">
+                <h3>Financial Transactions</h3>
+            </div>
+        </div>
+        <div class="row Orders_lists">
+            <ul>
+                <li class="waves-effect">
+                    <a href="/Vendor/Financial/Edit/1">
+                        <p><img src="/img/total-icon-m.png"> Total Amount</p>
+                    </a>
+                </li>
+                <li class="waves-effect">
+                    <a href="/Vendor/Financial/Edit/2">
+
+                        <p><img src="/img/pending-amount-m.png"> Pending Amount</p>
+                    </a>
+                </li>
+                <li class="waves-effect">
+                    <a href="/Vendor/Financial/Edit/3">
+                        <p><img src="/img/withdrawl-amount-m.png"> Withdrawl Amount</p>
+                    </a>
+                </li>
+            </ul>
+        </div><!-- delivered_list -->
+    </div>
+</div>
+<div class="row btns_row financial-top donly">
+    <div class="col-md-12">
+        <h5>Financial</h5>
+    </div>
+</div>
+<div class="row donly btns_row financial-bottom" ng-controller="Financial" ng-init="showvendordata('@ViewData["VendorID"]',1)">
+    <div style="width:100%;">
+        <div class="cal_right">
+            <div class="container">
+
+                <ul class="nav nav-tabs payment vendordatapayment">
+                    <li ng-click="showvendordata('@ViewData["VendorID"]',1)">
+                        <a data-toggle="tab" class="active show" href="#home">Total Amount <span class="amountshow">@*({{TotalPortelamount|number :2}} AED)*@</span></a>
+                    </li>
+                    <li ng-click="showvendordata('@ViewData["VendorID"]',2)">
+                        <a data-toggle="tab" href="#menu1">Pending Amount <span class="amountshow">@*({{TotalPayableamount|number : 2}} AED )*@</span></a>
+                    </li>
+                    <li ng-click="showvendordata('@ViewData["VendorID"]',3)">
+                        <a data-toggle="tab" href="#menu2">WithDrawal Amount <span class="amountshow">@*({{TotalClearamount|number : 2}} AED )*@</span></a>
+                    </li>
+
+                </ul>
+
+                <div class="">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>OrderID</th>
+                            <th>Total Amount</th>
+                            <th>Admin Amount (8%)<br /><span class="formula">(Total Amount X 8/100)</span></th>
+                            <th>Payble amount<span class="formula">(Total Amount=(Total Amount X 8/100))</span></th>
+                            <th>Shipping</th>
+                            <th>Status</th>
+                            <th>Balance</th>
+                        </tr> 
+                        
+                        <tr ng-repeat="i in Wholepayment.result">
+                            <td>{{i.dates | date:'medium'}}</td>
+                            <td> {{ i.Decription}}</td>
+                            <td>{{i.OrderId}}</td>
+                            <td>{{i.TotalAmount}} AED</td>
+                            <td>{{i.AdminAmount}} AED</td>
+                            <td>{{i.PayableAmount}} AED</td>
+                            <td>{{ i.Shipping}} AED</td>
+                            <td>{{i.Status}}</td>
+                            <td>{{i.Balance}} AED </td>
+                        </tr>
+                    </table>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<style>
+    .tab-pane {
+        border: 0px solid !important;
+    }
+
+    .payment li a.active {
+        background: #281010;
+        color: #fff !important;
+    }
+
+    .payment li a {
+        color: #000;
+        text-decoration: none;
+        width: 160px;
+        display: block;
+        text-align: center;
+        padding: 7px 2%;
+        background: #f9f9f9;
+        border-radius: 8px 8px 0px 0px;
+        margin: 0 1px;
+    }
+
+    .formula {
+        display: block;
+        font-size: 7px;
+    }
+
+    .amountshow {
+        font-size: 10px;
+        display: block;
+    }
+
+    .payment li a.active {
+        background: #281010;
+        color: #fff !important;
+    }
+
+    .vendordatapayment li a {
+        width: 230px;
+        padding: 0px 2%;
+    }
+</style>

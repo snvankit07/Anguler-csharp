@@ -1,0 +1,88 @@
+﻿@model IEnumerable<sweetnes18.Areas.administrator.Models.CompanyRate>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/administrator/Views/Shared/_Layout.cshtml";
+}
+<div ng-controller="ShowShippingRate">
+
+    <h2>{{Title}}</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <pre class="hidden">{{ShowResult|json}}</pre>
+    <div ng-repeat="x in ShowResult">
+        <div style="clear:both;">
+            <hr />
+
+            <div class="listcompany">
+                {{x.name}} <span style="float:right;">Phone number: <input type="text" class="updatephone{{x.ID}}" ng-keyup='changephone(this)' value="{{x.description}}" /></span>
+            </div>
+            <div class="showbox" style="display:none;">
+                <div class="boxrate col-lg-4 col-sm-4 col-md-4 col-xs-12" ng-repeat="y in x.Rates">
+                    <div class="boxrateprice">
+                        <div style="text-transform:capitalize;">{{y.source}} ---> {{y.destination}}</div>
+                        <div>Price:{{y.price}} AED</div>
+                        <div>Extra Qun price:{{y.ExtraQuntityprice}} AED</div>
+                        <div class="listaction">
+                            <a href="/administrator/CompanyRates/Edit/{{y.ID}}">
+                                <i class="btn btn-info fa fa-edit"></i>
+                            </a><br /><br />
+                            <a href="/administrator/CompanyRates/Delete/{{y.ID}}">
+                                <i class="btn btn-danger fa fa-trash"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="boxrate textlistbtn col-lg-4 col-sm-4 col-md-4 col-xs-12">
+                    <a href="/administrator/CompanyRates/Create/?id={{x.ID}}">
+                        <div class="boxrateprice">
+                            +
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<style>
+    .boxrate {
+        float: left;
+        margin: 8px auto;
+    }
+    .textlistbtn {
+        text-align: center;
+        font-size: 3em !important;
+    }
+    .listcompany, .boxrateprice {
+        position: relative;
+        background: #4a2417;
+        color: #fff;
+        padding: 14px 14px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .hidden{ display:none;}
+
+    .listaction {
+        
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        float: right;
+    }
+</style> 
+<script>
+    setTimeout(function () {
+       
+        $('.listcompany').click(function () {
+            $('.showbox').hide();
+            $(this).parent().find('.showbox').toggle('slide');
+
+        });
+    }, 4000);
+</script>

@@ -1,0 +1,58 @@
+﻿@model sweetnes18.Areas.Vendor.Models.Product_coupons
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Product_coupons</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductCouponCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductCouponCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductCouponDec)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductCouponDec)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductOffterType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductOffterType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductOffetAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductOffetAmount)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

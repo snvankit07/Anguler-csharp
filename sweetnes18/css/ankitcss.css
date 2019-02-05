@@ -1,0 +1,594 @@
+.ordertitle {
+    text-transform: capitalize;
+    font-weight: 400;
+    font-size: 17px;
+}
+
+.productrate i, .shippingrate i {
+    margin: 0 1px;
+    font-size: 18px;
+    color: #cac7c7;
+}
+
+    .productrate i.fill, .shippingrate i.fill {
+        color: #11c706;
+    }
+
+.ship1, .ship2, .ship3, .ship4, .ship5, .ship6 {
+    position: absolute;
+    left: 2em;
+}
+
+.ship1 {
+}
+
+.ship2 {
+    top: 5em;
+}
+
+.ship3 {
+    top: 10em;
+}
+
+.ship4 {
+    top: 15em;
+}
+
+.ship5 {
+    top: 20em;
+}
+
+tr.maintotal th, tr.maintotal td {
+    font-size: 17px;
+    font-weight: bolder;
+    border-top: 2px solid;
+    padding-top: 5px;
+}
+
+.popupdetailsbg table tr td {
+    text-align: right;
+}
+
+body .orderproducts.ratingreview {
+    padding: 1em 0px !important;
+}
+
+.orderproducts.ratingreview, .orderproducts.ratingreview .proimg {
+    margin: 1em 0px !important;
+    padding: 0px 0px !important;
+}
+
+.popupdetailsbg table {
+    width: 100%;
+}
+
+.orderproducts {
+    margin: 0 2em;
+    padding: 1em;
+    box-shadow: 0 0 2px #d2cdcd;
+    margin-bottom: 33px;
+}
+
+.trackshipment {
+    position: relative;
+    clear: both;
+    width: 100%;
+    margin-left: 3em;
+    padding-bottom: 3em;
+}
+
+.OrderPopupDeading {
+    font-weight: 600;
+    margin-top: 5px;
+    margin-bottom: 4px;
+}
+
+.bg-white .popupbody {
+    overflow-x: hidden;
+    padding-bottom: 10px;
+}
+
+.OrderPopupbgwhite {
+    background: #fff;
+    padding: 5px;
+    box-shadow: 0 1px 3px #7d7c7c;
+}
+
+.popupdetailsbg {
+    background: #eae7e7;
+    margin: -10px;
+    padding: 10px;
+    font-weight: 500;
+}
+
+.ordervendor span {
+    font-weight: bolder;
+    font-size: 12px;
+}
+
+.addresionforcancel, .saveresioncancel {
+    width: 100%;
+}
+
+.cancelbutton {
+    display: block;
+    padding: 8px 10px !important;
+    font-weight: 400;
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    background: #fff;
+    box-shadow: 0 4px 8px #737373;
+    border-top: 1px solid #000;
+}
+
+.ordervendor {
+    text-transform: capitalize;
+    font-weight: 400;
+    font-size: 10px;
+    color: #ea8b62;
+}
+
+.orderdate {
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: 10px;
+    margin: 7px 0px;
+}
+
+.resultopen {
+    margin: 5px 0;
+    box-shadow: 0px 0px 1px #806b6b;
+}
+
+.imagest {
+    margin: 0 -10px;
+}
+
+.resultshow {
+    padding: 5px 0;
+    background: #fff;
+    box-shadow: inset -2px -1px 9px 0px #e0dcdc;
+    transition: max-height 2s ease-in;
+    max-height: 600px;
+}
+
+.Buttonshow {
+    cursor: pointer;
+    border-top: 1px solid #ea8b62;
+    margin-top: 4px;
+    padding: 8px 0;
+    font-weight: 400;
+    background: #ea8b62;
+    color: #fff;
+    box-shadow: 0px -2px 4px #bdbcbc;
+}
+
+    .Buttonshow:hover, .Buttonshow:active, .Buttonshow:focus {
+        background: #ea8b62;
+        box-shadow: inset 0 0 9px 0px #444343;
+    }
+
+    .Buttonshow.canceled {
+        background: transparent !important;
+        box-shadow: inset 0 0 0px 0px #fff !important;
+        color: #000 !important;
+    }
+
+.boxes {
+    position: relative;
+    padding-bottom: 0px !important;
+    background: #fff;
+    padding: 4px 0;
+    box-shadow: 0 1px 3px #807b7b;
+    margin: 5px 0;
+}
+
+.boxesimages {
+    width: 100%;
+}
+
+.tabshowbox.ordertab-show li.active {
+    background: #f7eeee;
+}
+
+
+
+/*--------------------------Loader ------------------------------*/
+.productsearch {
+    position: relative;
+}
+
+.productsearchresultsvalue {
+    padding: 10px;
+    border-bottom: 1px solid #9a9a9a;
+    text-decoration: none !important;
+    color: #62392b;
+    box-shadow: none;
+    font-weight: bolder;
+}
+
+.productsearchresults {
+    display: none;
+    width: 1010px;
+    position: absolute;
+    z-index: 1000;
+    top: 35px;
+    box-shadow: 0px 3px 4px #d1d1d1;
+    left: 78px;
+    width: 310px;
+    background: #fff;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+    .productsearchresults .ng-scope a:hover {
+        text-decoration: none;
+    }
+
+.loaders {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #333333;
+    width: 5px;
+    height: 2px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+    float: left;
+    position: absolute;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+/*--------------------------Loader ------------------------------*/
+
+
+
+
+.detail-div-filter {
+    margin: 1px 0;
+    padding: 4px;
+}
+
+.recentviewbox p.ng-binding {
+    font-size: 11px !important;
+}
+
+.headingnexa {
+    font-size: 22px;
+    padding-left: 7px;
+    font-family: 'Spinnaker', sans-serif;
+}
+
+.trandingboxwithshow {
+    padding: 5px;
+}
+
+.productlistbox span i {
+    color: #6a4a3e !important;
+}
+
+.productsmallbox {
+    padding: 6px;
+    box-shadow: 2px 2px 9px #e9e4e4;
+    background: #fff;
+}
+
+a p, a h4, a h2, a h3, a h5 {
+    text-decoration: none !important;
+}
+
+.detail-div {
+    padding-right: 5px !important;
+    padding-left: 5px !important;
+}
+
+ul.content-slider.lightSlider.lSSlide li.lslide {
+    width: 160px !important;
+}
+
+#image-gallery li {
+    list-style: none;
+}
+
+.cardcount {
+    background: url(/img/impicon/check.png) #ea8b62;
+    background-size: cover;
+    width: 22px;
+    text-align: center;
+    left: 20px;
+    top: -6px !important;
+    color: #fff !important;
+    border-radius: 11px;
+}
+
+#image-gallery {
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+.mobilebrand {
+    display: none;
+}
+
+.onlydesktopshow {
+    display: block;
+}
+
+.onlymobileshow {
+    display: none;
+}
+
+@media(max-width: 700px) {
+    .showinmobilemenus {
+        position: absolute;
+    }
+
+    .showinmobilemenuss {
+        position: relative;
+    }
+
+    .detail-div-filter {
+        margin: 1% !important;
+        margin: 1px 0;
+        padding: 4px;
+        background: #fff;
+        float: left;
+        width: 48%;
+    }
+
+    .fullwidthboxbrand {
+        padding: 0 6px;
+        margin: 20px auto !important;
+    }
+
+    .onlydesktopshow {
+        display: none;
+    }
+
+    .onlymobileshow {
+        display: block;
+    }
+
+    .trandingbox {
+        margin: 0px;
+        padding: 1px;
+        background-size: cover !important;
+    }
+
+    .mobilebrand {
+        display: block !IMPORTANT;
+        float: left !important;
+        height: auto !important;
+        margin: 5px 0px;
+        padding: 0 5px;
+    }
+
+    .desktopbrand {
+        display: none;
+    }
+
+    .brand-img
+    .mobilebrand img {
+        width: 100% !important;
+    }
+
+    .mobilebrand {
+        display: block;
+    }
+}
+
+
+
+
+
+
+
+/*20-10-18 css start*/
+
+.customization_box h3 {
+    font-weight: normal;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.selectdiv {
+    position: relative;
+}
+
+    .selectdiv select {
+        width: 100% !important;
+        background: #f6f6f6;
+        padding: 10px 15px;
+        height: 40px;
+        color: #636363;
+        font-weight: normal;
+        line-height: 25px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        box-shadow: none;
+    }
+
+    .selectdiv input {
+        width: 100% !important;
+        color: rgba(0, 0, 0, 0.4) !important;
+        font-weight: 600 !important;
+    }
+
+.new_offr_browse {
+    margin: 15px 0px;
+}
+
+label.browse_input.input_box {
+    text-align: center;
+    border: 1px dashed #333;
+    padding: 20px 10px;
+    width: 100%;
+    border-radius: 20px;
+    background: #f6f6f6;
+}
+
+.upload_box h6 {
+    font-size: 16px;
+    color: #000000;
+    margin: 6px 0;
+    font-weight: normal;
+}
+
+.browse_input input {
+    display: none;
+}
+
+span.browse_btn {
+    text-align: center;
+    display: inline-block;
+    padding: 10px 30px;
+    background-color: #ea8b62;
+    border-radius: 25px;
+    color: #fff;
+    height: 40px;
+    margin: 10px auto !important;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.customization_box textarea {
+    width: 100% !important;
+    height: 135px;
+    background: #f6f6f6;
+    resize: none;
+    color: #636363;
+    font-weight: normal;
+    padding: 10px 15px;
+    box-shadow: none;
+    margin-bottom: 25px;
+}
+
+.customization_btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    border: 1px dashed #ea8b62;
+    background: transparent;
+    border-radius: 25px;
+    transition: 0.7s;
+}
+
+.customization_btn_box .submit_btn {
+    background-color: #ea8b62;
+    border: 1px solid #ea8b62;
+    color: #fff;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 25px;
+    width: 100%;
+    margin-top: 15px;
+    font-size: 15px;
+    font-weight: bold;
+    transition: 0.7s;
+}
+
+    .customization_btn_box .submit_btn:hover {
+        background-color: #e0e0e0;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .customization_btn_box .submit_btn:focus,
+    .customization_btn:focus {
+        outline: none;
+        box-shadow: none;
+        border: transparent;
+    }
+
+.customization_box {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px #ccc;
+    padding: 20px 15px 30px;
+}
+
+
+
+@media (max-width: 767px) {
+
+    .customization_box {
+        background: transparent;
+        box-shadow: none;
+        padding: 0px;
+    }
+
+        .customization_box h3 {
+            text-align: left;
+            font-size: 19px;
+        }
+
+        .customization_box .form-group {
+            padding: 0px;
+        }
+
+    .selectdiv select {
+        background: #ffffff !important;
+        color: #636363;
+        font-size: 14px;
+        line-height: 20px;
+        margin-bottom: 0px;
+    }
+
+    label.browse_input.input_box {
+        background: #ffffff;
+    }
+
+    .new_offr_browse {
+        margin: 0px 0px;
+    }
+
+    .customization_box textarea {
+        background: #ffffff;
+        margin-bottom: 15px;
+    }
+
+    .customization_box .selectdiv::before {
+        font: normal normal normal 14px/1 FontAwesome;
+        padding: 12px 0px 0px 8px;
+    }
+
+    .customization_btn {
+        font-size: 14px;
+    }
+
+    .customization_btn_box .submit_btn {
+        margin-top: 0px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .customization_box {
+        ;
+        margin-top: 20px;
+    }
+}
+
+
+/*20-10-18 css  end*/

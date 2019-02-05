@@ -1,0 +1,65 @@
+﻿@model IEnumerable<sweetnes18.Areas.Vendor.Models.Products>
+
+@{
+    ViewBag.Title = "Products List";
+    Layout = "~/Areas/Vendor/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-section new-dashboard_r">
+    <div class="dashboard_right">
+        <h5>Dashboard</h5>
+        <hr class="brown">
+
+        <div class="row" ng-app="vendorApp" ng-controller="Dashboard" ng-init="init('@ViewData["VendorID"]')">
+
+            <div class="col-md-7">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="box4">
+                            <h6 class="total">Total Revenue</h6>
+                            <h3 class="total_amount">{{VendorRevenue}} AED</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="box2">
+                            <h6 class="total">Clear Payment</h6>
+                            <h3 class="total_amount">{{VendorClearPayment}} AED</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="box3">
+                            <h6 class="total">Pending  Payment</h6>
+                            <h3 class="total_amount">{{VendorPendingPayment}} AED</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="box1">
+                            <h6 class="total">Total Orders</h6>
+                            <h3 class="total_amount">{{VendorTotalOrders}}</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="box4" style="background-color:#2c1212;">
+                            <h6 class="total">Total Customer</h6>
+                            <h3 class="total_amount">{{VendorCustomer}}</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="box4" style="background-color:#2c1212;">
+                            <h6 class="total">Total Product</h6>
+                            <h3 class="total_amount">{{VendorProduct}}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+        </div><!--main row-->
+
+    </div><!--dashboard_right-->
+
+</div><!-main-section end-->

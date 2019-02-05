@@ -1,0 +1,611 @@
+header {
+    top: 0px;
+    z-index: 1000;
+    padding: 15px 65px;
+    border-bottom: 1px solid #ea8e66;
+    box-shadow: 0px 0px 10px #ccc;
+    margin-bottom: 30px;
+    background: #fff;
+    width: 100%;
+    text-align: right;
+}
+
+a.pull-right.btn.btn-xs.btn-danger.col-xs-12.ng-scope {
+    background: red;
+}
+
+.showdatapopupbutton {
+    background: #ea8b62 !important;
+    width: 100% !important;
+    color: #fff !important;
+}
+
+footer {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#45484d+0,000000+100;Black+3D+%231 */
+    background: #fff; /* Old browsers */
+    /*background: -moz-linear-gradient(top, #45484d 0%, #000000 100%);
+    background: -webkit-linear-gradient(top, #45484d 0%,#000000 100%); 
+    background: linear-gradient(to bottom, #45484d 0%,#000000 100%); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); 
+    */ z-index: 1000;
+    text-align: right;
+    padding: 15px 15px;
+    width: 100%;
+    min-height: 30px;
+}
+
+.opendatashippingorder {
+    position: relative;
+    padding: 0px 6px;
+}
+
+.opendetails {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    display: none;
+    left: 0;
+    z-index: 1;
+    /* box-shadow: 0px 6px 10px #ccc; */
+    /* border-radius: 10px; */
+    height: 100%;
+}
+
+    .opendetails .opendetails_address {
+        padding: 0px 17px;
+        font-size: 13px;
+        margin: 15px 0px;
+    }
+
+    .opendetails > div:first-child {
+        border-right: 1px solid #ccc;
+    }
+
+    .opendetails .opendetails_address span {
+        font-weight: bold;
+        font-size: 14px;
+        display: block;
+        margin-bottom: 5px;
+        border-bottom: 1px solid #ea8b62;
+    }
+
+.shippingboxesdata:hover {
+    box-shadow: 0 1px 2px #545454;
+}
+
+.buttonsforaction {
+    padding-top: 10px;
+    clear: both;
+}
+
+.Productname, .Vendor {
+    margin-top: 5px;
+}
+
+.ordernumber, .Productname, .Vendor, .shippingcard {
+    font-size: 12px;
+}
+
+    .ordernumber span {
+        background: #d2d2d2;
+        padding: 5px;
+    }
+
+.detailsdata {
+    margin: 0px;
+    padding: 0px;
+}
+
+.imagesd img {
+    width: 100%;
+    border-radius: 10px;
+    height: 75px;
+    max-height: 75px;
+}
+
+.imagesd {
+    margin: 0px;
+    padding: 0px 10px 0px 5px;
+}
+
+.shippingboxesdata {
+    box-shadow: 0 2px 4px #a7a7a7;
+    margin: 0.7em 0;
+    padding: 10px 7px 7px;
+    border-radius: 7px;
+    background: #fff;
+}
+
+.showResult {
+    clear: both;
+    background: #fff;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+footer {
+    bottom: 0px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+    body .innershipping {
+        padding-bottom: 30px;
+        background-color: #f6f6f6 !important;
+    }
+/* Full-width input fields */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+/* Set a style for all buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+    button:hover {
+        opacity: 0.8;
+    }
+/* Extra styles for the cancel button */
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+/* Center the image and position the close button */
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+}
+
+.innerboxcontainer {
+    padding: 10px 3em;
+}
+
+img.avatar {
+    width: 40%;
+}
+
+.container {
+    padding: 16px;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 40%; /* Could be more or less, depending on screen size */
+}
+/* The Close Button (x) */
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+    .close:hover, .close:focus {
+        color: red;
+        cursor: pointer;
+    }
+/* Add Zoom Animation */
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {
+        -webkit-transform: scale(0)
+    }
+
+    to {
+        -webkit-transform: scale(1)
+    }
+}
+
+@keyframes animatezoom {
+    from {
+        transform: scale(0)
+    }
+
+    to {
+        transform: scale(1)
+    }
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+        display: block;
+        float: none;
+    }
+
+    .cancelbtn {
+        width: 100%;
+    }
+}
+
+header a.btn.btn-info {
+    background-color: #ea8b62;
+    color: #fff;
+    font-size: 16px;
+    display: inline-block;
+    padding: 7px 20px;
+    border-radius: 25px;
+    border: 1px solid #ea8b62;
+    transition: 0.7s;
+}
+
+    header a.btn.btn-info:hover, header a.btn.btn-info:focus, header a.btn.btn-info:active {
+        background-color: #ea8b62;
+        color: #fff;
+        outline: none;
+        border: 1px solid #ea8b62;
+        box-shadow: 0px 5px 10px #ccc;
+    }
+
+body.innershipping {
+    background: #f6f6f6;
+}
+
+.bgcolordata {
+    background: transparent !important;
+    width: 100%;
+}
+
+    .bgcolordata .btn {
+        font-size: 14px;
+        padding-left: 30px;
+        padding-right: 30px;
+        text-align: center;
+        background-color: transparent;
+        border: none;
+        border-bottom: 2px solid transparent !important;
+        color: #333;
+        /* width: 32.8%; */
+        margin: 0px;
+        transition: 0.7s;
+        position: relative;
+    }
+
+.shippingcard a {
+    font-size: 11px !important;
+}
+
+.opendatashippingorder {
+    min-height: 200px;
+}
+
+.bgcolordata .btn.active, .bgcolordata .btn:focus, .bgcolordata .btn:hover {
+    background-color: #fff;
+    color: #ea8b62;
+    box-shadow: none;
+    border: none;
+}
+
+    .bgcolordata .btn.active::after, .bgcolordata .btn:hover::after {
+        content: "";
+        background: #ea8b62;
+        height: 2px;
+        position: absolute;
+        width: 100%;
+        left: 0px;
+        bottom: -4px;
+    }
+
+.buttonsforaction a.btn.col-xs-6 {
+    width: 48%;
+    background: #ea8b62;
+    color: #fff;
+    margin: 0px 1%;
+    border-radius: 50px;
+    border: 1px solid #ea8b62;
+    padding: 5px 10px;
+    font-size: 11px;
+}
+
+.buttonsforaction a.btn.col-xs-12 {
+    width: 100%;
+    background: #ea8b62;
+    color: #fff;
+    border-radius: 50px;
+    font-size: 14px;
+    border: 1px solid #ea8b62;
+    padding: 5px 10px;
+}
+
+.bgcolordata {
+    background: transparent !important;
+    width: 90%;
+    margin: auto;
+}
+
+header .text-left {
+    padding: 0px;
+}
+
+.btn_box {
+    background: #fff;
+    border-bottom: 2px solid #d4d4d4;
+}
+/*.buttonsforaction a.btn.col-xs-12:hover,
+.buttonsforaction a.btn.col-xs-6:hover {
+    border: transparent !important;
+}*/
+.buttonsforaction a.btn.col-xs-12.active::after, .buttonsforaction a.btn.col-xs-12:hover::after, .buttonsforaction a.btn.col-xs-6.active::after, .buttonsforaction a.btn.col-xs-6:hover::after {
+    background: transparent;
+}
+
+@media only screen and (max-width: 320px) {
+    .ordernumber b {
+        font-size: 10px !important;
+    }
+
+    .ordernumber span {
+        font-size: 10px !important;
+    }
+}
+
+@media screen and (min-device-width: 321px) and (max-device-width: 600px) {
+    .ordernumber b {
+        font-size: 11px;
+    }
+
+    .ordernumber span {
+        font-size: 11px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    header {
+        padding: 15px 15px;
+    }
+
+        header .text-left img.logo-img {
+            width: 55%;
+        }
+
+        header a.btn.btn-info {
+            font-size: 15px;
+            padding: 5px 20px;
+        }
+
+    .bgcolordata {
+        width: 100%;
+    }
+
+        .bgcolordata .btn {
+            padding-left: 8px;
+            padding-right: 8px;
+            width: 32%;
+            margin: 0px;
+        }
+
+    .opendatashippingorder {
+        padding: 0px 0px;
+    }
+
+    .buttonsforaction a.btn.col-xs-12 {
+        font-size: 14px;
+        padding: 3px 10px;
+    }
+
+    .buttonsforaction a.btn.col-xs-6 {
+        padding: 3px 10px;
+        font-size: 14px;
+    }
+
+    .ordernumber {
+        display: inline-flex;
+    }
+
+    .imagesd img {
+        height: 50px;
+        max-height: 50px;
+    }
+
+    .imagesd {
+        width: 22%;
+    }
+
+    .detailsdata {
+        width: 78%;
+    }
+
+    .ordernumber span {
+        margin-left: 5px;
+        /*line-height: 20px;*/
+        font-size: 11px;
+        padding: 0px;
+    }
+
+    .ordernumber b {
+        /*line-height: 31px;*/
+        font-size: 11px;
+    }
+
+    .Productname span {
+        /*font-size: 15px;*/
+    }
+
+    .ordernumber span {
+        background: transparent;
+    }
+
+    .modal-content {
+        width: 90%;
+    }
+
+    .opendetails {
+        width: 100%;
+        left: 0px;
+    }
+
+    body .opendetails .opendetailsinner {
+        width: 92%;
+        top: 0px;
+        margin-top: 22px;
+        padding-bottom: 20px;
+    }
+
+        body .opendetails .opendetailsinner .opendetails_address {
+            width: 100%;
+            margin-bottom: 0px;
+        }
+}
+/*(max-width: 600px)*/
+
+
+@media screen and (min-device-width: 601px) and (max-device-width: 767px) {
+    header {
+        padding: 15px 15px;
+    }
+
+        header a.btn.btn-info {
+            font-size: 15px;
+            padding: 5px 20px;
+        }
+
+    .bgcolordata {
+        width: 100%;
+    }
+
+        .bgcolordata .btn {
+            padding-left: 8px;
+            padding-right: 8px;
+            width: 32%;
+            margin: 0px;
+        }
+
+    .opendatashippingorder {
+        padding: 0px 0px;
+        width: 48%;
+        margin: 0px 1%;
+    }
+
+    .buttonsforaction a.btn.col-xs-12 {
+        font-size: 14px;
+        padding: 3px 10px;
+    }
+
+    .buttonsforaction a.btn.col-xs-6 {
+        padding: 3px 10px;
+        font-size: 14px;
+    }
+
+    .ordernumber {
+        display: inline-flex;
+    }
+
+    .imagesd img {
+        height: 55px;
+        max-height: 55px;
+    }
+
+    .imagesd {
+        width: 20%;
+    }
+
+    .detailsdata {
+        width: 80%;
+    }
+
+    .ordernumber span {
+        margin-left: 5px;
+        line-height: 20px;
+        font-size: 10px;
+    }
+
+    .ordernumber b {
+        line-height: 31px;
+        font-size: 10px;
+    }
+
+    .Productname span {
+        font-size: 15px;
+    }
+}
+/*(min-device-width: 601px) and (max-device-width: 767px) */
+
+
+@media screen and (min-device-width:768px) and (max-device-width: 991px) {
+    .ordernumber b {
+        font-size: 10px !important;
+    }
+
+    .ordernumber span {
+        font-size: 10px !important;
+    }
+
+    .bgcolordata {
+        width: 100%;
+    }
+
+    .opendatashippingorder {
+        width: 48%;
+        margin: 0px 1%;
+    }
+}
+/*(min-device-width:768px) and (max-device-width: 991px) */
+
+@media screen and (min-device-width:992px) and (max-device-width: 1200px) {
+    .ordernumber b {
+        font-size: 10px !important;
+    }
+
+    .ordernumber span {
+        font-size: 10px !important;
+    }
+
+    .bgcolordata {
+        width: 100%;
+    }
+
+    .opendatashippingorder {
+        width: 48%;
+        margin: 0px 1%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .buttonsforaction a.btn.col-xs-6 {
+        width: 100%;
+        margin-bottom: 6px;
+    }
+}

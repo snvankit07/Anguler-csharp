@@ -1,0 +1,185 @@
+﻿body {
+    background-image: url(body-bg.png);
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+}
+body {
+    width: 100% !Important;
+    /*height: 100vh !Important;*/
+    float: left !Important;
+    background-attachment: fixed !Important;
+}
+
+.comming-soon-auto {
+    height: auto;
+    max-width: 900px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.comming-soon-box {
+    width: 100%;
+    float: left;
+}
+
+.comming-soon-text {
+    width: 100%;
+    float: left;
+    margin-top: 93px;
+}
+
+.create-box {
+    width: 100%;
+    float: left;
+}
+
+.comming-soon-box-tx {
+    width: 100%;
+    float: left;
+    padding-top: 80px;
+    padding-bottom: 69px;
+    padding-left: 188px;
+}
+
+.create-box {
+    width: 100%;
+    float: left;
+    text-align: right;
+    margin-left: 213px;
+}
+
+.desktop {
+    display: inline-block;
+}
+
+.mobile {
+    display: none;
+}
+
+.create-box {
+    position: relative;
+    z-index: 9;
+}
+
+.logo img {
+    width: 218px;
+}
+
+.comming-soon-text img {
+    width: 674px;
+}
+
+.create-box img {
+    width: 462px;
+}
+
+@media (min-width: 600px) and (max-width: 768px) {
+    body {
+        background-image: url(comming-soon-mobile.jpg);
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+    .create-box {
+        margin-left: 0px;
+    }
+
+    .desktop {
+        display: none;
+    }
+
+    .mobile {
+        display: inline-block;
+    }
+
+    .comming-soon-box-tx {
+        width: 100%;
+        float: left;
+        padding-top: 80px;
+        padding-bottom: 53px;
+        padding-left: 10px;
+        text-align: center;
+        padding-right: 10px;
+    }
+
+    .comming-soon-text {
+        margin-top: 70px;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 599px) {
+    body {
+        background-image: url(comming-soon-mobile.jpg);
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+    .create-box {
+        margin-left: 0px;
+    }
+
+    .desktop {
+        display: none;
+    }
+
+    .mobile {
+        display: inline-block;
+    }
+
+    .comming-soon-box-tx {
+        width: 100%;
+        float: left;
+        padding-top: 80px;
+        padding-bottom: 53px;
+        padding-left: 10px;
+        text-align: center;
+        padding-right: 10px;
+    }
+
+    .comming-soon-text {
+        margin-top: 70px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        background-image: url(comming-soon-mobile.jpg);
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+    .create-box {
+        margin-left: 0px;
+    }
+
+    .desktop {
+        display: none;
+    }
+
+    .mobile {
+        display: inline-block;
+    }
+
+    .comming-soon-box-tx {
+        width: 100%;
+        float: left;
+        padding-top: 80px;
+        padding-bottom: 26px;
+        padding-left: 10px;
+        text-align: center;
+        padding-right: 10px;
+    }
+
+    .comming-soon-text {
+        margin-top: 70px;
+    }
+}

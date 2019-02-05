@@ -1,0 +1,123 @@
+﻿@{
+    Layout = "~/Views/Shared/_ShippingcompanyHeader.cshtml";
+}
+<input type="hidden" ng-model="shipingid" value="@ViewData["dataorder"]" />
+<div ng-init="OpenOrdershippingdata('@ViewData["dataorder"]','1')" class="bgcolordata">
+    <div class="btn_box">
+        <div class="btn btn-info active" id="openorderbtns" ng-click="OpenOrdershippingdata('@ViewData["dataorder"]','1')">Placed Orders</div>
+        <div class="btn btn-danger" ng-click="OpenOrdershippingdata('@ViewData["dataorder"]','2')">Completed Orders</div>
+        <div class="btn btn-success" ng-click="OpenOrdershippingdata('@ViewData["dataorder"]','3')">Cancelled Orders</div>
+    </div>
+    <div class="showResult col-md-12 col-sm-12 col-xs-12">
+        <div ng-if="ShowResult.flag==true">
+            <div class="opendatashippingorder col-lg-4 col-sm-6 col-md-4 col-xs-12" ng-repeat="i in ShowResult.result">
+                <div class="shippingboxesdata">
+                    <div class="imagesd col-lg-3 col-sm-3 col-md-3 col-xs-3">
+                        <img src="{{i.OrderSummary.Product.productimage}}" />
+                    </div>
+                    <div class="detailsdata col-lg-9 col-sm-9 col-md-9 col-xs-9">
+                        <div class="ordernumber"><b>Order No: </b><span>{{i.OrderSummary.ProductOrderNumber}}</span></div>
+                        <div class="Productname"><span>{{i.OrderSummary.Product.ProductTitle}}</span></div>
+                        <div class="Vendor"><b>By </b><span>{{i.OrderSummary.Vendor.fname}} {{i.OrderSummary.Vendor.lname}}</span></div>
+                        <div class="shippingcard">
+                            {{i.OrderSummary.ShippingRatecard.source}} <i class="fa  fa-truck"></i> {{i.OrderSummary.ShippingRatecard.destination}} <br />
+                            <a class="btn btn-info showaddress showdatapopupbutton">Show Details</a>
+                        </div>
+                        <div class="statusrotation" ng-if="i.pickanddeliverStatus==-2 && i.cancelby==1">Cancel By Client</div>
+                        <div class="statusrotation"  ng-if="i.pickanddeliverStatus==-2 && i.cancelby==2">Cancel By Vendor</div>
+                        <div class="statusrotation"  ng-if="i.pickanddeliverStatus==-3 && i.cancelby==3">Cancel By Shipping</div>
+                        <div class="statusrotation"  ng-if="i.pickanddeliverStatus==-4 && i.cancelby==4">Return By Client</div>
+                    </div>
+                    <div class="buttonsforaction">
+                        <a ng-click="updatestatus(@ViewData["dataorder"],i.OrderSummary.ProductOrderNumber,1)"  ng-if="i.pickanddeliverStatus==0" class="pull-right btn btn-xs btn-info col-sm-6 col-md-6 col-lg-6 col-xs-6">Shipment Information Received</a>
+                        <a href="/company/canceleresion?OrderID={{i.OrderSummary.ProductOrderNumber}}&OrderType=-3"  ng-if="i.pickanddeliverStatus==0" class="pull-right btn btn-xs btn-info col-sm-6 col-md-6 col-lg-6 col-xs-6">Not Pickedup</a>
+                        <a ng-click="updatestatus(@ViewData["dataorder"],i.OrderSummary.ProductOrderNumber,2)" ng-if="i.pickanddeliverStatus==1" class="pull-right btn btn-xs btn-info  col-xs-12">Picked up from store</a>
+                        <a ng-click="updatestatus(@ViewData["dataorder"],i.OrderSummary.ProductOrderNumber,3)" ng-if="i.pickanddeliverStatus==2" class="pull-right btn btn-xs btn-info  col-xs-12">Departed</a>
+                        <a ng-click="updatestatus(@ViewData["dataorder"],i.OrderSummary.ProductOrderNumber,4)" ng-if="i.pickanddeliverStatus==3" class="pull-right btn btn-xs btn-info  col-sm-6 col-md-6 col-lg-6 col-xs-6">On The Way</a>
+                        <a ng-click="updatestatus(@ViewData["dataorder"],i.OrderSummary.ProductOrderNumber,5)" ng-if="i.pickanddeliverStatus==3" class="pull-right btn btn-xs btn-danger  col-sm-6 col-md-6 col-lg-6 col-xs-6">It May Delay</a>
+                        <a ng-click="updatestatus(@ViewData["dataorder"],i.OrderSummary.ProductOrderNumber,6)" ng-if="i.pickanddeliverStatus==4" class="pull-right btn btn-xs btn-success  col-sm-6 col-md-6 col-lg-6 col-xs-6">Delivered</a>
+                        <a ng-click="updatestatus(@ViewData["dataorder"],i.OrderSummary.ProductOrderNumber,6)" ng-if="i.pickanddeliverStatus==5" class="pull-right btn btn-xs btn-danger  col-sm-6 col-md-6 col-lg-6 col-xs-6">Delivered</a>
+                        <a href="/company/canceleresion?OrderID={{i.OrderSummary.ProductOrderNumber}}&OrderType=-4" ng-if="i.pickanddeliverStatus==4 || i.pickanddeliverStatus==5" class="pull-right btn btn-xs btn-success  col-sm-6 col-md-6 col-lg-6 col-xs-6">Order Return</a>
+                        
+                    </div>
+                    <div style="clear:both;"></div>
+                    <div class="opendetails">
+                        <div class="opendetailsinner bgcolordata">
+                            <div style="border-bottom: 1px solid;" class="col-xs-12 ">
+                     <h3 style="font-size:18px;">Shipping Address <i onclick="cancelbtn()" class="pull-right fa fa-close"></i></h3> 
+                            </div>
+                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6 opendetails_address">
+                                <span>Vendor Address:</span>
+                                <b style="text-transform:capitalize;">{{i.OrderSummary.Vendor.fname}} {{i.OrderSummary.Vendor.lname}}</b>
+                                <br /><b>Company Name:</b>{{i.OrderSummary.Vendor.Postalcode}}
+                                <br /><b>Address:</b>{{i.OrderSummary.Vendor.shipping}}
+                                <br /><b>City:</b>{{i.OrderSummary.fromname}}
+                                <br /><b>Mobile:</b>{{i.OrderSummary.Vendor.mobileno}}
+                                <br /><b>Email:</b>{{i.OrderSummary.Vendor.username}}
+
+                            </div>
+                                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6 opendetails_address">
+                                    <span>Customer Address:</span>
+                                    <b style="text-transform:capitalize;">
+                                        {{i.OrderSummary.ShippingAddress.Fname}} {{i.OrderSummary.ShippingAddress.Lname}}</b>
+                                        <br /><b>Building Name:</b>{{i.OrderSummary.ShippingAddress.BuildingName}}
+                                        <br /><b>Location:</b>{{i.OrderSummary.ShippingAddress.Location}}
+                                        <br /><b>Street Name:</b>{{i.OrderSummary.ShippingAddress.StreetName}}
+                                        <br /><b>City:</b>{{i.OrderSummary.ShippingAddress.CityName}}
+                                        <br /><b>Mobile:</b>{{i.OrderSummary.ShippingAddress.Mobile}}
+                                        <br /><b>Shipping Note:</b>{{i.OrderSummary.ShippingAddress.ShoppingNote}}
+
+</div>
+                                <div style="clear:both;"></div>
+                            </div>
+                        </div>
+                </div>
+
+            </div>
+        </div>
+        <div ng-if="ShowResult.flag==false">
+            <div class="alert alert-success">{{ShowResult.message}}</div>
+        </div>
+
+
+        <pre style="display:none;">{{ShowResult|json}}</pre>
+    </div>
+</div>
+
+<style>
+    .bgcolordata {
+        background: #fff !important;
+    }
+    .opendetails {
+       
+    }
+    .opendetailsinner {
+        width: 47%;
+        top: 3px;
+        margin-top: 60px;
+    }
+
+    .statusrotation {
+        position: absolute;
+        top: 33px;
+        font-size: 24px;
+        color: rgba(0, 0, 0, 0.5);
+        text-shadow: 0 0 2px #e0dcdc;
+        /* Safari */
+        -webkit-transform: rotate(-30deg);
+        /* Firefox */
+        -moz-transform: rotate(-30deg);
+        /* IE */
+        -ms-transform: rotate(-30deg);
+        /* Opera */
+        -o-transform: rotate(-30deg);
+        /* Internet Explorer */
+        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+    }
+
+</style>
+<script>
+    function cancelbtn() {
+        $('.opendetails').fadeOut(1000);
+    }
+</script>

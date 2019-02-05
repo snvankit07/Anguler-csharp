@@ -1,0 +1,93 @@
+﻿@model sweetnes18.Areas.administrator.Models.Products
+
+@{
+    ViewBag.Title = "Payment Details";
+    Layout = "~/Areas/administrator/Views/Shared/_Layout.cshtml";
+} 
+<div class="container" ng-controller="Standard" ng-init="wholepaymentshow('@ViewData["VendorID"]')">
+
+    <div class="col-xl-4 col-sm-6 mb-3 pull-left">
+        <div class="card text-white bg-success o-hidden h-100">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i class="fa fa-fw fa-shopping-cart"></i>
+                </div>
+                <div class="mr-5">{{Totalamount|number :2}} AED<br /> Total Amount</div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-xl-4 col-sm-6 mb-3 pull-left">
+        <div class="card text-white bg-success o-hidden h-100">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i class="fa fa-fw fa-shopping-cart"></i>
+                </div>
+                <div class="mr-5">{{TotalPortelamount|number : 2}} AED<br /> Total Portel Charges</div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-xl-4 col-sm-6 mb-3 pull-left">
+        <div class="card text-white bg-success o-hidden h-100">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i class="fa fa-fw fa-shopping-cart"></i>
+                </div>
+                <div class="mr-5">{{TotalShippingCost|number : 2}} AED<br /> Total Shipping Cost</div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-xl-12 col-sm-6 mb-3 pull-left">
+        <div class="msgs">{{msg}}</div>
+        <input ng-click="paynow('@ViewData["VendorID"]',TotalPayableamount)" type="button" class="col-xs-12 btn btn-success" value="Pay {{TotalPayableamount|number : 2}} AED" />
+    </div>
+
+
+
+    <table class="table table-striped">
+        <tr>
+            <th>Date</th>
+            <th>Description</th>
+
+            <th>Total Amount</th>
+            <th>Portel (8%)<br /><span class="formula">(Total Amount X 8/100)</span></th>
+            <th>Shipping</th>
+            <th>Cancel</th>
+            <th>Pending</th>
+            <th>Payble amount<span class="formula">(Total Amount=(Total Amount X 8/100))</span></th>
+            <th>Paid Amont</th>
+            <th>Status</th>
+
+        </tr>
+        <tr ng-repeat="i in Wholepayment">
+            <td>{{i.CreatedDate | date:'medium'}}</td>
+            <td>Order #{{i.ProductOrderID}} <BR />{{i.OrderSummary.Product.ProductTitle}} </td>
+
+            <td>{{i.stotal|number : 2}} AED</td>
+            <td>- {{i.sPortel |number : 2}} AED</td>
+
+            <td>- {{i.sShipping |number : 2}} AED</td>
+            <td>{{i.sCancel | number : 2}} AED</td>
+            <td>{{i.sPending | number : 2}} AED</td>
+            <td>{{i.spayable | number : 2}} AED</td>
+            <td>{{i.spaidamount | number : 2}} AED</td>
+            <td ng-if="i.payable>'0'"><b>Dr.</b></td>
+            <td ng-if="i.payable=='0'">Cr.</td>
+
+        </tr>
+    </table>
+    
+
+
+</div>
+<style>
+    .pull-left {
+        float:left;
+    }
+    .formula {
+        display: block;
+        font-size: 7px;
+    }
+</style>

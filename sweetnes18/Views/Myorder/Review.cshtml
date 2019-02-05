@@ -1,0 +1,105 @@
+﻿@using sweetnes18.Models;
+@{
+
+    ViewData["Title"] = "Give Review Your Purchase";
+
+}
+
+
+<section ng-app="getshoppingcart" class="checkout-page">
+    <div ng-controller="ReviewSubmit" ng-init="init('@ViewData["Token"]')" class="reviewshow container">
+
+        <h2 style="text-align:center;">{{msg}}</h2>
+        <div class="col-md-12" ng-repeat="j in i">
+
+
+
+        </div>
+
+        <input type="hidden" id="keys" ng-model="keys" value="@ViewData["Token"]" />
+        <div ng-include="'Reviewproduct'" ng-repeat="i in [reviewProduct]">
+        </div>
+
+
+    </div>
+</section>
+<script type="text/ng-template" id="Reviewproduct">
+    <div class="ratingreviewboxxx col-md-12" ng-repeat="j in i">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 border-bottom">
+            <div class="productimg col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <img style="width:100%" src="{{j.productdetail.productimg}}" />
+            </div>
+            <div class="products col-lg-8 col-md-8 col-sm-8 col-xs-12" data-productID="{{j.productdetail.ProductID}}" class="content col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <span style="font-weight:200; display:block">{{j.productdetail.ProductTitle}}</span>
+                <span style="font-weight:200; display:block"><b>SKU:</b>{{j.productdetail.SKU}}</span>
+                <span style="font-weight:200; display:block"><b>Price:</b>{{j.productdetail.ProductRegulerPrice}}</span>
+                <div style="font-weight:200; display:block; font-size:12px;">{{j.productdetail.ProductDec | limitTo: 150}}..</div>
+            </div>
+            <div class="reviewadd col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <textarea name="review[{{j.productdetail.ProductID}}]" required class="form-control producttext"></textarea>
+
+            </div>
+            <div class="rating col-lg-12 col-md-12 col-sm-2 col-xs-12">
+
+                <div ng-controller="StarCtrl">
+                    <span ng-repeat="rating in ratings">
+                        <input name="rating[{{j.productdetail.ProductID}}]" value="{{rating.current}}" class="form-control ratingcontent" required />
+                        <div class="pagerating" star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating)"></div>
+                    </span>
+                </div>
+            </div>
+            <div style="text-align:center;" class=" col-lg-12 col-md-12 col-sm-12 col-xs-12 review-btn"> <a class="btn btn-success reviewsave">save</a></div>
+            <div class="clearfix"></div>
+        </div>
+
+
+
+    </div>
+</script>
+<style>
+    .rating li.filled {
+        color: #ffd800;
+    }
+
+    .pagerating {
+        text-align: center;
+    }
+
+    .rating {
+        padding: 0px !important;
+    }
+
+        .rating li {
+            cursor: pointer;
+            font-size: 32px;
+            list-style: none;
+            display: inline !important;
+            text-shadow: 1px 2px 3px #a58686;
+        }
+
+    .textarea {
+        width: 100%;
+    }
+
+    .border-bottom {
+        padding: 20px 0;
+        border-bottom: 1px solid #808080 !important;
+    }
+
+    .rating i {
+        font-size: 20px !important;
+    }
+
+    .ratingcontent {
+        display: none;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+        $('.reviewsave').click(function () {
+            $(this).parents('.ratingreviewboxxx').hide();
+
+        })
+    })
+</script>

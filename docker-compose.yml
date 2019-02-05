@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  sweetnes18:
+    image: sweetnes18
+    build:
+      context: .\sweetnes18
+      dockerfile: Dockerfile
